@@ -22,7 +22,7 @@ namespace BarberShop
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static SqlConnection connect = new SqlConnection(Connect.connectionString);
+        //public static SqlConnection connect = new SqlConnection(Connect.connectionString);
         public MainWindow()
         {
             InitializeComponent();
@@ -30,7 +30,7 @@ namespace BarberShop
 
         private void Enter_Click(object sender, RoutedEventArgs e)
         {
-            using (connect)
+            using (SqlConnection connect = new SqlConnection(Connect.connectionString))
             {
                 connect.Open();
                 SqlCommand c = new SqlCommand($@"select * from Users where Login_User='{Login.Text}' and Password_User='{Password.Password}'",connect);
@@ -43,7 +43,6 @@ namespace BarberShop
                         this.Hide();
                         u1.Show();
 
-                    
                 }
                 else // если вошел сотрудник
                 {
@@ -90,6 +89,7 @@ namespace BarberShop
                         {
                             case 1:
                                 {
+                                    // парикмахер
                                     Window barber = new BarberWindow1(LOGIN, SERIA, NOMER, EMAIL, Posts, F, I, O, PHONE, level);
                                     this.Hide();
                                     barber.Show();
@@ -97,7 +97,24 @@ namespace BarberShop
                                 }
                             case 2:
                                 {
-                                    Window slader = new SkladManager();
+                                    // кладмен
+                                    Window slader = new SkladManager(LOGIN, SERIA, NOMER, EMAIL, Posts, F, I, O, PHONE, level);
+                                    this.Hide();
+                                    slader.Show();
+                                    break;
+                                }
+                            case 3:
+                                {
+                                    // отдел кадров
+                                    Window slader = new KadrOtdel(LOGIN, SERIA, NOMER, EMAIL, Posts, F, I, O, PHONE, level);
+                                    this.Hide();
+                                    slader.Show();
+                                    break;
+                                }
+                            case 4:
+                                {
+                                    // отдел закупок
+                                    Window slader = new Zakupmen(LOGIN, SERIA, NOMER, EMAIL, Posts, F, I, O, PHONE, level);
                                     this.Hide();
                                     slader.Show();
                                     break;
@@ -107,7 +124,8 @@ namespace BarberShop
                       else 
                       {
                         MessageBox.Show("Такого пользователя не существует, сначала пройдите регистрацию");
-                      };
+                        
+                     };
 
                 }
                 connect.Close();

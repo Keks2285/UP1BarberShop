@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,34 +21,119 @@ namespace BarberShop
     /// </summary>
     public partial class ManageSklad : Window
     {
-        public ManageSklad()
+        public static SqlConnection connect = new SqlConnection(Connect.connectionString);
+        string F = "";
+        string I = "";
+        string O = "";
+        string EMAIL = "";
+        string LOGIN = "";
+        string PHONE = "";
+        string SERIA = "";
+        string NOMER = "";
+        string POSTS = "";
+        int RANG = 0;
+        public ManageSklad(string login, string seria, string nomer, string email, string posts, string f, string i, string o, string phone, int rang)
         {
             InitializeComponent();
+            F = f;
+            I = i;
+            O = o;
+            EMAIL = email;
+            LOGIN = login;
+            PHONE = phone;
+            SERIA = seria;
+            NOMER = nomer;
+            POSTS = posts;
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-
+            Window a = new SkladManager(LOGIN, SERIA, NOMER, EMAIL, POSTS, F, I, O, PHONE, RANG);
+            this.Hide();
+            a.Show();
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
+            if (Adress.Text.Length > 1 && Value.Text!="")
+            {
+                try
+                {
+                    connect.Open();
+                    SqlCommand add = new SqlCommand("Sklad_Insert", connect);
+                    add.CommandType = CommandType.StoredProcedure;
+                    add.Parameters.AddWithValue("@Adres_Sklad", Adress.Text);
+                    add.Parameters.AddWithValue("@Value_Echeek", Value.Text);
+                    add.ExecuteNonQuery();
+                }
+                catch { }
+                finally
+                {
+                    connect.Close();
+                    Window_Loaded(sender, e);
+                }
 
+
+            }
         }
 
         private void Change_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                if (dg.SelectedItem == null) return;
+                if (Adress.Text == "" || Value.Text == "") { MessageBox.Show("Все поля должны быть заполненными"); return; }
+                connect.Open();
+                DataRowView row = (DataRowView)dg.SelectedItem;
+                SqlCommand Upd = new SqlCommand("Sklad_Update", connect);
+                Upd.CommandType = CommandType.StoredProcedure;
+                Upd.Parameters.AddWithValue("@ID_Sklad", (int)row["ID_Sklad"]);
+                Upd.Parameters.AddWithValue("@Adres_Sklad", Adress.Text);
+                Upd.Parameters.AddWithValue("@Value_Echeek", Value.Text);
+                Upd.ExecuteNonQuery();
+            }
+            catch { MessageBox.Show("Введены некорректные данные"); 
+            }
+           finally
+            {
+                connect.Close();
+                Window_Loaded(sender, e);
+            }
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-
+            if (dg.SelectedItem == null) return;
+            try
+            {
+                connect.Open();
+                DataRowView row = (DataRowView)dg.SelectedItem;
+                SqlCommand Del = new SqlCommand("Sklad_Delete", connect);
+                Del.CommandType = CommandType.StoredProcedure;
+                Del.Parameters.AddWithValue("ID_Sklad", (int)row["ID_Sklad"]);
+                Del.ExecuteNonQuery();
+            }
+            catch { MessageBox.Show("Нельзя удалить Используемый склад"); }
+            finally { connect.Close(); Window_Loaded(sender, e); Adress.Text = ""; Value.Text = "";}
         }
 
         private void dg_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (dg.SelectedItem == null) return;
+            DataRowView row = (DataRowView)dg.SelectedItem;
+            Adress.Text = row["Адресс"].ToString();
+           Value.Text = row["Количество ячеек"].ToString();
+        }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            connect.Open();
+            SqlCommand commandcb1 = new SqlCommand("select ID_Sklad, Adres_Sklad as 'Адресс', Value_Echeek as 'количество ячеек' from Sklad", connect);
+            DataTable datatbl = new DataTable();
+            datatbl.Load(commandcb1.ExecuteReader());
+            dg.ItemsSource = datatbl.DefaultView;
+            dg.Columns[0].Visibility = Visibility.Hidden;
+            connect.Close();
         }
     }
 }

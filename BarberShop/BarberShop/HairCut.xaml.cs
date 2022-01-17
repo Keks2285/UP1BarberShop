@@ -72,17 +72,24 @@ namespace BarberShop
 
         private void Change_Click(object sender, RoutedEventArgs e)
         {
-            if (dg.SelectedItem == null) return;
-            if (Haircut.Text == "") { MessageBox.Show("Все поля должны быть заполненными"); return; }
-            connect.Open();
-            DataRowView row = (DataRowView)dg.SelectedItem;
-            SqlCommand Upd = new SqlCommand("Haircut_Update", connect);
-            Upd.CommandType = CommandType.StoredProcedure;
-            Upd.Parameters.AddWithValue("@ID_Haircut", (int)row["ID_Haircut"]);
-            Upd.Parameters.AddWithValue("@Name_Haircut",Haircut.Text);            
-            Upd.ExecuteNonQuery();
-            connect.Close();
-            Window_Loaded(sender, e);
+            try
+            {
+                if (dg.SelectedItem == null) return;
+                if (Haircut.Text == "") { MessageBox.Show("Все поля должны быть заполненными"); return; }
+                connect.Open();
+                DataRowView row = (DataRowView)dg.SelectedItem;
+                SqlCommand Upd = new SqlCommand("Haircut_Update", connect);
+                Upd.CommandType = CommandType.StoredProcedure;
+                Upd.Parameters.AddWithValue("@ID_Haircut", (int)row["ID_Haircut"]);
+                Upd.Parameters.AddWithValue("@Name_Haircut", Haircut.Text);
+                Upd.ExecuteNonQuery();
+            }
+            catch { MessageBox.Show("ВВедены некорректные данные"); }
+            finally
+            {
+                connect.Close();
+                Window_Loaded(sender, e);
+            }
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
@@ -108,8 +115,7 @@ namespace BarberShop
             DataTable datatbl = new DataTable();
             datatbl.Load(commandcb1.ExecuteReader());
             dg.ItemsSource = datatbl.DefaultView;
-            dg.Columns[0].Visibility = Visibility.Hidden;
-            
+            dg.Columns[0].Visibility = Visibility.Hidden;           
             connect.Close();
         }
 

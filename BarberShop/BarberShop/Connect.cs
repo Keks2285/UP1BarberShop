@@ -8,6 +8,11 @@ namespace BarberShop
 {
     public class Connect
     {
-      public  static string connectionString = "Data Source=KEKS\\SQLEXPRESS;Initial Catalog=BarberShopUP;Integrated Security=True";
+  //Комп сервер   
+  //public  static string connectionString = "Data Source=KEKS\\SQLEXPRESS;Initial Catalog=BarberShopUP;Integrated Security=True";
+        
+  //Ноутбук сервер
+    public static string connectionString = "Data Source=DESKTOP-VO7UQNS;Initial Catalog=BarberShopUP;Integrated Security=True";
+
     }
 }

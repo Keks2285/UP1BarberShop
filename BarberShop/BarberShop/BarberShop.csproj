@@ -8,7 +8,7 @@
     <ProjectGuid>{11AB3973-0DD8-4EE4-AC15-DDF63E7AE2DE}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>BarberShop</RootNamespace>
-    <AssemblyName>BarberShop</AssemblyName>
+    <AssemblyName>ень д</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -71,8 +71,26 @@
     <Compile Include="ChangDataWindow.xaml.cs">
       <DependentUpon>ChangDataWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Doljnost.xaml.cs">
+      <DependentUpon>Doljnost.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Echeiki.xaml.cs">
+      <DependentUpon>Echeiki.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Employeers.xaml.cs">
+      <DependentUpon>Employeers.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HairCut.xaml.cs">
       <DependentUpon>HairCut.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Instruments.xaml.cs">
+      <DependentUpon>Instruments.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="JobWindow.xaml.cs">
+      <DependentUpon>JobWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="KadrOtdel.xaml.cs">
+      <DependentUpon>KadrOtdel.xaml</DependentUpon>
     </Compile>
     <Compile Include="ManageSklad.xaml.cs">
       <DependentUpon>ManageSklad.xaml</DependentUpon>
@@ -80,11 +98,17 @@
     <Compile Include="Reg.xaml.cs">
       <DependentUpon>Reg.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Satus.xaml.cs">
+      <DependentUpon>Satus.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SkladManager.xaml.cs">
       <DependentUpon>SkladManager.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserWindow1.xaml.cs">
       <DependentUpon>UserWindow1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Zakupmen.xaml.cs">
+      <DependentUpon>Zakupmen.xaml</DependentUpon>
     </Compile>
     <Page Include="BarberWindow1.xaml">
       <SubType>Designer</SubType>
@@ -94,7 +118,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Doljnost.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Echeiki.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Employeers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="HairCut.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Instruments.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="JobWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="KadrOtdel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -119,11 +167,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Satus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SkladManager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserWindow1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Zakupmen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
