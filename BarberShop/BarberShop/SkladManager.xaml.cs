@@ -50,5 +50,12 @@ namespace BarberShop
             this.Hide();
             manageSklad.Show();
         }
+
+        private void Echeiki_Click(object sender, RoutedEventArgs e)
+        {
+            Window manageSklad = new Echeiki(Login.Content.ToString(), Seria.Content.ToString(), Nomer.Content.ToString(), Email.Content.ToString(), Posts.Content.ToString(), F, I, O, Phone.Content.ToString(), RANG);
+            this.Hide();
+            manageSklad.Show();
+        }
     }
 }

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Oleg\Documents\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\
 BarberShop
 none
 false
 DEBUG;TRACE
-C:\Users\Oleg\Documents\GitHub\UP1BarberShop\BarberShop\BarberShop\App.xaml
-16-292188706
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\App.xaml
+18-815112584
 
-221793702468
-161375298383
-BarberWindow1.xaml;ChangDataWindow.xaml;Doljnost.xaml;Echeiki.xaml;Employeers.xaml;HairCut.xaml;Instruments.xaml;JobWindow.xaml;KadrOtdel.xaml;MainWindow.xaml;ManageSklad.xaml;Reg.xaml;Satus.xaml;SkladManager.xaml;UserWindow1.xaml;Zakupmen.xaml;
+241423653971
+16461038304
+BarberWindow1.xaml;ChangDataWindow.xaml;Doljnost.xaml;Echeiki.xaml;Employeers.xaml;HairCut.xaml;Instruments.xaml;JobWindow.xaml;KadrOtdel.xaml;LookEcheiki.xaml;MainWindow.xaml;ManageSklad.xaml;Reg.xaml;Satus.xaml;SkladManager.xaml;UserWindow1.xaml;Zakupki.xaml;Zakupmen.xaml;
 
 True
 

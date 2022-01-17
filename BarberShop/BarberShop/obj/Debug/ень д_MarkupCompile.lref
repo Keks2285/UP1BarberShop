@@ -1,18 +1,21 @@
 ﻿
 
-FC:\Users\Oleg\Documents\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberWindow1.xaml;;
-FC:\Users\Oleg\Documents\GitHub\UP1BarberShop\BarberShop\BarberShop\ChangDataWindow.xaml;;
-FC:\Users\Oleg\Documents\GitHub\UP1BarberShop\BarberShop\BarberShop\Doljnost.xaml;;
-FC:\Users\Oleg\Documents\GitHub\UP1BarberShop\BarberShop\BarberShop\Employeers.xaml;;
-FC:\Users\Oleg\Documents\GitHub\UP1BarberShop\BarberShop\BarberShop\HairCut.xaml;;
-FC:\Users\Oleg\Documents\GitHub\UP1BarberShop\BarberShop\BarberShop\KadrOtdel.xaml;;
-FC:\Users\Oleg\Documents\GitHub\UP1BarberShop\BarberShop\BarberShop\MainWindow.xaml;;
-FC:\Users\Oleg\Documents\GitHub\UP1BarberShop\BarberShop\BarberShop\ManageSklad.xaml;;
-FC:\Users\Oleg\Documents\GitHub\UP1BarberShop\BarberShop\BarberShop\Reg.xaml;;
-FC:\Users\Oleg\Documents\GitHub\UP1BarberShop\BarberShop\BarberShop\Satus.xaml;;
-FC:\Users\Oleg\Documents\GitHub\UP1BarberShop\BarberShop\BarberShop\SkladManager.xaml;;
-FC:\Users\Oleg\Documents\GitHub\UP1BarberShop\BarberShop\BarberShop\UserWindow1.xaml;;
-FC:\Users\Oleg\Documents\GitHub\UP1BarberShop\BarberShop\BarberShop\JobWindow.xaml;;
-FC:\Users\Oleg\Documents\GitHub\UP1BarberShop\BarberShop\BarberShop\Instruments.xaml;;
-FC:\Users\Oleg\Documents\GitHub\UP1BarberShop\BarberShop\BarberShop\Zakupmen.xaml;;
+FD:\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberWindow1.xaml;;
+FD:\GitHub\UP1BarberShop\BarberShop\BarberShop\ChangDataWindow.xaml;;
+FD:\GitHub\UP1BarberShop\BarberShop\BarberShop\Doljnost.xaml;;
+FD:\GitHub\UP1BarberShop\BarberShop\BarberShop\Echeiki.xaml;;
+FD:\GitHub\UP1BarberShop\BarberShop\BarberShop\Employeers.xaml;;
+FD:\GitHub\UP1BarberShop\BarberShop\BarberShop\HairCut.xaml;;
+FD:\GitHub\UP1BarberShop\BarberShop\BarberShop\Instruments.xaml;;
+FD:\GitHub\UP1BarberShop\BarberShop\BarberShop\JobWindow.xaml;;
+FD:\GitHub\UP1BarberShop\BarberShop\BarberShop\KadrOtdel.xaml;;
+FD:\GitHub\UP1BarberShop\BarberShop\BarberShop\MainWindow.xaml;;
+FD:\GitHub\UP1BarberShop\BarberShop\BarberShop\ManageSklad.xaml;;
+FD:\GitHub\UP1BarberShop\BarberShop\BarberShop\Reg.xaml;;
+FD:\GitHub\UP1BarberShop\BarberShop\BarberShop\Satus.xaml;;
+FD:\GitHub\UP1BarberShop\BarberShop\BarberShop\SkladManager.xaml;;
+FD:\GitHub\UP1BarberShop\BarberShop\BarberShop\UserWindow1.xaml;;
+FD:\GitHub\UP1BarberShop\BarberShop\BarberShop\Zakupmen.xaml;;
+FD:\GitHub\UP1BarberShop\BarberShop\BarberShop\LookEcheiki.xaml;;
+FD:\GitHub\UP1BarberShop\BarberShop\BarberShop\Zakupki.xaml;;
 

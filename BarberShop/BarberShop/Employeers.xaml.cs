@@ -143,14 +143,14 @@ namespace BarberShop
                 add.Parameters.AddWithValue("@Employee_Number", PhonE.Text);
                 add.Parameters.AddWithValue("@FK_ID_Status", cb1.SelectedValue);
             add.ExecuteNonQuery();
-            }
+        }
             catch { MessageBox.Show("Введены некорректные данные или сотрудник с таким данными уже существует"); }
             finally
             {
                 connect.Close();
                 Window_Loaded(sender, e);
             }
-
+        
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)

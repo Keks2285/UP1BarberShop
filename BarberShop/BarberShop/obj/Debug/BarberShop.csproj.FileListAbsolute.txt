@@ -80,3 +80,57 @@ C:\Users\Oleg\Documents\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\Ins
 C:\Users\Oleg\Documents\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\Zakupmen.g.cs
 C:\Users\Oleg\Documents\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\Instruments.baml
 C:\Users\Oleg\Documents\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\Zakupmen.baml
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\BarberShop.csprojAssemblyReference.cache
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\BarberWindow1.g.cs
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\ChangDataWindow.g.cs
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\Doljnost.g.cs
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\Echeiki.g.cs
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\Employeers.g.cs
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\HairCut.g.cs
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\Instruments.g.cs
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\JobWindow.g.cs
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\KadrOtdel.g.cs
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\MainWindow.g.cs
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\ManageSklad.g.cs
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\Reg.g.cs
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\Satus.g.cs
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\SkladManager.g.cs
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\UserWindow1.g.cs
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\Zakupmen.g.cs
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\App.g.cs
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\ень д_MarkupCompile.cache
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\ень д_MarkupCompile.lref
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\ень д.exe
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\ень д.pdb
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\bin\Debug\ень д.exe.config
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\bin\Debug\ень д.exe
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\bin\Debug\ень д.pdb
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\bin\Debug\EntityFramework.dll
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\bin\Debug\EntityFramework.SqlServer.dll
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\bin\Debug\EntityFramework.xml
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\bin\Debug\EntityFramework.SqlServer.xml
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\BarberWindow1.baml
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\ChangDataWindow.baml
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\Doljnost.baml
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\Echeiki.baml
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\Employeers.baml
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\HairCut.baml
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\Instruments.baml
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\JobWindow.baml
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\KadrOtdel.baml
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\MainWindow.baml
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\ManageSklad.baml
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\Reg.baml
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\Satus.baml
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\SkladManager.baml
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\UserWindow1.baml
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\Zakupmen.baml
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\ень д.g.resources
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\BarberShop.Properties.Resources.resources
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\BarberShop.csproj.GenerateResource.cache
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\BarberShop.csproj.CoreCompileInputs.cache
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\BarberShop.csproj.CopyComplete
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\LookEcheiki.g.cs
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\LookEcheiki.baml
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\Zakupki.g.cs
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\Zakupki.baml

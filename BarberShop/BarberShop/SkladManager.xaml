@@ -18,9 +18,10 @@
         <Label x:Name="Hi" Content="Label" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
         <Label Content="Почта" HorizontalAlignment="Left" Margin="61,131,0,0" VerticalAlignment="Top"/>
         <Label x:Name="Email" Content="Label" HorizontalAlignment="Left" Margin="109,131,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="Sklads" Content="Склады" HorizontalAlignment="Left" Margin="66,193,0,0" VerticalAlignment="Top" Width="75" Click="Sklads_Click" />
+        <Button x:Name="Sklads" Content="Склады" HorizontalAlignment="Left" Margin="11,193,0,0" VerticalAlignment="Top" Width="72" Click="Sklads_Click" />
         <Label Content="Телефон" HorizontalAlignment="Left" Margin="55,162,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.345,0.5"/>
         <Label x:Name="Phone" Content="Label" HorizontalAlignment="Left" Margin="109,162,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.605,0.577"/>
+        <Button x:Name="Echeiki" Content="Ячейки" HorizontalAlignment="Left" Margin="98,193,0,0" VerticalAlignment="Top" Width="75" Click="Echeiki_Click"/>
 
     </Grid>
 </Window>

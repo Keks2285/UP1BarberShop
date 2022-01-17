@@ -128,7 +128,7 @@ namespace BarberShop
                 Del.Parameters.AddWithValue("ID_Instrument", (int)row["Id_Instrument"]);
                 Del.ExecuteNonQuery();
             }
-            catch { MessageBox.Show("Нельзя удалить используемую должность"); }
+            catch { MessageBox.Show("Нельзя удалить используемый инструмент"); }
             finally { connect.Close(); Window_Loaded(sender, e); Instrument_Name.Text = ""; }
         }
     }

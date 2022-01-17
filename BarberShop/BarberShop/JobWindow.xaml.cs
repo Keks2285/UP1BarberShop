@@ -86,7 +86,9 @@ namespace BarberShop
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-
+            Window haircuts = new KadrOtdel(LOGIN, SERIA, NOMER, EMAIL, POSTS, F, I, O, PHONE, RANG);
+            this.Hide();
+            haircuts.Show();
         }
 
         private void dg_SelectionChanged(object sender, SelectionChangedEventArgs e)

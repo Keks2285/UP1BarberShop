@@ -21,6 +21,8 @@
         <Button x:Name="Instruments" Content="Инструменты" HorizontalAlignment="Left" Margin="22,193,0,0" VerticalAlignment="Top" Width="88" Click="Instruments_Click" RenderTransformOrigin="0.067,0.5" />
         <Label Content="Телефон" HorizontalAlignment="Left" Margin="55,162,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.345,0.5"/>
         <Label x:Name="Phone" Content="Label" HorizontalAlignment="Left" Margin="109,162,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.605,0.577" Width="123"/>
-        <Button x:Name="Echeiki" Content="Ячейки" HorizontalAlignment="Left" Margin="115,193,0,0" VerticalAlignment="Top" Width="88"  RenderTransformOrigin="0.067,0.5" Click="Echeiki_Click" />
+        <Button x:Name="Echeiki" Content="Закупки" HorizontalAlignment="Left" Margin="115,193,0,0" VerticalAlignment="Top" Width="88"  RenderTransformOrigin="0.067,0.5" Click="Echeiki_Click" />
+        <Button x:Name="Look" Content="Просмотреть ячейки" HorizontalAlignment="Left" Margin="47,218,0,0" VerticalAlignment="Top" Width="121" Click="Look_Click"/>
+
     </Grid>
 </Window>

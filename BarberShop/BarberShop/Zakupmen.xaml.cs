@@ -48,7 +48,16 @@ namespace BarberShop
 
         private void Echeiki_Click(object sender, RoutedEventArgs e)
         {
+            Window haircuts = new Zakupki(Login.Content.ToString(), Seria.Content.ToString(), Nomer.Content.ToString(), Email.Content.ToString(), Posts.Content.ToString(), F, I, O, Phone.Content.ToString(), RANG);
+            this.Hide();
+            haircuts.Show();
+        }
 
+        private void Look_Click(object sender, RoutedEventArgs e)
+        {
+            Window haircuts = new LookEcheiki(Login.Content.ToString(), Seria.Content.ToString(), Nomer.Content.ToString(), Email.Content.ToString(), Posts.Content.ToString(), F, I, O, Phone.Content.ToString(), RANG);
+            this.Hide();
+            haircuts.Show();
         }
     }
 }

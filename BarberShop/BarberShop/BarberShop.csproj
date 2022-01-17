@@ -92,6 +92,9 @@
     <Compile Include="KadrOtdel.xaml.cs">
       <DependentUpon>KadrOtdel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LookEcheiki.xaml.cs">
+      <DependentUpon>LookEcheiki.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ManageSklad.xaml.cs">
       <DependentUpon>ManageSklad.xaml</DependentUpon>
     </Compile>
@@ -106,6 +109,9 @@
     </Compile>
     <Compile Include="UserWindow1.xaml.cs">
       <DependentUpon>UserWindow1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Zakupki.xaml.cs">
+      <DependentUpon>Zakupki.xaml</DependentUpon>
     </Compile>
     <Compile Include="Zakupmen.xaml.cs">
       <DependentUpon>Zakupmen.xaml</DependentUpon>
@@ -146,6 +152,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="LookEcheiki.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -176,6 +186,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserWindow1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Zakupki.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
