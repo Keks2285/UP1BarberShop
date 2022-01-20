@@ -28,8 +28,6 @@ namespace BarberShop
         public UserWindow1(string login, string password, string name, string lastname, string otch, int id)
         {
             InitializeComponent();
-            Log.Content = login;
-            Hi.Content = $@"Здравствуйте  {name} {otch}!";
             LOGIN = login;
             PASSWORD = password;
             I = name;
@@ -41,6 +39,39 @@ namespace BarberShop
         private void ChangeData_Click(object sender, RoutedEventArgs e)
         {
             Window changeWindow = new ChangDataWindow(LOGIN, PASSWORD, I, F, O, ID);
+            this.Hide();
+            changeWindow.Show();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Log.Content = LOGIN;
+            Hi.Content = $@"Здравствуйте  {I} {O}!";
+            
+        }
+
+        private void Uslugi_Click(object sender, RoutedEventArgs e)
+        {
+            Window changeWindow = new Look_Uslugi(LOGIN, PASSWORD, I, F, O, ID);
+            this.Hide();
+            changeWindow.Show();
+        }
+
+        private void Haircut_Click(object sender, RoutedEventArgs e)
+        {
+            Window changeWindow = new Look_Haircut(LOGIN, PASSWORD, I, F, O, ID);
+            this.Hide();
+            changeWindow.Show();
+        }
+
+        private void Zapis_Click(object sender, RoutedEventArgs e)
+        {
+            Window changeWindow = new Zapis(LOGIN, PASSWORD, I, F, O, ID);
             this.Hide();
             changeWindow.Show();
         }

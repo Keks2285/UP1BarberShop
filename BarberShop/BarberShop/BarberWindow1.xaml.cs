@@ -23,7 +23,8 @@ namespace BarberShop
         string I = "";
         string O = "";
         int RANG = 0;
-        public BarberWindow1(string login, string seria, string nomer, string email, string posts, string  f, string i, string o, string phone, int rang)
+        int ID = 0;
+        public BarberWindow1(string login, string seria, string nomer, string email, string posts, string  f, string i, string o, string phone, int rang, int id)
         {
             InitializeComponent();
             Login.Content = login;
@@ -35,15 +36,28 @@ namespace BarberShop
             F = f;
             I = i;
             O = o;
+            ID = id;
             RANG = rang;
             Hi.Content = $@"Здравствуйте {i} {o}";
         }
 
         private void HairCut_Click(object sender, RoutedEventArgs e)
         {
-            Window haircuts = new HairCut(Login.Content.ToString(), Seria.Content.ToString(), Nomer.Content.ToString(), Email.Content.ToString(), Posts.Content.ToString(), F, I,O, Phone.Content.ToString(), RANG);
+            Window haircuts = new HairCut(Login.Content.ToString(), Seria.Content.ToString(), Nomer.Content.ToString(), Email.Content.ToString(), Posts.Content.ToString(), F, I,O, Phone.Content.ToString(), RANG, ID);
             this.Hide();
             haircuts.Show();
+        }
+
+        private void Uslugi_Click(object sender, RoutedEventArgs e)
+        {
+            Window haircuts = new Uslugi(Login.Content.ToString(), Seria.Content.ToString(), Nomer.Content.ToString(), Email.Content.ToString(), Posts.Content.ToString(), F, I, O, Phone.Content.ToString(), RANG, ID);
+            this.Hide();
+            haircuts.Show();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

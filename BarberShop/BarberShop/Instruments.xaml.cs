@@ -32,7 +32,8 @@ namespace BarberShop
         string NOMER = "";
         string POSTS = "";
         int RANG = 0;
-        public Instruments(string login, string seria, string nomer, string email, string posts, string f, string i, string o, string phone, int rang)
+        int ID = 0;
+        public Instruments(string login, string seria, string nomer, string email, string posts, string f, string i, string o, string phone, int rang, int  id)
         {
             InitializeComponent();
             F = f;
@@ -44,6 +45,7 @@ namespace BarberShop
             SERIA = seria;
             NOMER = nomer;
             POSTS = posts;
+            ID = id;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -52,8 +54,10 @@ namespace BarberShop
             SqlCommand commandcb1 = new SqlCommand("select ID_Instrument, Name_Instrument as 'Название' from Instrument", connect);
             DataTable datatbl = new DataTable();
             datatbl.Load(commandcb1.ExecuteReader());
-            dg.ItemsSource = datatbl.DefaultView;
+            dg.ItemsSource = datatbl.DefaultView;            
             dg.Columns[0].Visibility = Visibility.Hidden;
+          //  dg.Columns[1].Width=
+          //  dg.AutoGenerateColumns = false;
             connect.Close();
         }
 
@@ -66,7 +70,7 @@ namespace BarberShop
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            Window haircuts = new Zakupmen(LOGIN, SERIA, NOMER, EMAIL, POSTS, F, I, O, PHONE, RANG);
+            Window haircuts = new Zakupmen(LOGIN, SERIA, NOMER, EMAIL, POSTS, F, I, O, PHONE, RANG, ID);
             this.Hide();
             haircuts.Show();
         }
@@ -130,6 +134,11 @@ namespace BarberShop
             }
             catch { MessageBox.Show("Нельзя удалить используемый инструмент"); }
             finally { connect.Close(); Window_Loaded(sender, e); Instrument_Name.Text = ""; }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

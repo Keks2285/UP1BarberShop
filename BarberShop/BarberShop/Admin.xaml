@@ -1,0 +1,23 @@
+﻿<Window x:Class="BarberShop.Admin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BarberShop"
+        mc:Ignorable="d"
+        Title="Admin" Height="250" Width="800" ResizeMode="NoResize" Closing="Window_Closing">
+    <Grid>
+        <Label Content="Панель администратора" HorizontalContentAlignment="Center" HorizontalAlignment="Center"  VerticalAlignment="Top" Margin="262,0,221,0" Width="309" Height="46" FontSize="20"/>
+        <Button x:Name="Haircut" Content="Прически" HorizontalAlignment="Left" Margin="129,60,0,0" VerticalAlignment="Top" Width="84" Height="42" Click="Haircut_Click"/>
+        <Button x:Name="Employee" Content="Сотрудники" HorizontalAlignment="Left" Margin="218,60,0,0" VerticalAlignment="Top" Width="84" Height="42"/>
+        <Button x:Name="Status" Content="Статусы" HorizontalAlignment="Left" Margin="309,60,0,0" VerticalAlignment="Top" Width="84" Height="42" RenderTransformOrigin="1.41,0.313" Click="Status_Click"/>
+        <Button x:Name="Posts" Content="Должности" HorizontalAlignment="Left" Margin="398,60,0,0" VerticalAlignment="Top" Width="84" Height="42" RenderTransformOrigin="1.41,0.313"/>
+        <Button x:Name="Sklads" Content="Склады" HorizontalAlignment="Left" Margin="487,60,0,0" VerticalAlignment="Top" Width="84" Height="42" RenderTransformOrigin="1.41,0.313" Click="Sklads_Click"/>
+        <Button x:Name="Echeiki" Content="Ячейки" HorizontalAlignment="Left" Margin="576,60,0,0" VerticalAlignment="Top" Width="84" Height="42" RenderTransformOrigin="1.41,0.313" Click="Echeiki_Click"/>
+        <Button x:Name="Services" Content="Услуги" HorizontalAlignment="Left" Margin="202,107,0,0" VerticalAlignment="Top" Width="84" Height="42" Click="Services_Click"/>
+        <Button x:Name="Otchets" Content="Налоговые отчеты" HorizontalAlignment="Left" Margin="291,107,0,0" VerticalAlignment="Top" Width="126" Height="42" Click="Otchets_Click"/>
+        <Button x:Name="Zakupki" Content="Закупки" HorizontalAlignment="Left" Margin="422,107,0,0" VerticalAlignment="Top" Width="84" Height="42" RenderTransformOrigin="1.41,0.313" Click="Zakupki_Click"/>
+        <Button x:Name="Instruments" Content="Инструменты" HorizontalAlignment="Left" Margin="511,107,0,0" VerticalAlignment="Top" Width="84" Height="42" RenderTransformOrigin="1.41,0.313" Click="Instruments_Click"/>
+
+    </Grid>
+</Window>

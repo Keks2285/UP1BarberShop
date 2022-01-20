@@ -33,18 +33,10 @@ namespace BarberShop
         string POSTS = "";
         int RANG = 0;
         int EcheikaId = 0;
-        public LookEcheiki(string login, string seria, string nomer, string email, string posts, string f, string i, string o, string phone, int rang)
+        int ID = 0;
+        public LookEcheiki(string login, string seria, string nomer, string email, string posts, string f, string i, string o, string phone, int rang, int id)
         {
             InitializeComponent();
-            connect.Open();
-            SqlCommand command = new SqlCommand("select ID_Echeika, ID_Sklad, Name_Instrument as 'Инструмент', Adres_Sklad as 'Адрес'  from Instrument join Echeika on ID_Instrument=FK_ID_Instrument join Sklad on ID_Sklad=FK_ID_Sklad", connect);
-            DataTable datatbl = new DataTable();
-            datatbl.Load(command.ExecuteReader());
-            // datatbl.Columns.AddRange();
-            dg.ItemsSource = datatbl.DefaultView;
-            dg.Columns[0].Visibility = Visibility.Hidden;
-            dg.Columns[1].Visibility = Visibility.Hidden;
-            connect.Close();
             F = f;
             I = i;
             O = o;
@@ -58,9 +50,24 @@ namespace BarberShop
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            Window haircuts = new Zakupmen(LOGIN, SERIA, NOMER, EMAIL, POSTS, F, I, O, PHONE, RANG);
+            Window haircuts = new Zakupmen(LOGIN, SERIA, NOMER, EMAIL, POSTS, F, I, O, PHONE, RANG, ID);
             this.Hide();
             haircuts.Show();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            connect.Open();
+            SqlCommand command = new SqlCommand("select ID_Echeika, ID_Sklad, Name_Instrument as 'Инструмент', Adres_Sklad as 'Адрес'  from Instrument join Echeika on ID_Instrument=FK_ID_Instrument join Sklad on ID_Sklad=FK_ID_Sklad", connect);
+            DataTable datatbl = new DataTable();
+            dg.ItemsSource = datatbl.DefaultView;
+            dg.Columns[0].Visibility = Visibility.Hidden;
+            dg.Columns[1].Visibility = Visibility.Hidden;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

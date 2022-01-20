@@ -30,17 +30,20 @@ namespace BarberShop
         private void Registration_Click(object sender, RoutedEventArgs e)
         {
             if (Login.Text != "" || Password.Text != "" || Login.Text.Length > 5 || Password.Text.Length > 5)
-            { 
-            try
+            {
+                try
                 {
                     connect.Open();
                     SqlCommand add = new SqlCommand("Users_Insert", connect);
                     add.CommandType = CommandType.StoredProcedure;
                     add.Parameters.AddWithValue("@Login_User", Login.Text);
                     add.Parameters.AddWithValue("@Password_User", Password.Text);
+                    add.Parameters.AddWithValue("@Name_User", "");
+                    add.Parameters.AddWithValue("@Last_Name", "");
+                    add.Parameters.AddWithValue("@Otch_User", "");
                     add.ExecuteNonQuery();
                 }
-                catch { MessageBox.Show("Введены некорректные данные");}
+                catch { MessageBox.Show("Введены некорректные данные"); }
                 finally
                 {
                     connect.Close();
@@ -51,6 +54,9 @@ namespace BarberShop
             }
         }
 
-
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }

@@ -79,5 +79,10 @@ namespace BarberShop
             this.Hide();
             u1.Show();
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }

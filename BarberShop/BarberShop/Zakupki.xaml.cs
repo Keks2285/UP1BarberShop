@@ -33,7 +33,8 @@ namespace BarberShop
         string POSTS = "";
         int RANG = 0;
         int EcheikaId = 0;
-        public Zakupki(string login, string seria, string nomer, string email, string posts, string f, string i, string o, string phone, int rang)
+        int ID = 0;
+        public Zakupki(string login, string seria, string nomer, string email, string posts, string f, string i, string o, string phone, int rang, int id)
         {
             InitializeComponent();
             F = f;
@@ -45,11 +46,19 @@ namespace BarberShop
             SERIA = seria;
             NOMER = nomer;
             POSTS = posts;
+            ID = id;
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            Window haircuts = new Zakupmen(LOGIN, SERIA, NOMER, EMAIL, POSTS, F, I, O, PHONE, RANG);
+            if (RANG >= 6)
+            {
+                Window admin = new Admin(LOGIN, SERIA, NOMER, EMAIL, POSTS, F, I, O, PHONE, RANG, ID);
+                this.Hide();
+                admin.Show();
+                return;
+            }
+            Window haircuts = new Zakupmen(LOGIN, SERIA, NOMER, EMAIL, POSTS, F, I, O, PHONE, RANG, ID);
             this.Hide();
             haircuts.Show();
         }
@@ -58,15 +67,22 @@ namespace BarberShop
         {
             if (Price.Text!=""&&Value.Text!="" && Instrument.SelectedValue != null)
             {
-                connect.Open();
-                SqlCommand add = new SqlCommand("Zakupka_Insert", connect);
-                add.CommandType = CommandType.StoredProcedure;
-                add.Parameters.AddWithValue("@Value_Instrument", Value.Text );
-                add.Parameters.AddWithValue("@Price_Zakupka", Price.Text);
-                add.Parameters.AddWithValue("@FK_ID_Instrument", Instrument.SelectedValue);
-                add.ExecuteNonQuery();
+                try
+                {
+                    connect.Open();
+                    SqlCommand add = new SqlCommand("Zakupka_Insert", connect);
+                    add.CommandType = CommandType.StoredProcedure;
+                    add.Parameters.AddWithValue("@Value_Instrument", Value.Text);
+                    add.Parameters.AddWithValue("@Price_Zakupka", Price.Text);
+                    add.Parameters.AddWithValue("@FK_ID_Instrument", Instrument.SelectedValue);
+                    add.ExecuteNonQuery();
+            }
+                catch { MessageBox.Show("Введены некорректные данные"); }
+            finally
+            {
                 connect.Close();
-                Window_Loaded(sender, e);
+                    Window_Loaded(sender, e);
+                }
             }
         }
 
@@ -140,6 +156,11 @@ namespace BarberShop
                 connect.Close();
                 Window_Loaded(sender, e);
             }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

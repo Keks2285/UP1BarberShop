@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BarberShop"
         mc:Ignorable="d"
-        Title="KadrOtdel" Height="280" Width="290">
+        Title="KadrOtdel" Height="280" Width="290" ResizeMode="NoResize" Closing="Window_Closing">
     <Grid>
         <Label Content="Логин" HorizontalAlignment="Center" Margin="98,27,130,0" VerticalAlignment="Top" RenderTransformOrigin="-0.341,0.615"/>
         <Label x:Name="Login" Content="Label" HorizontalAlignment="Center" Margin="147,27,10,0" VerticalAlignment="Top" RenderTransformOrigin="-0.368,0.577" Width="115"/>

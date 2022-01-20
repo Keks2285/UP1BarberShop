@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BarberShop"
         mc:Ignorable="d"
-        Title="SkladManager" Height="280" Width="200" Loaded="Window_Loaded">
+        Title="SkladManager" Height="280" Width="250" Loaded="Window_Loaded" ResizeMode="NoResize" Closing="Window_Closing">
     <Grid>
         <Label Content="Логин" HorizontalAlignment="Left" Margin="66,27,0,0" VerticalAlignment="Top"/>
         <Label x:Name="Login" Content="Label" HorizontalAlignment="Left" Margin="109,27,0,0" VerticalAlignment="Top"/>

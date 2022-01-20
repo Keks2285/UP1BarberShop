@@ -26,7 +26,8 @@ namespace BarberShop
         string I = "";
         string O = "";
         int RANG = 0;
-        public KadrOtdel(string login, string seria, string nomer, string email, string posts, string f, string i, string o, string phone, int rang)
+        int ID = 0;
+        public KadrOtdel(string login, string seria, string nomer, string email, string posts, string f, string i, string o, string phone, int rang, int id)
         {
             InitializeComponent();
             Login.Content = login;
@@ -39,28 +40,34 @@ namespace BarberShop
             I = i;
             O = o;
             RANG = rang;
+            ID = id;
             Hi.Content = $@"Здравствуйте {i} {o}";
         }
 
         private void Dolj_Click(object sender, RoutedEventArgs e)
         {
-            Window haircuts = new Doljnost(Login.Content.ToString(), Seria.Content.ToString(), Nomer.Content.ToString(), Email.Content.ToString(), Posts.Content.ToString(), F, I, O, Phone.Content.ToString(), RANG);
+            Window haircuts = new Doljnost(Login.Content.ToString(), Seria.Content.ToString(), Nomer.Content.ToString(), Email.Content.ToString(), Posts.Content.ToString(), F, I, O, Phone.Content.ToString(), RANG, ID);
             this.Hide();
             haircuts.Show();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Window haircuts = new JobWindow(Login.Content.ToString(), Seria.Content.ToString(), Nomer.Content.ToString(), Email.Content.ToString(), Posts.Content.ToString(), F, I, O, Phone.Content.ToString(), RANG);
+            Window haircuts = new Satus(Login.Content.ToString(), Seria.Content.ToString(), Nomer.Content.ToString(), Email.Content.ToString(), Posts.Content.ToString(), F, I, O, Phone.Content.ToString(), RANG, ID);
             this.Hide();
             haircuts.Show();
         }
 
         private void Employeers_Click(object sender, RoutedEventArgs e)
         {
-            Window haircuts = new Employeers(Login.Content.ToString(), Seria.Content.ToString(), Nomer.Content.ToString(), Email.Content.ToString(), Posts.Content.ToString(), F, I, O, Phone.Content.ToString(), RANG);
+            Window haircuts = new Employeers(Login.Content.ToString(), Seria.Content.ToString(), Nomer.Content.ToString(), Email.Content.ToString(), Posts.Content.ToString(), F, I, O, Phone.Content.ToString(), RANG, ID);
             this.Hide();
             haircuts.Show();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

@@ -37,7 +37,7 @@ namespace BarberShop
                 SqlDataReader reader = c.ExecuteReader();
                 if (reader.HasRows) // если есть данные
                 {
-                   
+                    reader.Read();
                         //TB1.Text = reader["Login_User"] + " " + reader["Password_User"];
                         Window u1 = new UserWindow1(reader["Login_User"].ToString(), reader["Password_User"].ToString(),reader["Name_User"].ToString(), reader["LastName_User"].ToString(), reader["Otch_User"].ToString(), Convert.ToInt32(reader["ID_User"].ToString()));
                         this.Hide();
@@ -82,6 +82,7 @@ namespace BarberShop
                                 SqlDataReader readNamepost = findPosts.ExecuteReader();
                                 readNamepost.Read();
                                 Posts += readNamepost["Name_Post"].ToString()+" ";
+                                readNamepost.Close();
                             }
                         }
                         connect.Close();
@@ -90,7 +91,7 @@ namespace BarberShop
                             case 1:
                                 {
                                     // парикмахер
-                                    Window barber = new BarberWindow1(LOGIN, SERIA, NOMER, EMAIL, Posts, F, I, O, PHONE, level);
+                                    Window barber = new BarberWindow1(LOGIN, SERIA, NOMER, EMAIL, Posts, F, I, O, PHONE, level, ID_Employee);
                                     this.Hide();
                                     barber.Show();
                                     break;
@@ -98,7 +99,7 @@ namespace BarberShop
                             case 2:
                                 {
                                     // кладмен
-                                    Window slader = new SkladManager(LOGIN, SERIA, NOMER, EMAIL, Posts, F, I, O, PHONE, level);
+                                    Window slader = new SkladManager(LOGIN, SERIA, NOMER, EMAIL, Posts, F, I, O, PHONE, level, ID_Employee);
                                     this.Hide();
                                     slader.Show();
                                     break;
@@ -106,7 +107,7 @@ namespace BarberShop
                             case 3:
                                 {
                                     // отдел кадров
-                                    Window slader = new KadrOtdel(LOGIN, SERIA, NOMER, EMAIL, Posts, F, I, O, PHONE, level);
+                                    Window slader = new KadrOtdel(LOGIN, SERIA, NOMER, EMAIL, Posts, F, I, O, PHONE, level, ID_Employee);
                                     this.Hide();
                                     slader.Show();
                                     break;
@@ -114,7 +115,23 @@ namespace BarberShop
                             case 4:
                                 {
                                     // отдел закупок
-                                    Window slader = new Zakupmen(LOGIN, SERIA, NOMER, EMAIL, Posts, F, I, O, PHONE, level);
+                                    Window slader = new Zakupmen(LOGIN, SERIA, NOMER, EMAIL, Posts, F, I, O, PHONE, level, ID_Employee);
+                                    this.Hide();
+                                    slader.Show();
+                                    break;
+                                }
+                            case 5:
+                                {
+                                    // отдел закупок
+                                    Window slader = new BuhWindow(LOGIN, SERIA, NOMER, EMAIL, Posts, F, I, O, PHONE, level, ID_Employee);
+                                    this.Hide();
+                                    slader.Show();
+                                    break;
+                                }
+                            case 6:
+                                {
+                                    // отдел Admin
+                                    Window slader = new Admin(LOGIN, SERIA, NOMER, EMAIL, Posts, F, I, O, PHONE, level, ID_Employee);
                                     this.Hide();
                                     slader.Show();
                                     break;
@@ -138,6 +155,11 @@ namespace BarberShop
             Window r = new Reg();
             this.Hide();
             r.Show();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

@@ -33,7 +33,8 @@ namespace BarberShop
         string POSTS = "";
         int RANG = 0;
         int EcheikaId = 0;
-        public Echeiki(string login, string seria, string nomer, string email, string posts, string f, string i, string o, string phone, int rang)
+        int ID = 0;
+        public Echeiki(string login, string seria, string nomer, string email, string posts, string f, string i, string o, string phone, int rang, int id)
         {
             InitializeComponent();
             F = f;
@@ -45,11 +46,19 @@ namespace BarberShop
             SERIA = seria;
             NOMER = nomer;
             POSTS = posts;
+            ID = id;
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            Window haircuts = new SkladManager(LOGIN, SERIA, NOMER, EMAIL, POSTS, F, I, O, PHONE, RANG);
+            if (RANG >= 6)
+            {
+                Window admin = new Admin(LOGIN, SERIA, NOMER, EMAIL, POSTS, F, I, O, PHONE, RANG, ID);
+                this.Hide();
+                admin.Show();
+                return;
+            }
+            Window haircuts = new SkladManager(LOGIN, SERIA, NOMER, EMAIL, POSTS, F, I, O, PHONE, RANG, ID);
             this.Hide();
             haircuts.Show();
         }
@@ -125,6 +134,11 @@ namespace BarberShop
             if (dg.SelectedItem == null) return;
             DataRowView row = (DataRowView)dg.SelectedItem;
              EcheikaId = Convert.ToInt32(row["ID_Echeika"].ToString());          
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

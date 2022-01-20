@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\
+C:\Users\Oleg\Documents\GitHub\UP1BarberShop\BarberShop\BarberShop\obj\Debug\
 BarberShop
 none
 false
 DEBUG;TRACE
-D:\GitHub\UP1BarberShop\BarberShop\BarberShop\App.xaml
-18-815112584
+C:\Users\Oleg\Documents\GitHub\UP1BarberShop\BarberShop\BarberShop\App.xaml
+26-628631988
 
-241423653971
-16461038304
-BarberWindow1.xaml;ChangDataWindow.xaml;Doljnost.xaml;Echeiki.xaml;Employeers.xaml;HairCut.xaml;Instruments.xaml;JobWindow.xaml;KadrOtdel.xaml;LookEcheiki.xaml;MainWindow.xaml;ManageSklad.xaml;Reg.xaml;Satus.xaml;SkladManager.xaml;UserWindow1.xaml;Zakupki.xaml;Zakupmen.xaml;
+322018228763
+161375298383
+Admin.xaml;BarberWindow1.xaml;BuhWindow.xaml;ChangDataWindow.xaml;Doljnost.xaml;Echeiki.xaml;Employeers.xaml;HairCut.xaml;Instruments.xaml;JobWindow.xaml;KadrOtdel.xaml;LookEcheiki.xaml;Look_Employee.xaml;Look_Haircut.xaml;Look_Uslugi.xaml;MainWindow.xaml;ManageSklad.xaml;NalogOtchet.xaml;Reg.xaml;Satus.xaml;SkladManager.xaml;UserWindow1.xaml;Uslugi.xaml;Zakupki.xaml;Zakupmen.xaml;Zapis.xaml;
 
 True
 

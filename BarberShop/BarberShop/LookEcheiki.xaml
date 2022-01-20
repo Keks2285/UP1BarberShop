@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BarberShop"
         mc:Ignorable="d"
-        Title="LookEcheiki" Height="450" Width="600">
+        Title="LookEcheiki" Height="450" Width="600" Loaded="Window_Loaded" ResizeMode="NoResize" Closing="Window_Closing">
     <Grid>
 
         <DataGrid x:Name="dg" CanUserAddRows="False" HorizontalAlignment="Left" Height="325" Margin="10,84,0,0" VerticalAlignment="Top" Width="562"  />

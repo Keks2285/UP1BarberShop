@@ -32,7 +32,8 @@ namespace BarberShop
         string NOMER = "";
         string POSTS = "";
         int RANG = 0;
-        public Employeers(string login, string seria, string nomer, string email, string posts, string f, string i, string o, string phone, int rang)
+        int ID = 0;
+        public Employeers(string login, string seria, string nomer, string email, string posts, string f, string i, string o, string phone, int rang, int id)
         {
             InitializeComponent();
             F = f;
@@ -44,6 +45,7 @@ namespace BarberShop
             SERIA = seria;
             NOMER = nomer;
             POSTS = posts;
+            ID = id;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -155,7 +157,14 @@ namespace BarberShop
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            Window haircuts = new KadrOtdel(LOGIN, SERIA, NOMER, EMAIL, POSTS, F, I, O, PHONE, RANG);
+            if (RANG >= 6)
+            {
+                Window admin = new Admin(LOGIN, SERIA, NOMER, EMAIL, POSTS, F, I, O, PHONE, RANG, ID);
+                this.Hide();
+                admin.Show();
+                return;
+            }
+            Window haircuts = new KadrOtdel(LOGIN, SERIA, NOMER, EMAIL, POSTS, F, I, O, PHONE, RANG,ID);
             this.Hide();
             haircuts.Show();
         }
@@ -174,6 +183,11 @@ namespace BarberShop
             PassworD.Text = row["Пароль"].ToString();
             PhonE.Text = row["Телефон"].ToString();
             Level.Text = row["Уровень доступа"].ToString();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

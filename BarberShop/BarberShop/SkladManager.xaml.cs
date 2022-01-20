@@ -23,7 +23,8 @@ namespace BarberShop
         string I = "";
         string O = "";
         int RANG = 0;
-        public SkladManager(string login, string seria, string nomer, string email, string posts, string f, string i, string o, string phone, int rang)
+        int ID = 0;
+        public SkladManager(string login, string seria, string nomer, string email, string posts, string f, string i, string o, string phone, int rang, int id)
         {
             InitializeComponent();
             Login.Content = login;
@@ -36,6 +37,7 @@ namespace BarberShop
             I = i;
             O = o;
             RANG = rang;
+            ID = id;
             Hi.Content = $@"Здравствуйте {i} {o}";
         }
 
@@ -46,16 +48,21 @@ namespace BarberShop
 
         private void Sklads_Click(object sender, RoutedEventArgs e)
         {
-            Window manageSklad = new ManageSklad(Login.Content.ToString(), Seria.Content.ToString(), Nomer.Content.ToString(), Email.Content.ToString(), Posts.Content.ToString(), F, I, O, Phone.Content.ToString(), RANG);
+            Window manageSklad = new ManageSklad(Login.Content.ToString(), Seria.Content.ToString(), Nomer.Content.ToString(), Email.Content.ToString(), Posts.Content.ToString(), F, I, O, Phone.Content.ToString(), RANG, ID);
             this.Hide();
             manageSklad.Show();
         }
 
         private void Echeiki_Click(object sender, RoutedEventArgs e)
         {
-            Window manageSklad = new Echeiki(Login.Content.ToString(), Seria.Content.ToString(), Nomer.Content.ToString(), Email.Content.ToString(), Posts.Content.ToString(), F, I, O, Phone.Content.ToString(), RANG);
+            Window manageSklad = new Echeiki(Login.Content.ToString(), Seria.Content.ToString(), Nomer.Content.ToString(), Email.Content.ToString(), Posts.Content.ToString(), F, I, O, Phone.Content.ToString(), RANG, ID);
             this.Hide();
             manageSklad.Show();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

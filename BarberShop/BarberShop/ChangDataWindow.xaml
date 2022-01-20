@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BarberShop"
         mc:Ignorable="d"
-        Title="Изменение данных" Height="350" Width="300">
+        Title="Изменение данных" Height="350" Width="300" ResizeMode="NoResize" Closing="Window_Closing">
     <Grid>
         
         <Label Content="Логин" HorizontalAlignment="Left" Margin="12,70,0,0" VerticalAlignment="Top"/>

@@ -5,12 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BarberShop"
         mc:Ignorable="d"
-        Title="" Height="200" Width="400">
+        Title="" Height="200" Width="400" ResizeMode="NoResize" Closing="Window_Closing" Loaded="Window_Loaded">
     <Grid>
         <Label x:Name="Hi" Content="" HorizontalAlignment="Center" VerticalAlignment="Top"/>
         <Label x:Name="Log" Content="" HorizontalAlignment="Left" Margin="80,42,0,0" VerticalAlignment="Top"/>
         <Label Content="Ваш логин:" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top"/>
         <Button x:Name="ChangeData" Content="Изменить данные" HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top" Width="105" RenderTransformOrigin="0.115,0.609" Height="26" Click="ChangeData_Click"/>
+        <Button x:Name="Haircut" Content="Прически" HorizontalAlignment="Left" Margin="120,73,0,0" VerticalAlignment="Top" Width="105" Height="26" Click="Haircut_Click"/>
+        <Button x:Name="Uslugi" Content="Услуги" HorizontalAlignment="Left" Margin="230,73,0,0" VerticalAlignment="Top" Width="105" Height="26" Click="Uslugi_Click"/>
+        <Button x:Name="Zapis" Content="Записаться" HorizontalAlignment="Left" Margin="120,104,0,0" VerticalAlignment="Top" Width="105" Height="24" Click="Zapis_Click"/>
 
     </Grid>
 </Window>

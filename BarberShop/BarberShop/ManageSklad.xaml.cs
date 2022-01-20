@@ -32,7 +32,8 @@ namespace BarberShop
         string NOMER = "";
         string POSTS = "";
         int RANG = 0;
-        public ManageSklad(string login, string seria, string nomer, string email, string posts, string f, string i, string o, string phone, int rang)
+        int ID=0;
+        public ManageSklad(string login, string seria, string nomer, string email, string posts, string f, string i, string o, string phone, int rang, int id)
         {
             InitializeComponent();
             F = f;
@@ -44,11 +45,19 @@ namespace BarberShop
             SERIA = seria;
             NOMER = nomer;
             POSTS = posts;
+            ID = id;
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            Window a = new SkladManager(LOGIN, SERIA, NOMER, EMAIL, POSTS, F, I, O, PHONE, RANG);
+            if (RANG >= 6)
+            {
+                Window admin = new Admin(LOGIN, SERIA, NOMER, EMAIL, POSTS, F, I, O, PHONE, RANG, ID);
+                this.Hide();
+                admin.Show();
+                return;
+            }
+            Window a = new SkladManager(LOGIN, SERIA, NOMER, EMAIL, POSTS, F, I, O, PHONE, RANG,ID);
             this.Hide();
             a.Show();
         }
@@ -66,7 +75,7 @@ namespace BarberShop
                     add.Parameters.AddWithValue("@Value_Echeek", Value.Text);
                     add.ExecuteNonQuery();
                 }
-                catch { }
+                catch { MessageBox.Show("Введены некорректные данные"); }
                 finally
                 {
                     connect.Close();
@@ -134,6 +143,11 @@ namespace BarberShop
             dg.ItemsSource = datatbl.DefaultView;
             dg.Columns[0].Visibility = Visibility.Hidden;
             connect.Close();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

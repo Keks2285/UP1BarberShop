@@ -65,8 +65,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Admin.xaml.cs">
+      <DependentUpon>Admin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BarberWindow1.xaml.cs">
       <DependentUpon>BarberWindow1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BuhWindow.xaml.cs">
+      <DependentUpon>BuhWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ChangDataWindow.xaml.cs">
       <DependentUpon>ChangDataWindow.xaml</DependentUpon>
@@ -95,8 +101,20 @@
     <Compile Include="LookEcheiki.xaml.cs">
       <DependentUpon>LookEcheiki.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Look_Employee.xaml.cs">
+      <DependentUpon>Look_Employee.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Look_Haircut.xaml.cs">
+      <DependentUpon>Look_Haircut.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Look_Uslugi.xaml.cs">
+      <DependentUpon>Look_Uslugi.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ManageSklad.xaml.cs">
       <DependentUpon>ManageSklad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NalogOtchet.xaml.cs">
+      <DependentUpon>NalogOtchet.xaml</DependentUpon>
     </Compile>
     <Compile Include="Reg.xaml.cs">
       <DependentUpon>Reg.xaml</DependentUpon>
@@ -110,13 +128,27 @@
     <Compile Include="UserWindow1.xaml.cs">
       <DependentUpon>UserWindow1.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Uslugi.xaml.cs">
+      <DependentUpon>Uslugi.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Zakupki.xaml.cs">
       <DependentUpon>Zakupki.xaml</DependentUpon>
     </Compile>
     <Compile Include="Zakupmen.xaml.cs">
       <DependentUpon>Zakupmen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Zapis.xaml.cs">
+      <DependentUpon>Zapis.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Admin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BarberWindow1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BuhWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -156,6 +188,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Look_Employee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Look_Haircut.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Look_Uslugi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -170,6 +214,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ManageSklad.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NalogOtchet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -189,11 +237,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Uslugi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Zakupki.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Zakupmen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Zapis.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

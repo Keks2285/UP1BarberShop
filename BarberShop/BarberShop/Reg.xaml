@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BarberShop"
         mc:Ignorable="d"
-        Title="Reg" Height="450" Width="800" Background="#FF3FAFC1">
+        Title="Reg" Height="450" Width="800" Background="#FF3FAFC1" ResizeMode="NoResize" Closing="Window_Closing">
     <Grid>
         <Label Content="Регистрация" HorizontalAlignment="Left" Margin="336,26,0,0" VerticalAlignment="Top" Height="59" Width="216" HorizontalContentAlignment="Center" FontSize="20"/>
         <Label Content="Логин:" HorizontalAlignment="Left" Margin="283,198,0,0" VerticalAlignment="Top" Height="23" Width="48"/>

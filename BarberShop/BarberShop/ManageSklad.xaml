@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BarberShop"
         mc:Ignorable="d"
-        Title="ManageSklad" Height="450" Width="600" Loaded="Window_Loaded">
+        Title="ManageSklad" Height="450" Width="600" Loaded="Window_Loaded" ResizeMode="NoResize" Closing="Window_Closing">
     <Grid>
         <DataGrid x:Name="dg" CanUserAddRows="False" HorizontalAlignment="Left" Height="284" Margin="10,125,0,0" VerticalAlignment="Top" Width="484" SelectionChanged="dg_SelectionChanged" />
         <Label Content="Список складов" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.395,0.442" FontSize="20" Width="216"/>
