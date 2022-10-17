@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Проги\\BarberShop\\BarberShop\\BarberShop.csproj": {}
+    "D:\\GitHub\\UP1BarberShop\\BarberShop\\BarberShop\\BarberShop\\BarberShop.csproj": {}
   },
   "projects": {
-    "D:\\Проги\\BarberShop\\BarberShop\\BarberShop.csproj": {
+    "D:\\GitHub\\UP1BarberShop\\BarberShop\\BarberShop\\BarberShop\\BarberShop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Проги\\BarberShop\\BarberShop\\BarberShop.csproj",
+        "projectUniqueName": "D:\\GitHub\\UP1BarberShop\\BarberShop\\BarberShop\\BarberShop\\BarberShop.csproj",
         "projectName": "BarberShop",
-        "projectPath": "D:\\Проги\\BarberShop\\BarberShop\\BarberShop.csproj",
+        "projectPath": "D:\\GitHub\\UP1BarberShop\\BarberShop\\BarberShop\\BarberShop\\BarberShop.csproj",
         "packagesPath": "C:\\Users\\Ilyich\\.nuget\\packages\\",
-        "outputPath": "D:\\Проги\\BarberShop\\BarberShop\\obj\\",
+        "outputPath": "D:\\GitHub\\UP1BarberShop\\BarberShop\\BarberShop\\BarberShop\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
