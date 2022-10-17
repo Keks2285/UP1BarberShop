@@ -1,0 +1,38 @@
+﻿<Window x:Class="BarberShop.EmployeMAnager.EmployeManager"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BarberShop.EmployeMAnager"
+        mc:Ignorable="d"
+        Title="Начальник отдела кадров" Width="1300" MinWidth="1000" MinHeight="710" WindowState="Maximized" Loaded="Window_Loaded" Closing="Window_Closing">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="155*"></ColumnDefinition>
+            <ColumnDefinition Width="497*"></ColumnDefinition>
+            <ColumnDefinition Width="359*"></ColumnDefinition>
+            <ColumnDefinition Width="289*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="66*"></RowDefinition>
+            <RowDefinition Height="259*"></RowDefinition>
+            <RowDefinition Height="109*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border x:Name="Avatar"  Grid.Row="0" Width="80" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,15,0,0" Height="80"  Background="White" CornerRadius="40">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="50" Color="Black" ShadowDepth="0"/>
+            </Border.Effect>
+            <TextBlock Name="FLTb" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30"> ИВ</TextBlock>
+        </Border>
+        <StackPanel  Grid.RowSpan="3" Margin="0,103,1,0">
+            <Button Background="#7d22ff" x:Name="EmployeBtn" Margin="5,10" Click="EmployeBtn_Click">Сотрудники</Button>
+            <Button Background="#7d22ff" x:Name="PostBtn" Margin="5,10" Click="PostBtn_Click">Должности</Button>
+            <Button Background="#7d22ff" x:Name="SickLeaveBtn" Margin="5,10" Click="SickLeaveBtn_Click">Больничные</Button>
+            <Button Background="#7d22ff" x:Name="VacationBtn" Margin="5,10" Click="VacationBtn_Click">Отпуска</Button>
+        </StackPanel>
+        <Button x:Name="ExitBtn" Margin="5,132,5,0" VerticalAlignment="Top" Background="#FFC52B2B" Grid.Row="2" Height="32">Выход</Button>
+        <Frame x:Name="MainFrame"  Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="3" Background="Aqua">
+        </Frame>
+    </Grid>
+</Window>
