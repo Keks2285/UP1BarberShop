@@ -7,7 +7,21 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="EmployeManagerPages\EmployersPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="EmployeManager\EmployeManager.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="Authorization.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="EmployeManagerPages\EmployersPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="EmployeManager\EmployeManager.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

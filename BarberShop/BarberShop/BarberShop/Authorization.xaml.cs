@@ -17,33 +17,44 @@ using System.IO;
 using RestSharp;
 using Newtonsoft.Json;
 using RestSharp.Authenticators;
+using BarberShop.EmployeMAnager;
 
 namespace BarberShop
 {
-    
+   
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class Authorization : Window
     {
-        private static RestClient client = new RestClient("http://192.168.1.49:80/BarberApi/");
+        bool result = false;
+        string FirstName = "";
+        string LastName = "";
+        string Role = "";
+        private static RestClient client = new RestClient("http://192.168.1.49:8080/BarberApi/");
         //Dictionary<string, string> user = new Dictionary<string, string>();
         public Authorization()
         {
             InitializeComponent();
         }
 
-        private void AuthorizationBtn_Click(object sender, RoutedEventArgs e)
+        private async void AuthorizationBtn_Click(object sender, RoutedEventArgs e)
         {
+            string email = EmailTb.Text;
+            string password = PasswordPb.Password;
+            await Task.Run(()=>auth(email, password));
+            switch (Role)
+            {
+                case "1":
+                    {
+                        Window W = new EmployeManager(FirstName, LastName);
+                        W.Show();
+                        this.Hide();
+                        break;
+                    }
 
-            var req = new RestRequest("/authorization", Method.Post);
-            req.AddHeader("Content-Type", "application/x-www-form-urlencoded");
-            req.AddParameter("email", Email.Text);
-            req.AddParameter("password", Password.Password);
-            var res = client.Post(req);
-            dynamic data = JsonConvert.DeserializeObject<dynamic>(res.Content);
+            }
 
-            MessageBox.Show(Convert.ToString(data.message));
 
             //  HttpWebRequest request = (HttpWebRequest)WebRequest.Create(
             //      "http://192.168.1.49:80/BarberApi/");
@@ -54,6 +65,45 @@ namespace BarberShop
             //  response.Close();
             // MessageBox.Show(responseBody);
 
+        }
+
+        public void auth(string _email, string _password)
+        {
+            if (_email.Length == 0 || _password.Length == 0)
+            {
+                MessageBox.Show("Заполните все поля");
+                return;
+            }
+           try
+            {
+                var req = new RestRequest("/authorization", Method.Post);
+                req.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                req.AddParameter("email", _email);
+                req.AddParameter("password", _password);
+                var res = client.Post(req);
+                dynamic data = JsonConvert.DeserializeObject<dynamic>(res.Content);
+
+                if (!data.status.Value) { 
+                    MessageBox.Show("Такого пользователя нет, зарегетрируйтесь");
+                    result = false; return;
+                }
+                FirstName = Convert.ToString(data.firstname);
+                LastName = Convert.ToString( data.lastname);
+                Role = Convert.ToString(data.post_id);
+                //MessageBox.Show(FirstName + LastName);
+                result = true;
+
+            }
+            catch (Exception e)
+            {
+              //  MessageBox.Show(e.Message);
+            }
+        }
+
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+             EmailTb.FontSize = AuthWindow.Height / 52;
+             PasswordPb.FontSize = AuthWindow.Height / 52;
         }
     }
 }

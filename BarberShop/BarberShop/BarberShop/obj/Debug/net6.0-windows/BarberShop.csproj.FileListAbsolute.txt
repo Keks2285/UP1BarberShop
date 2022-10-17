@@ -46,3 +46,14 @@ D:\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-window
 D:\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\BarberShop.pdb
 D:\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\BarberShop.genruntimeconfig.cache
 D:\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\ref\BarberShop.dll
+<<<<<<< HEAD
+=======
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\bin\Debug\net6.0-windows\MaterialDesignColors.dll
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\bin\Debug\net6.0-windows\MaterialDesignThemes.Wpf.dll
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\bin\Debug\net6.0-windows\static\images\otkrytie.png
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\App.baml
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\EmployeManager\EmployeManager.g.cs
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\EmployeManager\EmployeManager.baml
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\EmployeManagerPages\EmployersPage.g.cs
+D:\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\EmployeManagerPages\EmployersPage.baml
+>>>>>>> 504d37199af67f09cd9b70feddf6b27fa0942111

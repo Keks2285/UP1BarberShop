@@ -10,11 +10,15 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 D:\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\App.xaml
+<<<<<<< HEAD
 12015064333
+=======
+3809028376
+>>>>>>> 504d37199af67f09cd9b70feddf6b27fa0942111
 
-5482789048
-1961653507229
-Authorization.xaml;
+12-543646796
+198-447609790
+Authorization.xaml;EmployeManagerPages\EmployersPage.xaml;EmployeManager\EmployeManager.xaml;
 
 False
 

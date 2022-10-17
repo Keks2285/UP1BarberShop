@@ -4,9 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BarberShop"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Authorization" Height="850" Width="1300" WindowState="Maximized">
+        Name="AuthWindow"
+        Title="Authorization" Height="850" Width="1300" MinWidth="1000" MinHeight="810" WindowState="Maximized" SizeChanged="Window_SizeChanged">
     <Grid >
+        <Grid.Background>
+            <ImageBrush ImageSource="/otkrytie.png"></ImageBrush>
+        </Grid.Background>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="267*"></ColumnDefinition>
             <ColumnDefinition Width="295*"></ColumnDefinition>
@@ -18,10 +24,32 @@
             <RowDefinition Height="50*"></RowDefinition>
             <RowDefinition Height="25*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Button x:Name="AuthorizationBtn" Grid.Column="1" Content="Button" HorizontalAlignment="Left" Margin="55,258,0,0" Grid.Row="1" VerticalAlignment="Top" Height="93" Width="414" Click="AuthorizationBtn_Click"/>
-        <TextBox x:Name="Email"  Grid.Column="1" HorizontalAlignment="Left" Margin="70,60,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="384" Height="26"/>
-        <PasswordBox x:Name="Password" Grid.Column="1" HorizontalAlignment="Left" Margin="70,110,0,0" Grid.Row="1"  VerticalAlignment="Top" Width="384" Height="27"/>
-        <Label Grid.Column="1" Content="Почта" HorizontalAlignment="Left" Margin="70,29,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <Label Grid.Column="1" Content="Пароль" HorizontalAlignment="Left" Margin="70,84,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+
+        <Border x:Name="MainBorder" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1"  MinWidth="400" MinHeight="150" Margin="200, 100, 200, 100" Background="White" CornerRadius="40">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="50" Color="Black" ShadowDepth="0"/>
+            </Border.Effect>
+            <Grid Margin="0,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="85*"></ColumnDefinition>
+                    <ColumnDefinition Width="145*"></ColumnDefinition>
+                    <ColumnDefinition Width="85*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25*"></RowDefinition>
+                    <RowDefinition Height="22*"></RowDefinition>
+                    <RowDefinition Height="22*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="0" Grid.ColumnSpan="3"  HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Top" FontSize="40" Height="53">
+                    Добро пожаловать!
+                </TextBlock>
+                <TextBox x:Name="EmailTb" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" materialDesign:HintAssist.Hint="Введите вашу почту"></TextBox>
+                <PasswordBox x:Name="PasswordPb" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" materialDesign:HintAssist.Hint="Введите пароль"></PasswordBox>
+                <Button Grid.Column="2" VerticalContentAlignment="Center"  Grid.Row="2" Click="AuthorizationBtn_Click" Margin="35,11,32,23" Cursor="Hand"  >Вход</Button>
+
+            </Grid>
+        </Border>
+
+
     </Grid>
 </Window>
