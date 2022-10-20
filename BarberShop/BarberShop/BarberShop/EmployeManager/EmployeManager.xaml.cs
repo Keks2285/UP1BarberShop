@@ -36,33 +36,33 @@ namespace BarberShop.EmployeMAnager
         private void EmployeBtn_Click(object sender, RoutedEventArgs e)
         {
             EmployeBtn.Background = Brushes.Gray;
-            PostBtn.Background = new SolidColorBrush(Color.FromRgb(125, 34, 255));
-            SickLeaveBtn.Background = new SolidColorBrush(Color.FromRgb(125, 34, 255));
-            VacationBtn.Background = new SolidColorBrush(Color.FromRgb(125, 34, 255));
+            PostBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
+            SickLeaveBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
+            VacationBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
             MainFrame.Content = new EmployeManagerPages.EmployersPage();
         }
 
         private void PostBtn_Click(object sender, RoutedEventArgs e)
         {
-            EmployeBtn.Background = new SolidColorBrush(Color.FromRgb(125, 34, 255));
+            EmployeBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
             PostBtn.Background = Brushes.Gray;
-            SickLeaveBtn.Background = new SolidColorBrush(Color.FromRgb(125, 34, 255));
-            VacationBtn.Background = new SolidColorBrush(Color.FromRgb(125, 34, 255));
+            SickLeaveBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
+            VacationBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
         }
 
         private void SickLeaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            EmployeBtn.Background = new SolidColorBrush(Color.FromRgb(125, 34, 255));
-            PostBtn.Background = new SolidColorBrush(Color.FromRgb(125, 34, 255)); ;
+            EmployeBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
+            PostBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183)); ;
             SickLeaveBtn.Background = Brushes.Gray;
-            VacationBtn.Background = new SolidColorBrush(Color.FromRgb(125, 34, 255));
+            VacationBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
         }
 
         private void VacationBtn_Click(object sender, RoutedEventArgs e)
         {
-            EmployeBtn.Background = new SolidColorBrush(Color.FromRgb(125, 34, 255));
-            PostBtn.Background = new SolidColorBrush(Color.FromRgb(125, 34, 255));
-            SickLeaveBtn.Background = new SolidColorBrush(Color.FromRgb(125, 34, 255));
+            EmployeBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
+            PostBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
+            SickLeaveBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
             VacationBtn.Background = Brushes.Gray;
         }
 

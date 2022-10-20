@@ -7,9 +7,9 @@ mb_http_input('UTF-8');
 mb_regex_encoding('UTF-8');
     function authorization($connect, $data){
             
-        $searchUser=$connect->prepare("select * from Employe join Post where Post_ID=ID_Post and Email=? and Password=?");
-        $searchUser->execute(array(strval($data["email"]), md5(strval($data["password"]) )));
-        $listUser=$searchUser->fetchAll();
+        $Emloyers=$connect->prepare("select * from Employe join Post where Post_ID=ID_Post and Email=? and Password=?");
+        $Emloyers->execute(array(strval($data["email"]), md5(strval($data["password"]) )));
+        $listUser=$Emloyers->fetchAll();
 
         //тут для клиета тоже надо будет сделать
         //$searchUser=$connect->prepare("select * from `Employee` join Studio where Studio_ID=ID_Studio and ID_Anime=?");
@@ -40,11 +40,11 @@ mb_regex_encoding('UTF-8');
     }
 
 
-    function getposts($connect, $data){
+    function getPosts($connect, $data){
         try{
-        $searchUser=$connect->prepare("SELECT ID_Post, Name_Post, Price from `Post`;");
-        $searchUser->execute();
-        $listUser=$searchUser->fetchAll();
+        $searchPosts=$connect->prepare("SELECT ID_Post, Name_Post, Price from `Post`;");
+        $searchPosts->execute();
+        $listUser=$searchPosts->fetchAll();
 
         echo json_encode($listUser);
      } catch (PDOException $e){
@@ -53,7 +53,7 @@ mb_regex_encoding('UTF-8');
 
     }
 
-    function getemployers($connect, $data){
+    function getEmployers($connect, $data){
         try{
         $searchUser=$connect->prepare("SELECT ID_Employee, ID_Status, ID_Post, FirstName, LastName, MiddleName, Email, INN, Name_Post, Name_Status FROM `Employe` join Post join Status_Employee where Post_ID=ID_Post and Status_ID=ID_Status;");
         $searchUser->execute();
@@ -66,7 +66,7 @@ mb_regex_encoding('UTF-8');
 
     }
 
-    function createemployee ($connect, $data){
+    function createEmployee ($connect, $data){
 
 
        // print_r( $data); die();
@@ -118,7 +118,7 @@ mb_regex_encoding('UTF-8');
 
     }
 
-    function importemploye($connect){
+    function importEmploye($connect){
        if(move_uploaded_file($_FILES['Employers']['tmp_name'], '../files/'.$_FILES['Employers']['name'])){
         $responce=[
             "status"=>false,
@@ -178,3 +178,104 @@ mb_regex_encoding('UTF-8');
         fclose($file);
       //  unlink('../files/'.$_FILES['Employers']['name']);
     }
+
+    function getEmployeByEmail ($connect, $data){
+        try{
+            $selectEmloyers=$connect->prepare("Select * from Employe where Email=?");
+            $selectEmloyers->execute(array(strval($data["email"])));
+            if(count($selectEmloyers->fetchAll())<0){
+                $responce=[
+                    "status"=>false,
+                    "message"=>"Employe doesn't Exist",
+                    "code"=>404
+                ];
+                echo json_encode($responce);
+                die();
+            } else{
+                $responce=[
+                    "status"=>true,
+                    "message"=>"Employe was founded",
+                    "code"=>200
+                ];
+                echo json_encode($responce);
+                die();
+            }
+
+        } catch (Exception $e){
+            $responce=[
+                "status"=>false,
+                "message"=>"Database Error",
+                "code"=>500
+            ];
+            echo json_encode($responce);
+            die();
+        }
+
+    
+    }
+
+    function getClientByEmail ($connect, $data){
+        try{
+            $selectEmloyers=$connect->prepare("Select * from Client where Email=?");
+            $selectEmloyers->execute(array(strval($data["email"])));
+            if(count($selectEmloyers->fetchAll())<0){
+                $responce=[
+                    "status"=>false,
+                    "message"=>"Client doesn't Exist",
+                    "code"=>404
+                ];
+                echo json_encode($responce);
+                die();
+            } else{
+                $responce=[
+                    "status"=>true,
+                    "message"=>"Client was founded",
+                    "code"=>200
+                ];
+                echo json_encode($responce);
+                die();
+            }
+
+        } catch (Exception $e){
+            $responce=[
+                "status"=>false,
+                "message"=>"Database Error",
+                "code"=>500
+            ];
+            echo json_encode($responce);
+            die();
+        }
+
+    }
+
+    function recoverPassword($connect, $data){
+       try{
+        if($data["userType"]="Employe"){
+            $selectUser=$connect->prepare("update Employe set `Password` = ? where Email= ? ;");
+        }else{
+            $selectUser=$connect->prepare("update Client set `Password` = ? where Email= ? ;");
+        }
+       
+        $selectUser->execute(array(
+          strval($data["newPassword"]),
+          strval($data["email"])
+        ));
+        $responce=[
+            "status"=>true,
+            "message"=>"User password was Updated",
+            "code"=>200
+        ];
+       
+        echo json_encode($responce);
+       } catch(Exception $e){
+        $responce=[
+            "status"=>false,
+            "message"=>"User wasn't Updated",
+            "code"=>404
+        ];
+        echo json_encode($responce);
+        die();
+       }
+    }
+
+

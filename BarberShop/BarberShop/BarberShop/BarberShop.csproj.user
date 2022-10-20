@@ -7,10 +7,7 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="EmployeManagerPages\EmployersPage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="EmployeManager\EmployeManager.xaml.cs">
+    <Compile Update="Recover.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -22,6 +19,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="EmployeManager\EmployeManager.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Recover.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

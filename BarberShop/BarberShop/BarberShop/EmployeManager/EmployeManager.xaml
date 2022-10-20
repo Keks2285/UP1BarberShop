@@ -26,10 +26,10 @@
             <TextBlock Name="FLTb" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30"> ИВ</TextBlock>
         </Border>
         <StackPanel  Grid.RowSpan="3" Margin="0,103,1,0">
-            <Button Background="#7d22ff" x:Name="EmployeBtn" Margin="5,10" Click="EmployeBtn_Click">Сотрудники</Button>
-            <Button Background="#7d22ff" x:Name="PostBtn" Margin="5,10" Click="PostBtn_Click">Должности</Button>
-            <Button Background="#7d22ff" x:Name="SickLeaveBtn" Margin="5,10" Click="SickLeaveBtn_Click">Больничные</Button>
-            <Button Background="#7d22ff" x:Name="VacationBtn" Margin="5,10" Click="VacationBtn_Click">Отпуска</Button>
+            <Button Background="#FF673AB7" x:Name="EmployeBtn" Margin="5,10" Click="EmployeBtn_Click" Cursor="Hand">Сотрудники</Button>
+            <Button Background="#FF673AB7" x:Name="PostBtn" Margin="5,10" Click="PostBtn_Click">Должности</Button>
+            <Button Background="#FF673AB7" x:Name="SickLeaveBtn" Margin="5,10" Click="SickLeaveBtn_Click">Больничные</Button>
+            <Button Background="#FF673AB7" x:Name="VacationBtn" Margin="5,10" Click="VacationBtn_Click" Cursor="Hand">Отпуска</Button>
         </StackPanel>
         <Button x:Name="ExitBtn" Margin="5,132,5,0" VerticalAlignment="Top" Background="#FFC52B2B" Grid.Row="2" Height="32">Выход</Button>
         <Frame x:Name="MainFrame"  Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="3" Background="Aqua">

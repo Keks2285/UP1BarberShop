@@ -39,7 +39,7 @@ namespace BarberShop.EmployeManagerPages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            var req = new RestRequest("/getemployers", Method.Get);
+            var req = new RestRequest("/getEmployers", Method.Get);
             req.AddHeader("Content-Type", "application/x-www-form-urlencoded");
             var res = client.Get(req);
             List<EmployeModel> data = JsonConvert.DeserializeObject<List<EmployeModel>>(res.Content);
