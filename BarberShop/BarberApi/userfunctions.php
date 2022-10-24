@@ -42,7 +42,7 @@ mb_regex_encoding('UTF-8');
 
     function getPosts($connect, $data){
         try{
-        $searchPosts=$connect->prepare("SELECT ID_Post, Name_Post, Price from `Post`;");
+        $searchPosts=$connect->prepare("SELECT ID_Post as 'Id', Name_Post as 'Name', Price from `Post`;");
         $searchPosts->execute();
         $listUser=$searchPosts->fetchAll();
 

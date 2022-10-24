@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:BarberShop"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="Восстановление" Height="300" Width="650" ResizeMode="NoResize">
     <Grid>
         <Grid.Background>
@@ -27,7 +28,7 @@
         </Border>
 
         <Button x:Name="SendCodeBtn"  Content="Получить код" HorizontalAlignment="Left" Margin="373,36,0,0" VerticalAlignment="Top"  Click="SendCodeBtn_Click" Cursor="Hand" />
-        <Button  Background="#FFB92525" Content="Назад" HorizontalAlignment="Left" Margin="569,10,0,0" VerticalAlignment="Top" />
+        <Button  x:Name="BackBtn" Background="#FFB92525" Content="Назад" HorizontalAlignment="Left" Margin="569,10,0,0" VerticalAlignment="Top" Cursor="Hand" Click="BackBtn_Click" />
         <Button x:Name="Recovertn" Content="Восстановить пароль" HorizontalAlignment="Left" Margin="373,210,0,0" VerticalAlignment="Top" Cursor="Hand" Click="Recovertn_Click" />
 
     </Grid>

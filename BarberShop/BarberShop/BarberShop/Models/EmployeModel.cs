@@ -4,15 +4,17 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CsvHelper.Configuration.Attributes;
 
 namespace BarberShop.Models
 {
     class EmployeModel
     {
+        [Ignore]
         public int Id { get; set; }
-
+        [Ignore]
         public int ID_Status { get; set; }
-
+        [Ignore]
         public int ID_Post { get; set; }
 
         public string FirstName { get; set; }
@@ -36,9 +38,7 @@ namespace BarberShop.Models
             new StatusEmploye{Id=4, Name="На больничном"}
         };
         public static ObservableCollection<PostEmploye> Posts { get; set; } = new ObservableCollection<PostEmploye>
-        {   new PostEmploye{Id=1, Name="Менеджер отдела кадров", Price=45000},
-            new PostEmploye{Id=2, Name="Бухгалтер", Price=45000},
-            new PostEmploye{Id=3, Name="Начальник склада", Price=45000}
+        {  
         };
 
 

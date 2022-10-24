@@ -34,3 +34,4 @@ C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\Barb
 C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\bin\Debug\net6.0-windows\MailKit.dll
 C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\bin\Debug\net6.0-windows\MimeKit.dll
 C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\bin\Debug\net6.0-windows\BouncyCastle.Crypto.dll
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\bin\Debug\net6.0-windows\CsvHelper.dll

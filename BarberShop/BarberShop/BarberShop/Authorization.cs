@@ -40,6 +40,20 @@ namespace BarberShop
             InitializeComponent();
         }
 
+
+
+        private  void RecoverBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Window w = new Recover();
+            this.Hide();
+            w.Show();
+        }
+
+
+
+
+
+
         private async void AuthorizationBtn_Click(object sender, RoutedEventArgs e)
         {
             string email = EmailTb.Text;

@@ -88,11 +88,13 @@ namespace BarberShop
 
         private void Recovertn_Click(object sender, RoutedEventArgs e)
         {
+            ///не забудь добавить проверку пароля
+            Match match = r.Match(PasswordPb.Password);
             if (PasswordPb.Password != RepeatPasswordPb.Password) {
                 MessageBox.Show("Пароли не совпадают");return;
             }
             if (CodeTb.Text != code) { MessageBox.Show("Неверный код восстановления"); return; }
-
+            if (!match.Success) {  MessageBox.Show("Пароль не подходит \n Он должен состоять из латинских букв 1 из которых заглавная и 1 строчная\n минимум цифры и спецсимволов(!@#$%&)"); return; }
 
             string userType;   
            try{
@@ -143,6 +145,13 @@ namespace BarberShop
            }catch{
                 MessageBox.Show("Проблемы с сетью, Попробуйте позже");
            }
+        }
+
+        private void BackBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Window w = new Authorization();
+            this.Hide();
+            w.Show();
         }
     }
 }

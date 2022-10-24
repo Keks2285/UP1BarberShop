@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "UsemuhzidSjT2iYi0Kg/2SLtaIf0tMQsydSfjPKY3deJB7zMQ2ejhlFZMr8V5qe78ixzXM9e0VM/HbRuB3q+Sw==",
+  "dgSpecHash": "LyLDjyYa3aYD0N0CYkk3KkzxcX0SmJ5n1AQWR6LnwMoLIZe1eAtigP/+K6Nn7tAXA0PgGtaQg2LpYX/jpD9ijQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Ilyich\\OneDrive\\Документы\\GitHub\\UP1BarberShop\\BarberShop\\BarberShop\\BarberShop\\BarberShop.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Ilyich\\.nuget\\packages\\csvhelper\\29.0.0\\csvhelper.29.0.0.nupkg.sha512",
     "C:\\Users\\Ilyich\\.nuget\\packages\\mailkit\\3.4.1\\mailkit.3.4.1.nupkg.sha512",
     "C:\\Users\\Ilyich\\.nuget\\packages\\materialdesigncolors\\2.0.9\\materialdesigncolors.2.0.9.nupkg.sha512",
     "C:\\Users\\Ilyich\\.nuget\\packages\\materialdesignthemes\\4.6.1\\materialdesignthemes.4.6.1.nupkg.sha512",

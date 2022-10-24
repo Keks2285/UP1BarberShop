@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:BarberShop"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d" x:Name="AuthWindow"
+        WindowStartupLocation="CenterScreen"
         Title="Authorization" Height="850" Width="1300" MinWidth="1000" MinHeight="810" WindowState="Maximized" SizeChanged="Window_SizeChanged">
     <Grid >
         <Grid.Background>
@@ -45,7 +46,7 @@
                 <TextBox x:Name="EmailTb" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" materialDesign:HintAssist.Hint="Введите вашу почту"></TextBox>
                 <PasswordBox x:Name="PasswordPb" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" materialDesign:HintAssist.Hint="Введите пароль"></PasswordBox>
                 <Button x:Name="AuthorizationBtn" Grid.Column="2" VerticalContentAlignment="Center"  Grid.Row="2" Click="AuthorizationBtn_Click" HorizontalAlignment="Center"  Cursor="Hand" MinWidth="80" MinHeight="10" MaxWidth="200" MaxHeight="40" >⠀⠀⠀⠀Вход⠀⠀⠀⠀</Button>
-                <Button x:Name="RecoverBtn" VerticalContentAlignment="Center"  Grid.Row="2"  HorizontalAlignment="Center" Cursor="Hand"  Content="Регистрация"  />
+                <Button x:Name="RegistrationBtn" VerticalContentAlignment="Center"  Grid.Row="2"  HorizontalAlignment="Center" Cursor="Hand"  Content="Регистрация"  />
 
             </Grid>
         </Border>
@@ -65,7 +66,7 @@
                     <RowDefinition Height="64*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Column="0" HorizontalAlignment="Center" Grid.ColumnSpan="3" TextWrapping="Wrap" Text="Забыли пароль?" VerticalAlignment="Center"/>
-                <Button Grid.Column="0" Grid.ColumnSpan="3" Content="Восстановить" HorizontalAlignment="Center" MinWidth="50"  Grid.Row="1" VerticalAlignment="Center" Cursor="Hand"/>
+                <Button x:Name="RecoverBtn" Click="RecoverBtn_Click" Grid.Column="0" Grid.ColumnSpan="3" Content="Восстановить" HorizontalAlignment="Center" MinWidth="50"  Grid.Row="1" VerticalAlignment="Center" Cursor="Hand"/>
 
 
 
