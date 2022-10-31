@@ -26,20 +26,45 @@ using System.Data;
 
 namespace BarberShop.EmployeManagerPages
 {
-    /// <summary>
+    /// <summary> 
     /// Логика взаимодействия для EmployersPage.xaml
     /// </summary>
     public partial class EmployersPage : Page
     {
+
+        EmployeModel selectedEmployer;
+        bool sortAscINN = false;
+        bool sortAscEmail = false;
+        bool sortAscFirstName = false;
+        bool sortAscLastName = false;
         private static RestClient client = new RestClient("http://192.168.1.49:8080/BarberApi/");
-        private ObservableCollection<EmployeModel> _employes= new ObservableCollection<EmployeModel>();
-        private ObservableCollection<EmployeModel> _SearchEmployes = new ObservableCollection<EmployeModel>();
+        private BindingList<EmployeModel> _employers= new BindingList<EmployeModel>();
+        //private ObservableCollection<EmployeModel> _SearchEmployes = new ObservableCollection<EmployeModel>();
         //  private BindingList<PostEmploye> _posts;
-        //  private BindingList<StatusEmploye> _status; 
+         // private BindingList<StatusEmploye> _status; 
         string fileName = "";
         public EmployersPage()
         {
             InitializeComponent();
+            _employers.ListChanged += _employes_CollectionChanged;
+            
+        }
+
+        private void _employes_CollectionChanged(object? sender, ListChangedEventArgs e)
+        {
+            if (selectedEmployer == null) return;
+            if (e.ListChangedType == ListChangedType.ItemDeleted)
+            {
+                var reqDeleteEmployer = new RestRequest("/removeEployerByEmail", Method.Post);
+                reqDeleteEmployer.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                reqDeleteEmployer.AddParameter("email", selectedEmployer.Email);
+                var resDeleteEmployer = client.Post(reqDeleteEmployer);
+                //selectedEmployer["Почта"]
+            }
+            if(e.ListChangedType == ListChangedType.ItemChanged)
+            {
+               // MessageBox.Show(selectedEmployer.Email);
+            }
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -49,21 +74,22 @@ namespace BarberShop.EmployeManagerPages
             var res = client.Get(req);
             List<EmployeModel> data = JsonConvert.DeserializeObject<List<EmployeModel>>(res.Content);
 
+            if (EmployeModel.Posts.Count<1) { 
+                var reqPosts = new RestRequest("/getPosts", Method.Get);
+                req.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                var resPosts = client.Get(reqPosts);
+                List<PostEmploye> dataPosts = JsonConvert.DeserializeObject<List<PostEmploye>>(resPosts.Content);
 
-            var reqPosts = new RestRequest("/getPosts", Method.Get);
-            req.AddHeader("Content-Type", "application/x-www-form-urlencoded");
-            var resPosts = client.Get(reqPosts);
-            List<PostEmploye> dataPosts = JsonConvert.DeserializeObject<List<PostEmploye>>(resPosts.Content);
-
-            foreach (var post in dataPosts) {
-               EmployeModel.Posts.Add(
-                    new PostEmploye()
-                    {
-                        Name = post.Name,
-                        Price = post.Price,
-                        Id = post.Id
-                    }
-                );
+                foreach (var post in dataPosts) {
+                   EmployeModel.Posts.Add(
+                        new PostEmploye()
+                        {
+                            Name = post.Name,
+                            Price = post.Price,
+                            Id = post.Id
+                        }
+                    );
+                }
             }
             //EmployeModel.Posts = dataPosts;
             //EmployeModel.Posts
@@ -71,14 +97,18 @@ namespace BarberShop.EmployeManagerPages
             foreach (var user in data)
             {
             
-                _employes.Add(
+                _employers.Add(
                     new EmployeModel()
                     {
+                        ID_Employee = user.ID_Employee,
                         FirstName = user.FirstName,
                         LastName = user.LastName,
                         MiddleName = user.MiddleName,
+                        Password = user.Password,
                         Email = user.Email,
                         INN = user.INN,
+                        ID_Post = user.ID_Post,
+                        ID_Status = user.ID_Status,
                         SelectedStatus = EmployeModel.Status[user.ID_Status-1],
                         SelectedPost = EmployeModel.Posts[user.ID_Post-1],
                     }
@@ -98,29 +128,33 @@ namespace BarberShop.EmployeManagerPages
             //        INN="1234567890",
             //        SelectedStatus=EmployeModel.Status[1] }
             //};
-            UsersGrid.ItemsSource = _employes;
+            UsersGrid.ItemsSource = _employers;
+           
            // ComboboxColumn.ItemsSource = _employes;
         }
 
         private void ImportEmploye_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.DefaultExt = ".csv";
-            openFileDialog.Filter = "CSV documents (.csv)|*.csv";
-            if (openFileDialog.ShowDialog() == true)
-            {
-                fileName = openFileDialog.FileName;
-                if (System.IO.Path.GetExtension(fileName) != ".csv") { MessageBox.Show("Неверный формат файла"); return; }                
-            }
-            var req = new RestRequest("/importEmploye", Method.Post);
-            req.AddHeader("Content-Type", "multipart/form-data; charset=utf-8");
-            req.AddFile("Employers", fileName);
-            var res = client.Post(req);
-            dynamic data = JsonConvert.DeserializeObject<dynamic>(res.Content);
-            if (data.status.Value)
-            {
-                MessageBox.Show(data.message.Value); return;
-            }
+            try { 
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.DefaultExt = ".csv";
+                openFileDialog.Filter = "CSV documents (.csv)|*.csv";
+                if (openFileDialog.ShowDialog() == true)
+                {
+                    fileName = openFileDialog.FileName;
+                    //MessageBox.Show( fileName);
+                    if (System.IO.Path.GetExtension(fileName) != ".csv") { MessageBox.Show("Неверный формат файла"); return; }                
+                }
+                var req = new RestRequest("/importEmploye", Method.Post);
+                req.AddHeader("Content-Type", "multipart/form-data;");
+                req.AddFile("Employers", fileName);
+                var res = client.Post(req);
+                dynamic data = JsonConvert.DeserializeObject<dynamic>(res.Content);
+                if (data.status.Value)
+                {
+                    MessageBox.Show(data.message.Value); return;
+                }
+            } catch { }
         }
 
         private void ExportEmploye_Click(object sender, RoutedEventArgs e)
@@ -128,16 +162,21 @@ namespace BarberShop.EmployeManagerPages
             try{
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
                 saveFileDialog.Filter = "CSV file (*.csv)|*.csv";
+                saveFileDialog.DefaultExt="csv";
+                //saveFileDialog.GetType
+                Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
                 if (saveFileDialog.ShowDialog() == true)
-                    using (var writer  = new StreamWriter(saveFileDialog.FileName, false, Encoding.GetEncoding("utf-8")))
+                    using (var writer  = new StreamWriter(saveFileDialog.FileName, false, Encoding.UTF8))
                     {
+                       
                         var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
                         {
                             Delimiter = ";",
+                            HasHeaderRecord = false,
                         };
                         using (var csv= new CsvWriter(writer, csvConfig))
                         {
-                            csv.WriteRecords(_employes);
+                            csv.WriteRecords(_employers);
                         }
 
                     }
@@ -151,8 +190,13 @@ namespace BarberShop.EmployeManagerPages
 
         private void SearchBtn_Click(object sender, RoutedEventArgs e)
         {
-
-            UsersGrid.ItemsSource = _employes.Where(
+            //_SearchEmployes = new ObservableCollection<EmployeModel>(_employes.Where(
+            //    item => item.FirstName.Contains(FirstNameTb.Text) &&
+            //    item.LastName.Contains(LastNameTb.Text) &&
+            //    item.MiddleName.Contains(MiddleNameTb.Text)
+            //    ));
+            // UsersGrid.ItemsSource =_SearchEmployes;
+            UsersGrid.ItemsSource = _employers.Where(
                 item => item.FirstName.Contains(FirstNameTb.Text) &&
                 item.LastName.Contains(LastNameTb.Text) &&
                 item.MiddleName.Contains(MiddleNameTb.Text)
@@ -164,7 +208,122 @@ namespace BarberShop.EmployeManagerPages
             FirstNameTb.Text = "";
             LastNameTb.Text = "";
             MiddleNameTb.Text = "";
-            UsersGrid.ItemsSource = _employes;
+            UsersGrid.ItemsSource = _employers;
+        }
+
+        private void UsersGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(UsersGrid.SelectedItem!=null)selectedEmployer = (EmployeModel)UsersGrid.SelectedItem;
+        }
+
+        private void UsersGrid_Sorting(object sender, DataGridSortingEventArgs e)
+        {
+
+
+
+
+            switch (e.Column.Header.ToString())
+            {
+                case "ИНН":
+                    {
+                        if (sortAscINN) {
+                            // _employers.
+                            _employers=new BindingList<EmployeModel>(_employers.ToList().OrderBy(x => x.INN).ToList());
+                            //_employers.ResetBindings();
+                             UsersGrid.ItemsSource =  _employers;
+                            _employers.ListChanged += _employes_CollectionChanged;
+                            // UsersGrid.;
+                            sortAscINN = false;
+                        }
+                        else
+                        {
+                            //_employers = _employers.OrderByDescending(x => x.INN).ToList();
+
+                            _employers =new BindingList<EmployeModel>(_employers.ToList().OrderByDescending(x => x.INN).ToList());
+                             UsersGrid.ItemsSource =  _employers;
+                            _employers.ListChanged += _employes_CollectionChanged;
+                            sortAscINN = true;
+                        }
+                        break;
+                    }
+                case "Почта":
+                    {
+                        if (sortAscEmail)
+                        {
+                            // _employers.
+                            _employers = new BindingList<EmployeModel>(_employers.ToList().OrderBy(x => x.Email).ToList());
+                           // _employers.ResetBindings();
+                            UsersGrid.ItemsSource = _employers;
+                            _employers.ListChanged += _employes_CollectionChanged;
+                            // UsersGrid.;
+                            sortAscEmail = false;
+                        }
+                        else
+                        {
+                            //_employers = _employers.OrderByDescending(x => x.INN).ToList();
+
+                            
+                            _employers = new BindingList<EmployeModel>(_employers.ToList().OrderByDescending(x => x.Email).ToList());
+                          //  _employers.ResetBindings();
+                            UsersGrid.ItemsSource = _employers;
+                            _employers.ListChanged += _employes_CollectionChanged;
+                            sortAscEmail = true;
+                        }
+                        break;
+                    }
+                case "Фамилия":
+                    {
+                        if (sortAscFirstName)
+                        {
+                            // _employers.
+                            _employers = new BindingList<EmployeModel>(_employers.ToList().OrderBy(x => x.FirstName).ToList());
+                            // _employers.ResetBindings();
+                            UsersGrid.ItemsSource = _employers;
+                            _employers.ListChanged += _employes_CollectionChanged;
+                            // UsersGrid.;
+                            sortAscFirstName = false;
+                        }
+                        else
+                        {
+                            //_employers = _employers.OrderByDescending(x => x.INN).ToList();
+
+
+                            _employers = new BindingList<EmployeModel>(_employers.ToList().OrderByDescending(x => x.FirstName).ToList());
+                            //  _employers.ResetBindings();
+                            UsersGrid.ItemsSource = _employers;
+                            _employers.ListChanged += _employes_CollectionChanged;
+                            sortAscFirstName = true;
+                        }
+                        break;
+                    }
+                case "Имя":
+                    {
+                        if (sortAscLastName)
+                        {
+                            // _employers.
+                            _employers = new BindingList<EmployeModel>(_employers.ToList().OrderBy(x => x.LastName).ToList());
+                            // _employers.ResetBindings();
+                            UsersGrid.ItemsSource = _employers;
+                            _employers.ListChanged += _employes_CollectionChanged;
+                            // UsersGrid.;
+                            sortAscLastName = false;
+                        }
+                        else
+                        {
+                            //_employers = _employers.OrderByDescending(x => x.INN).ToList();
+
+
+                            _employers = new BindingList<EmployeModel>(_employers.ToList().OrderByDescending(x => x.LastName).ToList());
+                            //  _employers.ResetBindings();
+                            UsersGrid.ItemsSource = _employers;
+                            _employers.ListChanged += _employes_CollectionChanged;
+                            sortAscLastName = true;
+                        }
+                        break;
+                    }
+
+            }
+           // MessageBox.Show( );
         }
     }
 }

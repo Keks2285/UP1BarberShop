@@ -10,14 +10,16 @@ header('Content-type: application/json; charset=utf-8');
 $params=explode('/', $_SERVER["PATH_INFO"]);
 //echo '<p> grdfgrtdyht</p>'; die();
 switch ($_SERVER['REQUEST_METHOD']){
-    case "POST":
+    case "POST":{
 
         switch ($params[1]){
             case "authorization": authorization($connect,$_POST); break;
             case "createEmploye": creatEemployee($connect,$_POST); break;  
             case "importEmploye": importEmploye($connect); break;    
-            case "recoverPassword": recoverPassword($connect, $_POST); break;       
+            case "recoverPassword": recoverPassword($connect, $_POST); break;  
+            case "removeEployerByEmail": removeEployerByEmail($connect,$_POST); break;     
         }
+    }
     break;
     case "GET":{
         switch ($params[1]){
@@ -28,6 +30,13 @@ switch ($_SERVER['REQUEST_METHOD']){
         }
 
     }
+    // case "DELETE":{
+    //     switch ($params[1]){
+    //         case "removeEployerByEmail": removeEployerByEmail($connect,$_POST); break;
+            
+    //     }
+    // }
+    // break;
 
 
 

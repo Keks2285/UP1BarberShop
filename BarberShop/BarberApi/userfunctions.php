@@ -55,7 +55,7 @@ mb_regex_encoding('UTF-8');
 
     function getEmployers($connect, $data){
         try{
-        $searchUser=$connect->prepare("SELECT ID_Employee, ID_Status, ID_Post, FirstName, LastName, MiddleName, Email, INN, Name_Post, Name_Status FROM `Employe` join Post join Status_Employee where Post_ID=ID_Post and Status_ID=ID_Status;");
+        $searchUser=$connect->prepare("SELECT ID_Employee, ID_Status, ID_Post, Password, FirstName, LastName, MiddleName, Email, INN, Name_Post, Name_Status FROM `Employe` join Post join Status_Employee where Post_ID=ID_Post and Status_ID=ID_Status;");
         $searchUser->execute();
         $listUser=$searchUser->fetchAll();
 
@@ -66,13 +66,64 @@ mb_regex_encoding('UTF-8');
 
     }
 
+    function updateEmployer($connect, $data){
+        $selectUsers=$connect->prepare("Select * from Employe where Email=? or INN=?");
+        $selectUsers->execute(array(strval($data["email"]), $data["inn"]));
+            
+        if(count($selectUsers->fetchAll())>0){
+                $responce=[
+                    "status"=>false,
+                    "message"=>"user not updated, some data are not unique"
+                ];
+                echo json_encode($responce);
+                die();
+        }
+       // $selectUsers=$connect->prepare("Select * from Employe where Email=? or INN=?");
+
+    }
+
+    function removeEployerByEmail($connect, $data){
+      //  echo $data["email"]; die();
+        try{
+            $deleteUser =$connect->prepare("Delete from Employe where Email=?");
+            $deleteUser ->execute(array($data["email"]));
+
+            $selectUsers=$connect->prepare("Select * from Employe where Email=?");
+            $selectUsers->execute(array(strval($data["email"])));
+            if(count($selectUsers->fetchAll())>0){
+                $responce=[
+                    "status"=>false,
+                    "message"=>"user not deleted"
+                ];
+                echo json_encode($responce);
+                die();
+            }else{
+                $responce=[
+                    "status"=>false,
+                    "message"=>"user deleted"
+                ];
+                echo json_encode($responce);
+                die();
+            }
+        } catch (Exception $e){
+            $responce=[
+                "status"=>false,
+                "message"=>"user not deleted"
+            ];
+            echo json_encode($responce);
+        }
+
+       
+    }
+
+
     function createEmployee ($connect, $data){
 
 
        // print_r( $data); die();
         try{
-            $selectUsers=$connect->prepare("Select * from Employe where Email=?");
-            $selectUsers->execute(array(strval($data["email"])));
+            $selectUsers=$connect->prepare("Select * from Employe where Email=? or INN=?");
+            $selectUsers->execute(array(strval($data["email"]), $data["inn"]));
             if(count($selectUsers->fetchAll())>0){
                 $responce=[
                     "status"=>false,
@@ -117,7 +168,7 @@ mb_regex_encoding('UTF-8');
         }
 
     }
-
+    
     function importEmploye($connect){
        if(move_uploaded_file($_FILES['Employers']['tmp_name'], '../files/'.$_FILES['Employers']['name'])){
         $responce=[
@@ -138,7 +189,7 @@ mb_regex_encoding('UTF-8');
             $counter =0;       
             while (!feof($file)){
                 $employer = fgetcsv($file,1024 ,';');
-
+                   //print_r( $employer);
                 //print_r($employer);die();
                 //$i = count($employer);
                 if ($employer[1]!=null){
@@ -147,11 +198,11 @@ mb_regex_encoding('UTF-8');
                        // print_r($employer);
                         //if(empty($data["middlename"])) $data["middlename"]="-";
                         $createEmployee->execute(array(
-                            iconv("windows-1251","utf-8",strval($employer[0])), //firstName
-                            iconv("windows-1251","utf-8",strval($employer[1])), //lastname
-                            iconv("windows-1251","utf-8",strval($employer[2])), //middlename
+                            strval($employer[0]), //firstName
+                            strval($employer[1]), //lastname
+                            strval($employer[2]), //middlename
                             strval($employer[3]),  //email
-                            md5(strval($employer[4])), //password
+                            strval($employer[4]), //password
                             strval($employer[5]), //inn
                             $employer[6], //post_id
                             $employer[7] //status_id

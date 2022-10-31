@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "LyLDjyYa3aYD0N0CYkk3KkzxcX0SmJ5n1AQWR6LnwMoLIZe1eAtigP/+K6Nn7tAXA0PgGtaQg2LpYX/jpD9ijQ==",
+  "dgSpecHash": "M17SxNFw0tYg/7lAd9tIiv62Q7gmPmqXnmFTFVs+aGZc3vfbt3ihhoOrlw8tnp12080UDEce9s7EIgPmefT8uw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Ilyich\\OneDrive\\Документы\\GitHub\\UP1BarberShop\\BarberShop\\BarberShop\\BarberShop\\BarberShop.csproj",
   "expectedPackageFiles": [
@@ -13,7 +13,9 @@
     "C:\\Users\\Ilyich\\.nuget\\packages\\portable.bouncycastle\\1.9.0\\portable.bouncycastle.1.9.0.nupkg.sha512",
     "C:\\Users\\Ilyich\\.nuget\\packages\\restsharp\\108.0.2\\restsharp.108.0.2.nupkg.sha512",
     "C:\\Users\\Ilyich\\.nuget\\packages\\system.formats.asn1\\6.0.0\\system.formats.asn1.6.0.0.nupkg.sha512",
-    "C:\\Users\\Ilyich\\.nuget\\packages\\system.security.cryptography.pkcs\\6.0.0\\system.security.cryptography.pkcs.6.0.0.nupkg.sha512"
+    "C:\\Users\\Ilyich\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\Ilyich\\.nuget\\packages\\system.security.cryptography.pkcs\\6.0.0\\system.security.cryptography.pkcs.6.0.0.nupkg.sha512",
+    "C:\\Users\\Ilyich\\.nuget\\packages\\system.text.encoding.codepages\\6.0.0\\system.text.encoding.codepages.6.0.0.nupkg.sha512"
   ],
   "logs": []
 }

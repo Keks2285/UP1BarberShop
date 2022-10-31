@@ -21,7 +21,6 @@ using Newtonsoft.Json;
 using RestSharp.Authenticators;
 using BarberShop.EmployeMAnager;
 
-
 namespace BarberShop
 {
     /// <summary>
@@ -33,7 +32,7 @@ namespace BarberShop
         string FirstName = "";
         string LastName = "";
         string Role = "";
-        private static RestClient client = new RestClient("http://192.168.1.49:8080/BarberApi/");
+        
         //Dictionary<string, string> user = new Dictionary<string, string>();
         public Authorization()
         {
@@ -96,7 +95,7 @@ namespace BarberShop
                 req.AddHeader("Content-Type", "application/x-www-form-urlencoded");
                 req.AddParameter("email", _email);
                 req.AddParameter("password", _password);
-                var res = client.Post(req);
+                var res = Helper.client.Post(req);
                 dynamic data = JsonConvert.DeserializeObject<dynamic>(res.Content);
 
                 if (!data.status.Value)

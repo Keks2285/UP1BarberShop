@@ -27,13 +27,14 @@
 
 
 
-        <DataGrid CanUserSortColumns="True"  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" AutoGenerateColumns="False"  CanUserAddRows="False" x:Name="UsersGrid" ColumnWidth="*"  Margin="10,0,0,0"  Grid.Row="1" Grid.ColumnSpan="3" >
+        <DataGrid CanUserSortColumns="True"  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" AutoGenerateColumns="False"  CanUserDeleteRows="True" CanUserAddRows="False" x:Name="UsersGrid" ColumnWidth="*"  Margin="10,0,0,0"  Grid.Row="1" Grid.ColumnSpan="3" SelectionChanged="UsersGrid_SelectionChanged" Sorting="UsersGrid_Sorting" >
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Path=FirstName}" CanUserSort="True" Header="Фамилия"></DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding Path=LastName}"  CanUserSort="True" Header="Имя"></DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding Path=MiddleName}"  CanUserSort="True" Header="Отчество"></DataGridTextColumn>
+               
+                <DataGridTextColumn Binding="{Binding Path=FirstName}" IsReadOnly="True" CanUserSort="True" Header="Фамилия"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Path=LastName}" IsReadOnly="True"  CanUserSort="True" Header="Имя"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Path=MiddleName}" IsReadOnly="True" CanUserSort="True" Header="Отчество"></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding Path=Email}" IsReadOnly="True" CanUserSort="True" Header="Почта"></DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding Path=INN}"  CanUserSort="True" Header="ИНН"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Path=INN}" IsReadOnly="True" CanUserSort="True" Header="ИНН"></DataGridTextColumn>
                 <DataGridComboBoxColumn x:Name="ComboboxColumn"
                         Header="Должность"
                         Width="100"
