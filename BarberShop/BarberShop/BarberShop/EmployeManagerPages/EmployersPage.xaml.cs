@@ -129,11 +129,9 @@ namespace BarberShop.EmployeManagerPages
             int counterMonth = 0;
             for (int i = 1; i<13;i++)
             {
-
                 var curentMonth = from income in dataIncomes where 
                                   income.Date_Income.Month == i && income.Date_Income.Year== DateTime.Now.Year
                                   select income;
-
                 foreach ( Income x in curentMonth)
                 {
                     months[counterMonth]+=x.Value;

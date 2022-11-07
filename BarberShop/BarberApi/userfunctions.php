@@ -42,8 +42,7 @@ mb_regex_encoding('UTF-8');
 
    
 
-    
-
+   
     function updateEmployer($connect, $data){
         $selectUsers=$connect->prepare("Select * from Employe where Email=? or INN=?");
         $selectUsers->execute(array(strval($data["email"]), $data["inn"]));

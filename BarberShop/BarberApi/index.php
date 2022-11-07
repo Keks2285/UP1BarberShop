@@ -34,6 +34,7 @@ switch ($_SERVER['REQUEST_METHOD']){
             case "createVacation": createVacation($connect,$_POST); break; 
             case "createMaterial": createMaterial($connect,$_POST); break; 
             case "createTaxReport": createTaxReport($connect,$_POST); break;
+            case "executeBackup": executeBackup($connect); break;
         }
     }
     break;

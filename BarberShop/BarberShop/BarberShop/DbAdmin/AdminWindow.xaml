@@ -23,6 +23,6 @@
             </ListView>
         </Grid>
         <Button x:Name="CreatePoint" Content="Создать бэкап"  VerticalAlignment="Top" Click="CreatePoint_Click" Height="32" Margin="10,58,10,0" Grid.Column="1"/>
-        <Button x:Name="DeletePoint" Grid.Column="2" Content="Удалить бэкап"   VerticalAlignment="Top"  Cursor="Hand" Height="32" Margin="10,58,10,0" Click="DeletePoint_Click"/>
+        <Button x:Name="ImportPoint" Grid.Column="2" Content="Загрузить бэкап"   VerticalAlignment="Top"  Cursor="Hand" Height="32" Margin="10,58,10,0" Click="ImportPoint_Click" />
     </Grid>
 </Window>

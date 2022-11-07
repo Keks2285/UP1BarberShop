@@ -324,5 +324,33 @@ namespace BarberShop.DbAdmin
 
             }
         }
+
+        private void ImportPoint_Click(object sender, RoutedEventArgs e)
+        {
+            if (BackupsList.SelectedItem == null)
+            {
+                MessageBox.Show("Выберите точку сохранения");
+                return;
+            }
+            var req = new RestRequest("/executeBackup", Method.Post);
+            req.AddHeader("Content-Type", "multipart/form-data;");
+
+
+            var files = Directory.GetDirectories(Helper.backupsDir+BackupsList.SelectedItem.ToString());
+            // string
+            // foreach (var file in files)
+            // {
+            //      req.AddFile("Employers", file);
+            //  }
+
+            req.AddFile("Employers", Helper.backupsDir + BackupsList.SelectedItem.ToString()+ "\\Employe.csv");
+            req.AddFile("Reqords", Helper.backupsDir + BackupsList.SelectedItem.ToString() + "\\Record.csv");
+            var res = Helper.client.Post(req);
+            dynamic data = JsonConvert.DeserializeObject<dynamic>(res.Content);
+            
+
+
+
+        }
     }
 }
