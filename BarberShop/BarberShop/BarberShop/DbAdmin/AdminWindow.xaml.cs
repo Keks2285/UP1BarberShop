@@ -28,10 +28,12 @@ namespace BarberShop.DbAdmin
     /// </summary>
     public partial class AdminWindow : Window
     {
-        private static RestClient client = new RestClient("http://192.168.1.49:8080/BarberApi/");
+        string generatedName;
         public AdminWindow()
         {
             InitializeComponent();
+            if (!Directory.Exists(Helper.backupsDir))
+                Directory.CreateDirectory(Helper.backupsDir);
             var directories = Directory.GetDirectories(Helper.backupsDir);
             foreach (var dir in directories)
             {
@@ -44,86 +46,282 @@ namespace BarberShop.DbAdmin
         {   
             //Удаление элементов ссписка
             //if(BackupsList.SelectedValue!=null)
-            MessageBox.Show(BackupsList.SelectedValue.ToString());
+            //MessageBox.Show(BackupsList.SelectedValue.ToString());
             //BackupsList.Items.Remove(BackupsList.SelectedItem);
         }
 
-        private void CreatePoint_Click(object sender, RoutedEventArgs e)
+        private async void CreatePoint_Click(object sender, RoutedEventArgs e)
         {
-            if (!Directory.Exists(Helper.backupsDir))
-                Directory.CreateDirectory(Helper.backupsDir);
+             generatedName = DateTime.Now.ToString().Replace(":", ".");
             
 
-
-
-
-            BindingList<EmployeModel> _employers = new BindingList<EmployeModel>();
-            var req = new RestRequest("/getEmployers", Method.Get);
-            req.AddHeader("Content-Type", "application/x-www-form-urlencoded");
-            var res = client.Get(req);
-            List<EmployeModel> data = JsonConvert.DeserializeObject<List<EmployeModel>>(res.Content);
-
-
-            if (EmployeModel.Posts.Count < 1)
+            BackupsList.Items.Add(new DirectoryInfo(generatedName).Name);
+            await Task.Run(() =>
             {
-                var reqPosts = new RestRequest("/getPosts", Method.Get);
+               // List<EmployeModel> _employers = new List<EmployeModel>();
+                var req = new RestRequest("/getEmployers", Method.Get);
                 req.AddHeader("Content-Type", "application/x-www-form-urlencoded");
-                var resPosts = client.Get(reqPosts);
+                var res = Helper.client.Get(req);
+                List<EmployeModel> dataEmployers = JsonConvert.DeserializeObject<List<EmployeModel>>(res.Content);
+
+                var reqclients = new RestRequest("/getClients", Method.Get);
+                reqclients.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                var resclients = Helper.client.Get(reqclients);
+                List<Client> dataClients = JsonConvert.DeserializeObject<List<Client>>(resclients.Content);
+
+                var reqPosts = new RestRequest("/getPosts", Method.Get);
+                reqPosts.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                var resPosts = Helper.client.Get(reqPosts);
                 List<PostEmploye> dataPosts = JsonConvert.DeserializeObject<List<PostEmploye>>(resPosts.Content);
 
-                foreach (var post in dataPosts)
+                var reqService = new RestRequest("/getServices", Method.Get);
+                reqService.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                var resService = Helper.client.Get(reqService);
+                List<Service> dataService = JsonConvert.DeserializeObject<List<Service>>(resService.Content);
+
+                var reqRecord = new RestRequest("/getRecords", Method.Get);
+                reqService.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                var resRecord = Helper.client.Get(reqRecord);
+                List<Record> dataRecord = JsonConvert.DeserializeObject<List<Record>>(resRecord.Content);
+
+                var reqStock = new RestRequest("/getStocks", Method.Get);
+                reqStock.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                var resStock = Helper.client.Get(reqStock);
+                List<Stock> dataStock = JsonConvert.DeserializeObject<List<Stock>>(resStock.Content);
+
+                var reqProvider = new RestRequest("/getProviders", Method.Get);
+                reqProvider.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                var resProvider = Helper.client.Get(reqProvider);
+                List<Provider> dataProvider = JsonConvert.DeserializeObject<List<Provider>>(resProvider.Content);
+
+                var reqSupply = new RestRequest("/getSupplies", Method.Get);
+                reqSupply.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                var resSupply = Helper.client.Get(reqSupply);
+                List<Supply> dataSupply = JsonConvert.DeserializeObject<List<Supply>>(resSupply.Content);
+
+                var reqSickLeave = new RestRequest("/getSickLeaves", Method.Get);
+                reqSickLeave.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                var resSickLeave = Helper.client.Get(reqSickLeave);
+                List<SickLeave> dataSickLeave = JsonConvert.DeserializeObject<List<SickLeave>>(resSickLeave.Content);
+
+                var reqVacation = new RestRequest("/getVacations", Method.Get);
+                reqVacation.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                var resVacation = Helper.client.Get(reqVacation);
+                List<Vacation> dataVacation = JsonConvert.DeserializeObject<List<Vacation>>(resVacation.Content);
+
+                try
                 {
-                    EmployeModel.Posts.Add(
-                         new PostEmploye()
-                         {
-                             Name = post.Name,
-                             Price = post.Price,
-                             Id = post.Id
-                         }
-                     );
-                }
-            }
-
-            foreach (var user in data)
-            {
-
-                _employers.Add(
-                    new EmployeModel()
-                    {
-                        ID_Employee = user.ID_Employee,
-                        FirstName = user.FirstName,
-                        LastName = user.LastName,
-                        MiddleName = user.MiddleName,
-                        Password = user.Password,
-                        Email = user.Email,
-                        INN = user.INN,
-                        SelectedStatus = EmployeModel.Status[user.ID_Status - 1],
-                        SelectedPost = EmployeModel.Posts[user.ID_Post - 1],
-                    }
-                );
-
-            }
-
-            try
-            {
-                Directory.CreateDirectory(Helper.backupsDir+DateTime.Now.ToString().Replace(":",""));
-                using (var writer = new StreamWriter(Helper.backupsDir+DateTime.Now.ToString().Replace(":","")+"\\Employe.csv", false, Encoding.GetEncoding("utf-8")))
+                    Directory.CreateDirectory(Helper.backupsDir + generatedName);
+                   
+                    //перепиши на foreach а то выглядит убого, но пока работает не трогай
+                    using (var writer = new StreamWriter(Helper.backupsDir + generatedName + "\\Employe.csv", false, Encoding.GetEncoding("utf-8")))
                     {
                         var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
                         {
+                            HasHeaderRecord = false,
                             Delimiter = ";",
                         };
                         using (var csv = new CsvWriter(writer, csvConfig))
                         {
-                            csv.WriteRecords(_employers);
+                            csv.WriteRecords(dataEmployers);
                         }
 
                     }
-                MessageBox.Show("Данные о сотрудниках успешно экспортированы");
-            }
-            catch
+                    using (var writer = new StreamWriter(Helper.backupsDir + generatedName + "\\Post.csv", false, Encoding.GetEncoding("utf-8")))
+                    {
+                        var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
+                        {
+                            HasHeaderRecord = false,
+                            Delimiter = ";",
+                        };
+                        using (var csv = new CsvWriter(writer, csvConfig))
+                        {
+                            csv.WriteRecords(dataPosts);
+                        }
+
+                    }
+                    using (var writer = new StreamWriter(Helper.backupsDir + generatedName + "\\Client.csv", false, Encoding.GetEncoding("utf-8")))
+                    {
+                        var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
+                        {
+
+                            HasHeaderRecord = false,
+                            Delimiter = ";",
+                        };
+                        using (var csv = new CsvWriter(writer, csvConfig))
+                        {
+                            csv.WriteRecords(dataClients);
+                        }
+
+                    }
+                    using (var writer = new StreamWriter(Helper.backupsDir + generatedName + "\\Service.csv", false, Encoding.GetEncoding("utf-8")))
+                    {
+                        var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
+                        {
+
+                            HasHeaderRecord = false,
+                            Delimiter = ";",
+                        };
+                        using (var csv = new CsvWriter(writer, csvConfig))
+                        {
+                            csv.WriteRecords(dataService);
+                        }
+
+                    }
+
+                    using (var writer = new StreamWriter(Helper.backupsDir + generatedName+ "\\Record.csv", false, Encoding.GetEncoding("utf-8")))
+                    {
+                        var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
+                        {
+
+                            HasHeaderRecord = false,
+                            Delimiter = ";",
+                        };
+                        using (var csv = new CsvWriter(writer, csvConfig))
+                        {
+                            csv.WriteRecords(dataRecord);
+                        }
+
+                    }
+
+                    using (var writer = new StreamWriter(Helper.backupsDir + generatedName + "\\Stock.csv", false, Encoding.GetEncoding("utf-8")))
+                    {
+                        var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
+                        {
+
+                            HasHeaderRecord = false,
+                            Delimiter = ";",
+                        };
+                        using (var csv = new CsvWriter(writer, csvConfig))
+                        {
+                            csv.WriteRecords(dataStock);
+                        }
+
+                    }
+
+
+                    using (var writer = new StreamWriter(Helper.backupsDir + generatedName + "\\Provider.csv", false, Encoding.GetEncoding("utf-8")))
+                    {
+                        var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
+                        {
+
+                            HasHeaderRecord = false,
+                            Delimiter = ";",
+                        };
+                        using (var csv = new CsvWriter(writer, csvConfig))
+                        {
+                            csv.WriteRecords(dataProvider);
+                        }
+
+                    }
+
+                    using (var writer = new StreamWriter(Helper.backupsDir + generatedName + "\\Supply.csv", false, Encoding.GetEncoding("utf-8")))
+                    {
+                        var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
+                        {
+
+                            HasHeaderRecord = false,
+                            Delimiter = ";",
+                        };
+                        using (var csv = new CsvWriter(writer, csvConfig))
+                        {
+                            csv.WriteRecords(dataSupply);
+                        }
+
+                    }
+
+                    using (var writer = new StreamWriter(Helper.backupsDir + generatedName + "\\SickLeave.csv", false, Encoding.GetEncoding("utf-8")))
+                    {
+                        var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
+                        {
+
+                            HasHeaderRecord = false,
+                            Delimiter = ";",
+                        };
+                        using (var csv = new CsvWriter(writer, csvConfig))
+                        {
+                            csv.WriteRecords(dataSickLeave);
+                        }
+
+                    }
+
+                    using (var writer = new StreamWriter(Helper.backupsDir + generatedName + "\\Vacation.csv", false, Encoding.GetEncoding("utf-8")))
+                    {
+                        var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
+                        {
+
+                            HasHeaderRecord = false,
+                            Delimiter = ";",
+                        };
+                        using (var csv = new CsvWriter(writer, csvConfig))
+                        {
+                            csv.WriteRecords(dataVacation);
+                        }
+
+                    }
+                    MessageBox.Show("Данные о сотрудниках успешно экспортированы");
+                }
+                catch
+                {
+                    MessageBox.Show("Что-то пошло не так, возможно файл уже используется другим процессом");
+                }
+
+
+                
+
+
+
+            });
+
+
+              
+        }
+
+        private void DeletePoint_Click(object sender, RoutedEventArgs e)
+        {
+            
+            
+        }
+
+        private async void Grid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete)
             {
-                MessageBox.Show("Что-то пошло не так, возможно файл уже используется другим процессом");
+
+                if (BackupsList.SelectedItem == null)
+                {
+                    MessageBox.Show("Не выбран элемент для удаления");
+                    return;
+                }
+
+                
+                    string path = Helper.backupsDir + BackupsList.SelectedItem.ToString();
+                    MessageBoxButton button = MessageBoxButton.YesNoCancel;
+                    MessageBoxImage icon = MessageBoxImage.Warning;
+                    MessageBoxResult result;
+                    result = MessageBox.Show("Вы уверены, что хотите удалить точку восстановления?", "Предупреждение", button, icon, MessageBoxResult.Yes);
+                    try
+                    {
+                        await Task.Run(() =>
+                        {
+                            try {
+                                Directory.Delete(path, true);
+                            } catch { }
+                            
+                        });
+                        if (result == MessageBoxResult.Yes)
+                            BackupsList.Items.Remove(BackupsList.SelectedItem);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Не  удалось удалить бэкап возможно файл уже открыт другим приложенем");
+                    }
+
+                
+               
+
+
+
             }
         }
     }

@@ -27,9 +27,9 @@
 
 
 
-        <DataGrid CanUserSortColumns="True"  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" AutoGenerateColumns="False"  CanUserDeleteRows="True" CanUserAddRows="False" x:Name="UsersGrid" ColumnWidth="*"  Margin="10,0,0,0"  Grid.Row="1" Grid.ColumnSpan="3" SelectionChanged="UsersGrid_SelectionChanged" Sorting="UsersGrid_Sorting" >
+        <DataGrid CanUserSortColumns="True"  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" AutoGenerateColumns="False"  CanUserDeleteRows="True" CanUserAddRows="False" x:Name="UsersGrid" ColumnWidth="*"  Margin="10,0,0,0"  Grid.Row="1" Grid.ColumnSpan="3" SelectionChanged="UsersGrid_SelectionChanged" Sorting="UsersGrid_Sorting" PreviewKeyDown="UsersGrid_PreviewKeyDown" >
             <DataGrid.Columns>
-               
+
                 <DataGridTextColumn Binding="{Binding Path=FirstName}" IsReadOnly="True" CanUserSort="True" Header="Фамилия"></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding Path=LastName}" IsReadOnly="True"  CanUserSort="True" Header="Имя"></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding Path=MiddleName}" IsReadOnly="True" CanUserSort="True" Header="Отчество"></DataGridTextColumn>
@@ -69,5 +69,7 @@
         </Border>
         <Button x:Name="SearchBtn" Grid.Column="2" Content="Поиск" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Cursor="Hand"  Height="32" Width="84" Margin="0,9,0,0" Click="SearchBtn_Click" />
         <Button x:Name="ClearSearchBtn" Grid.Column="2" Content="Сбросить" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Cursor="Hand"  Height="32" Width="100" Margin="0,55,0,0" Click="ClearSearchBtn_Click" />
+        <WpfPlot x:Name="EmployersStatistic" Grid.Column="2"  Margin="100,5,5,5" Grid.Row="2"   Grid.ColumnSpan="3"  />
+
     </Grid>
 </Page>

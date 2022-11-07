@@ -64,6 +64,10 @@
               "target": "Package",
               "version": "[108.0.2, )"
             },
+            "ScottPlot.WPF": {
+              "target": "Package",
+              "version": "[4.1.59, )"
+            },
             "System.Text.Encoding.CodePages": {
               "target": "Package",
               "version": "[6.0.0, )"

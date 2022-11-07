@@ -11,7 +11,7 @@ namespace BarberShop.Models
 {
     class EmployeModel : INotifyPropertyChanged
     {
-        [Ignore]
+        
         public int ID_Employee { get; set; }       
 
         public string FirstName { get; set; }

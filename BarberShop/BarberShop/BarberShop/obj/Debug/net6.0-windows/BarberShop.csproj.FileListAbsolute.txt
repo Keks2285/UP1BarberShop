@@ -37,3 +37,5 @@ C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\Barb
 C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\bin\Debug\net6.0-windows\CsvHelper.dll
 C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\DbAdmin\AdminWindow.g.cs
 C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\DbAdmin\AdminWindow.baml
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\bin\Debug\net6.0-windows\ScottPlot.dll
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\bin\Debug\net6.0-windows\ScottPlot.WPF.dll

@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BarberShop.DbAdmin"
         mc:Ignorable="d"
-        Title="AdminWindow" Height="450" Width="800">
-    <Grid Background="Bisque">
+        Title="AdminWindow" Height="450" Width="800" MinWidth="800" MinHeight="400" WindowState="Maximized">
+    <Grid Background="Bisque" KeyDown="Grid_KeyDown">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="513*"></ColumnDefinition>
-            <ColumnDefinition Width="287*"></ColumnDefinition>
+            <ColumnDefinition Width="479*"></ColumnDefinition>
+            <ColumnDefinition Width="158*"></ColumnDefinition>
+            <ColumnDefinition Width="163*"></ColumnDefinition>
 
         </Grid.ColumnDefinitions>
 
@@ -21,6 +22,7 @@
 
             </ListView>
         </Grid>
-        <Button x:Name="CreatePoint" Grid.Column="1" Content="Создать бэкап" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" Click="CreatePoint_Click"/>
+        <Button x:Name="CreatePoint" Content="Создать бэкап"  VerticalAlignment="Top" Click="CreatePoint_Click" Height="32" Margin="10,58,10,0" Grid.Column="1"/>
+        <Button x:Name="DeletePoint" Grid.Column="2" Content="Удалить бэкап"   VerticalAlignment="Top"  Cursor="Hand" Height="32" Margin="10,58,10,0" Click="DeletePoint_Click"/>
     </Grid>
 </Window>

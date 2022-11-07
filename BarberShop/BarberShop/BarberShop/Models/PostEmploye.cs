@@ -9,11 +9,11 @@ namespace BarberShop.Models
 {
      class PostEmploye
     {
-        [Ignore]
+        
         public int Id { get; set; }
-        [Name("Post")]
+        
         public string Name { get; set; }
-        [Ignore]
+        
         public double Price { get; set; }
     }
 }

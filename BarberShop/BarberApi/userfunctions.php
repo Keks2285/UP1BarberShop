@@ -40,31 +40,9 @@ mb_regex_encoding('UTF-8');
     }
 
 
-    function getPosts($connect, $data){
-        try{
-        $searchPosts=$connect->prepare("SELECT ID_Post as 'Id', Name_Post as 'Name', Price from `Post`;");
-        $searchPosts->execute();
-        $listUser=$searchPosts->fetchAll();
+   
 
-        echo json_encode($listUser);
-     } catch (PDOException $e){
-        http_response_code(404);
-     }
-
-    }
-
-    function getEmployers($connect, $data){
-        try{
-        $searchUser=$connect->prepare("SELECT ID_Employee, ID_Status, ID_Post, Password, FirstName, LastName, MiddleName, Email, INN, Name_Post, Name_Status FROM `Employe` join Post join Status_Employee where Post_ID=ID_Post and Status_ID=ID_Status;");
-        $searchUser->execute();
-        $listUser=$searchUser->fetchAll();
-
-        echo json_encode($listUser);
-     } catch (PDOException $e){
-        http_response_code(404);
-     }
-
-    }
+    
 
     function updateEmployer($connect, $data){
         $selectUsers=$connect->prepare("Select * from Employe where Email=? or INN=?");
@@ -116,188 +94,7 @@ mb_regex_encoding('UTF-8');
        
     }
 
-
-    function createEmployee ($connect, $data){
-
-
-       // print_r( $data); die();
-        try{
-            $selectUsers=$connect->prepare("Select * from Employe where Email=? or INN=?");
-            $selectUsers->execute(array(strval($data["email"]), $data["inn"]));
-            if(count($selectUsers->fetchAll())>0){
-                $responce=[
-                    "status"=>false,
-                    "message"=>"user not created"
-                ];
-                echo json_encode($responce);
-                die();
-            }
-
-
-
-            $createEmploye=$connect->prepare(
-            "insert into Employe( FirstName, LastName, MiddleName, Email, Password, INN, Post_ID, Status_ID) VALUES 
-            (?,?,?,?,?,?,?,?)"
-            );
-            
-            //if(empty($data["middlename"])) $data["middlename"]="-";
-            $createEmploye->execute(array(
-                strval($data["firstname"]), 
-                strval($data["lastname"]), 
-                strval($data["middlename"]), 
-                strval($data["email"]),  
-                md5(strval($data["password"])), 
-                strval($data["inn"]),
-                $data["post_id"],
-                $data["status_id"]
-            ));
-            $responce=[
-                "status"=>true,
-                "message"=>"user created"
-            ];
-            echo json_encode($responce);
-           // var_dump($data); die();
-           // exit();
-            //$addedEmploye=$createEmploye->fetchAll();
-        } catch (PDOException $e) {
-             $responce=[
-                "status"=>false,
-                "message"=>"user not created"
-            ];
-            echo json_encode($responce);
-        }
-
-    }
     
-    function importEmploye($connect){
-       if(move_uploaded_file($_FILES['Employers']['tmp_name'], '../files/'.$_FILES['Employers']['name'])){
-        $responce=[
-            "status"=>false,
-            "message"=>"file not found"
-        ];
-       }
-
-         if (!file_exists('../files/'.$_FILES['Employers']['name'])) {
-             $responce=[
-                 "status"=>false,
-                 "message"=>"file not found"
-             ];
-             echo json_encode($responce); die();
-         }
-        try{
-            $file =fopen("../files/".$_FILES['Employers']['name'], 'r');     
-            $counter =0;       
-            while (!feof($file)){
-                $employer = fgetcsv($file,1024 ,';');
-                   //print_r( $employer);
-                //print_r($employer);die();
-                //$i = count($employer);
-                if ($employer[1]!=null){
-                    $createEmployee=$connect->prepare(
-                        "insert into Employe( FirstName, LastName, MiddleName, Email, Password, INN, Post_ID, Status_ID) VALUES (?,?,?,?,?,?,?,?)");
-                       // print_r($employer);
-                        //if(empty($data["middlename"])) $data["middlename"]="-";
-                        $createEmployee->execute(array(
-                            strval($employer[0]), //firstName
-                            strval($employer[1]), //lastname
-                            strval($employer[2]), //middlename
-                            strval($employer[3]),  //email
-                            strval($employer[4]), //password
-                            strval($employer[5]), //inn
-                            $employer[6], //post_id
-                            $employer[7] //status_id
-                        ));
-
-
-                        //print_r($employer); die();
-                        $counter++;
-
-                }
-            }
-            $responce=[
-                "status"=>true,
-                "message"=>"$counter user imported"
-            ];
-            echo json_encode($responce);
-        } catch(PDOException  $e){
-            $responce=[
-                "status"=>false,
-                "message"=>"employers are not imported"
-            ];
-            echo json_encode($responce);
-        }
-        fclose($file);
-      //  unlink('../files/'.$_FILES['Employers']['name']);
-    }
-
-    function getEmployeByEmail ($connect, $data){
-        try{
-            $selectEmloyers=$connect->prepare("Select * from Employe where Email=?");
-            $selectEmloyers->execute(array(strval($data["email"])));
-            if(count($selectEmloyers->fetchAll())<0){
-                $responce=[
-                    "status"=>false,
-                    "message"=>"Employe doesn't Exist",
-                    "code"=>404
-                ];
-                echo json_encode($responce);
-                die();
-            } else{
-                $responce=[
-                    "status"=>true,
-                    "message"=>"Employe was founded",
-                    "code"=>200
-                ];
-                echo json_encode($responce);
-                die();
-            }
-
-        } catch (Exception $e){
-            $responce=[
-                "status"=>false,
-                "message"=>"Database Error",
-                "code"=>500
-            ];
-            echo json_encode($responce);
-            die();
-        }
-
-    
-    }
-
-    function getClientByEmail ($connect, $data){
-        try{
-            $selectEmloyers=$connect->prepare("Select * from Client where Email=?");
-            $selectEmloyers->execute(array(strval($data["email"])));
-            if(count($selectEmloyers->fetchAll())<0){
-                $responce=[
-                    "status"=>false,
-                    "message"=>"Client doesn't Exist",
-                    "code"=>404
-                ];
-                echo json_encode($responce);
-                die();
-            } else{
-                $responce=[
-                    "status"=>true,
-                    "message"=>"Client was founded",
-                    "code"=>200
-                ];
-                echo json_encode($responce);
-                die();
-            }
-
-        } catch (Exception $e){
-            $responce=[
-                "status"=>false,
-                "message"=>"Database Error",
-                "code"=>500
-            ];
-            echo json_encode($responce);
-            die();
-        }
-
-    }
 
     function recoverPassword($connect, $data){
        try{
@@ -329,4 +126,6 @@ mb_regex_encoding('UTF-8');
        }
     }
 
+    
 
+    

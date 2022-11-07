@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace BarberShop.Models
 {
+    //ненужный класс удалить потом
     internal class StaticData
     {
         new List<StatusEmploye> _status = new List<StatusEmploye>()

@@ -33,51 +33,56 @@ namespace BarberShop.EmployeManagerPages
     {
 
         EmployeModel selectedEmployer;
+       // private static RoutedEventArgs pageEventArgs = new RoutedEventArgs();
         bool sortAscINN = false;
         bool sortAscEmail = false;
         bool sortAscFirstName = false;
         bool sortAscLastName = false;
-        private static RestClient client = new RestClient("http://192.168.1.49:8080/BarberApi/");
+        
         private BindingList<EmployeModel> _employers= new BindingList<EmployeModel>();
+        private BindingList<EmployeModel> employersBufer = new BindingList<EmployeModel>();
         //private ObservableCollection<EmployeModel> _SearchEmployes = new ObservableCollection<EmployeModel>();
         //  private BindingList<PostEmploye> _posts;
-         // private BindingList<StatusEmploye> _status; 
+        // private BindingList<StatusEmploye> _status; 
         string fileName = "";
         public EmployersPage()
         {
             InitializeComponent();
             _employers.ListChanged += _employes_CollectionChanged;
+
             
         }
 
-        private void _employes_CollectionChanged(object? sender, ListChangedEventArgs e)
+
+        
+        private void _employes_CollectionChanged(object sender, ListChangedEventArgs e)
         {
-            if (selectedEmployer == null) return;
-            if (e.ListChangedType == ListChangedType.ItemDeleted)
-            {
-                var reqDeleteEmployer = new RestRequest("/removeEployerByEmail", Method.Post);
-                reqDeleteEmployer.AddHeader("Content-Type", "application/x-www-form-urlencoded");
-                reqDeleteEmployer.AddParameter("email", selectedEmployer.Email);
-                var resDeleteEmployer = client.Post(reqDeleteEmployer);
-                //selectedEmployer["Почта"]
-            }
-            if(e.ListChangedType == ListChangedType.ItemChanged)
-            {
+        
+           if (selectedEmployer == null) return;
+           if (e.ListChangedType == ListChangedType.ItemDeleted)
+           {
+           }
+           if (e.ListChangedType == ListChangedType.ItemChanged)
+           {
                // MessageBox.Show(selectedEmployer.Email);
-            }
+           }
+        
+        
+
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+           
             var req = new RestRequest("/getEmployers", Method.Get);
             req.AddHeader("Content-Type", "application/x-www-form-urlencoded");
-            var res = client.Get(req);
+            var res = Helper.client.Get(req);
             List<EmployeModel> data = JsonConvert.DeserializeObject<List<EmployeModel>>(res.Content);
 
             if (EmployeModel.Posts.Count<1) { 
                 var reqPosts = new RestRequest("/getPosts", Method.Get);
                 req.AddHeader("Content-Type", "application/x-www-form-urlencoded");
-                var resPosts = client.Get(reqPosts);
+                var resPosts = Helper.client.Get(reqPosts);
                 List<PostEmploye> dataPosts = JsonConvert.DeserializeObject<List<PostEmploye>>(resPosts.Content);
 
                 foreach (var post in dataPosts) {
@@ -91,8 +96,6 @@ namespace BarberShop.EmployeManagerPages
                     );
                 }
             }
-            //EmployeModel.Posts = dataPosts;
-            //EmployeModel.Posts
 
             foreach (var user in data)
             {
@@ -116,21 +119,45 @@ namespace BarberShop.EmployeManagerPages
 
             }
 
+            ///////////////////// статистика доходов за текущий год
+            var reqIncomes = new RestRequest("/getIncomes", Method.Get);
+            req.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+            var resIncomes = Helper.client.Get(reqIncomes);
+            List<Income> dataIncomes = JsonConvert.DeserializeObject<List<Income>>(resIncomes.Content);
+
+            double[] months = new double[12];
+            int counterMonth = 0;
+            for (int i = 1; i<13;i++)
+            {
+
+                var curentMonth = from income in dataIncomes where 
+                                  income.Date_Income.Month == i && income.Date_Income.Year== DateTime.Now.Year
+                                  select income;
+
+                foreach ( Income x in curentMonth)
+                {
+                    months[counterMonth]+=x.Value;
+                };
+
+                counterMonth++;
+
+            }
+
+            ///////////////
 
 
-            //_employes = new BindingList<EmployeModel>()
-            //{
-            //    new EmployeModel(){
-            //        FirstName="Новиков", 
-            //        LastName="Илья", 
-            //        MiddleName="Олеговмч",
-            //        Email="example@gmail.com",
-            //        INN="1234567890",
-            //        SelectedStatus=EmployeModel.Status[1] }
-            //};
             UsersGrid.ItemsSource = _employers;
-           
-           // ComboboxColumn.ItemsSource = _employes;
+            double[] values = {1,2,1};
+            double[] positions={0,1,2 };
+            string [] labels = {"Работает", "В отпуске", "На больничном" };
+            EmployersStatistic.Plot.AddBar(values, positions);
+            EmployersStatistic.Plot.XTicks(positions, labels);
+            EmployersStatistic.Plot.SetAxisLimits(yMin: 0);
+            EmployersStatistic.Plot.XAxis.Grid(false);
+            EmployersStatistic.Plot.SaveFig("stats_histogram.png");
+            EmployersStatistic.Refresh();
+            //employersBufer = _employers;
+
         }
 
         private void ImportEmploye_Click(object sender, RoutedEventArgs e)
@@ -148,13 +175,15 @@ namespace BarberShop.EmployeManagerPages
                 var req = new RestRequest("/importEmploye", Method.Post);
                 req.AddHeader("Content-Type", "multipart/form-data;");
                 req.AddFile("Employers", fileName);
-                var res = client.Post(req);
+                var res = Helper.client.Post(req);
                 dynamic data = JsonConvert.DeserializeObject<dynamic>(res.Content);
                 if (data.status.Value)
                 {
                     MessageBox.Show(data.message.Value); return;
                 }
             } catch { }
+            //employersBufer = _employers;
+            Page_Loaded(sender, e);
         }
 
         private void ExportEmploye_Click(object sender, RoutedEventArgs e)
@@ -186,6 +215,7 @@ namespace BarberShop.EmployeManagerPages
             {
                 MessageBox.Show("Что-то пошло не так, возможно файл уже используется другим процессом");
             }
+           
         }
 
         private void SearchBtn_Click(object sender, RoutedEventArgs e)
@@ -324,6 +354,30 @@ namespace BarberShop.EmployeManagerPages
 
             }
            // MessageBox.Show( );
+        }
+
+        private void UsersGrid_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete)
+            {
+                MessageBoxButton button = MessageBoxButton.YesNoCancel;
+                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBoxResult result;
+                result = MessageBox.Show("Вы хотите удалить сотрудника, это приведет к удалению\n всех связанных с ним данных.\n Продолжить?", "Предупреждение", button, icon, MessageBoxResult.Yes);
+                if (result == MessageBoxResult.Yes)
+                {
+                    var reqDeleteEmployer = new RestRequest("/removeEployerByEmail", Method.Post);
+                    reqDeleteEmployer.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                    reqDeleteEmployer.AddParameter("email", selectedEmployer.Email);
+                    var resDeleteEmployer = Helper.client.Post(reqDeleteEmployer);
+                }
+                else
+                {
+                    // _employers.AddNew();
+                      _employers.Add(selectedEmployer);
+                    return;
+                }
+            }
         }
     }
 }
