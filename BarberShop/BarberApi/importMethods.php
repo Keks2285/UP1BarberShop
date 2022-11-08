@@ -1,10 +1,5 @@
 <?php
-header('Content-type: application/json; charset=utf-8');
-mb_internal_encoding("UTF-8");
-mb_internal_encoding('UTF-8');
-mb_http_output('UTF-8');
-mb_http_input('UTF-8');
-mb_regex_encoding('UTF-8');
+
 function importEmploye($connect){
     if(move_uploaded_file($_FILES['Employers']['tmp_name'], '../files/'.$_FILES['Employers']['name'])){
      $responce=[
@@ -71,6 +66,7 @@ function importEmploye($connect){
 
 function executeBackup($connect){
     // нужно будет доделать
+   // echo "awertyuik";
     try{
             if(move_uploaded_file($_FILES['Employers']['tmp_name'], '../files/'.$_FILES['Employers']['name'])){
                 $responce=[
@@ -84,6 +80,8 @@ function executeBackup($connect){
                 "message"=>"file not found"
                 ];
             }
+            
+          //  echo "fjreiohgerg";
         //print_r($_FILES); die();
             $deleteEmploye=$connect->prepare(
                 "DELETE FROM `Employe` WHERE 1");
@@ -103,16 +101,18 @@ function executeBackup($connect){
                     while (!feof($file)){
                          $employer = fgetcsv($file,2048 ,';');
                     
-                         //  print_r( $employer);
-                        //print_r($employer);die();
+                           //print_r( $employer[0]);die();
+                        //print_r($_FILES);
                         //$i = count($employer);
                         if ($employer[1]!=null){
+                            //$id=$employer[0];
+                            //print_r( $id);die();
                             $createEmployee=$connect->prepare(
                                 "insert into Employe(ID_Employee, FirstName, LastName, MiddleName, Email, Password, INN, Post_ID, Status_ID) VALUES (?,?,?,?,?,?,?,?,?)");
-                               // print_r($employer);
+                                //print_r($employer);
                                 //if(empty($data["middlename"])) $data["middlename"]="-";
                                 $createEmployee->execute(array(
-                                    $employer[0],
+                                    $employer[0], //id
                                     strval($employer[1]), //firstName
                                     strval($employer[2]), //lastname
                                     strval($employer[3]), //middlename

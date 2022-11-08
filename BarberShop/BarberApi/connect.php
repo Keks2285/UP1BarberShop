@@ -1,5 +1,5 @@
 <?php 
-$host="192.168.1.49";
+$host="127.0.0.1";
 
 
 $connect = new PDO('mysql:host='."$host".';dbname=BarberShop;charset=utf8', 'root', '', [

@@ -63,7 +63,7 @@ namespace BarberShop.DbAdmin
                 req.AddHeader("Content-Type", "application/x-www-form-urlencoded");
                 var res = Helper.client.Get(req);
                 List<EmployeModel> dataEmployers = JsonConvert.DeserializeObject<List<EmployeModel>>(res.Content);
-
+                
                 var reqclients = new RestRequest("/getClients", Method.Get);
                 reqclients.AddHeader("Content-Type", "application/x-www-form-urlencoded");
                 var resclients = Helper.client.Get(reqclients);
@@ -123,6 +123,16 @@ namespace BarberShop.DbAdmin
                         };
                         using (var csv = new CsvWriter(writer, csvConfig))
                         {
+                            csv.WriteField(1);
+                            csv.WriteField("data");
+                            csv.WriteField("data");
+                            csv.WriteField("data");
+                            csv.WriteField("data");
+                            csv.WriteField("data");
+                            csv.WriteField("data");
+                            csv.WriteField(1);
+                            csv.WriteField(1);
+                            csv.NextRecord();
                             csv.WriteRecords(dataEmployers);
                         }
 
@@ -346,6 +356,10 @@ namespace BarberShop.DbAdmin
             req.AddFile("Employers", Helper.backupsDir + BackupsList.SelectedItem.ToString()+ "\\Employe.csv");
             req.AddFile("Reqords", Helper.backupsDir + BackupsList.SelectedItem.ToString() + "\\Record.csv");
             var res = Helper.client.Post(req);
+            string a = res.Content;
+            
+            
+            
             dynamic data = JsonConvert.DeserializeObject<dynamic>(res.Content);
             
 
