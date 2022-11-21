@@ -11,7 +11,9 @@ mb_http_input('UTF-8');
 mb_regex_encoding('UTF-8');
 header('Content-type: application/json; charset=utf-8');
 $params=explode('/', $_SERVER["PATH_INFO"]);
-//echo '<p> grdfgrtdyht</p>'; die();
+//echo'<p> grdfgrtdyht</p>'; die();
+
+
 switch ($_SERVER['REQUEST_METHOD']){
     case "POST":{
 
@@ -71,3 +73,5 @@ switch ($_SERVER['REQUEST_METHOD']){
 
 
 }
+?>
+

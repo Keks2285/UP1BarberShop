@@ -9,7 +9,7 @@ namespace BarberShop.Models
     internal class Material
     {
 
-        public int ID_Materia { get; set; }
+        public int ID_Material { get; set; }
 
         public string Name_Material { get; set; }
 

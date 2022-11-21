@@ -58,218 +58,375 @@ namespace BarberShop.DbAdmin
             BackupsList.Items.Add(new DirectoryInfo(generatedName).Name);
             await Task.Run(() =>
             {
-               // List<EmployeModel> _employers = new List<EmployeModel>();
+                // List<EmployeModel> _employers = new List<EmployeModel>();
+
+                dynamic[] data = new dynamic[14];
+
                 var req = new RestRequest("/getEmployers", Method.Get);
                 req.AddHeader("Content-Type", "application/x-www-form-urlencoded");
                 var res = Helper.client.Get(req);
-                List<EmployeModel> dataEmployers = JsonConvert.DeserializeObject<List<EmployeModel>>(res.Content);
+                //string a = res.Content;
+                data[0] = JsonConvert.DeserializeObject<List<EmployeModel>>(res.Content);
                 
+                var reqMaterial = new RestRequest("/getMaterials", Method.Get);
+                req.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                var resMaterial = Helper.client.Get(reqMaterial);
+                //string a = res.Content;
+                data[1] = JsonConvert.DeserializeObject<List<Material>>(resMaterial.Content);
+
                 var reqclients = new RestRequest("/getClients", Method.Get);
                 reqclients.AddHeader("Content-Type", "application/x-www-form-urlencoded");
                 var resclients = Helper.client.Get(reqclients);
-                List<Client> dataClients = JsonConvert.DeserializeObject<List<Client>>(resclients.Content);
+                data[2] = JsonConvert.DeserializeObject<List<Client>>(resclients.Content);
+
+                var reqIncomes = new RestRequest("/getIncomes", Method.Get);
+                reqIncomes.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                var resIncomes = Helper.client.Get(reqIncomes);
+                data[3]  = JsonConvert.DeserializeObject<List<Income>>(resIncomes.Content);
+
+                var reqConsumptions = new RestRequest("/getConsumptions", Method.Get);
+                reqConsumptions.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                var resConsumptions = Helper.client.Get(reqConsumptions);
+                string h = resConsumptions.Content;
+                data[4] = JsonConvert.DeserializeObject<List<Consumption>>(resConsumptions.Content);
+
+                var reqTaxReports = new RestRequest("/getTaxReports", Method.Get);
+                reqTaxReports.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                var resTaxReports = Helper.client.Get(reqTaxReports);
+                data[5] = JsonConvert.DeserializeObject<List<TaxReport>>(resTaxReports.Content);
 
                 var reqPosts = new RestRequest("/getPosts", Method.Get);
                 reqPosts.AddHeader("Content-Type", "application/x-www-form-urlencoded");
                 var resPosts = Helper.client.Get(reqPosts);
-                List<PostEmploye> dataPosts = JsonConvert.DeserializeObject<List<PostEmploye>>(resPosts.Content);
+                data[6] = JsonConvert.DeserializeObject<List<PostEmploye>>(resPosts.Content);
 
                 var reqService = new RestRequest("/getServices", Method.Get);
                 reqService.AddHeader("Content-Type", "application/x-www-form-urlencoded");
                 var resService = Helper.client.Get(reqService);
-                List<Service> dataService = JsonConvert.DeserializeObject<List<Service>>(resService.Content);
+                data[7] = JsonConvert.DeserializeObject<List<Service>>(resService.Content);
 
                 var reqRecord = new RestRequest("/getRecords", Method.Get);
-                reqService.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                reqRecord.AddHeader("Content-Type", "application/x-www-form-urlencoded");
                 var resRecord = Helper.client.Get(reqRecord);
-                List<Record> dataRecord = JsonConvert.DeserializeObject<List<Record>>(resRecord.Content);
+                data[8] = JsonConvert.DeserializeObject<List<Record>>(resRecord.Content);
 
                 var reqStock = new RestRequest("/getStocks", Method.Get);
                 reqStock.AddHeader("Content-Type", "application/x-www-form-urlencoded");
                 var resStock = Helper.client.Get(reqStock);
-                List<Stock> dataStock = JsonConvert.DeserializeObject<List<Stock>>(resStock.Content);
+                data[9] = JsonConvert.DeserializeObject<List<Stock>>(resStock.Content);
 
                 var reqProvider = new RestRequest("/getProviders", Method.Get);
                 reqProvider.AddHeader("Content-Type", "application/x-www-form-urlencoded");
                 var resProvider = Helper.client.Get(reqProvider);
-                List<Provider> dataProvider = JsonConvert.DeserializeObject<List<Provider>>(resProvider.Content);
+                data[10] = JsonConvert.DeserializeObject<List<Provider>>(resProvider.Content);
 
                 var reqSupply = new RestRequest("/getSupplies", Method.Get);
                 reqSupply.AddHeader("Content-Type", "application/x-www-form-urlencoded");
                 var resSupply = Helper.client.Get(reqSupply);
-                List<Supply> dataSupply = JsonConvert.DeserializeObject<List<Supply>>(resSupply.Content);
+                data[11] = JsonConvert.DeserializeObject<List<Supply>>(resSupply.Content);
 
                 var reqSickLeave = new RestRequest("/getSickLeaves", Method.Get);
                 reqSickLeave.AddHeader("Content-Type", "application/x-www-form-urlencoded");
                 var resSickLeave = Helper.client.Get(reqSickLeave);
-                List<SickLeave> dataSickLeave = JsonConvert.DeserializeObject<List<SickLeave>>(resSickLeave.Content);
+                data[12]= JsonConvert.DeserializeObject<List<SickLeave>>(resSickLeave.Content);
 
                 var reqVacation = new RestRequest("/getVacations", Method.Get);
                 reqVacation.AddHeader("Content-Type", "application/x-www-form-urlencoded");
                 var resVacation = Helper.client.Get(reqVacation);
-                List<Vacation> dataVacation = JsonConvert.DeserializeObject<List<Vacation>>(resVacation.Content);
+                data[13] = JsonConvert.DeserializeObject<List<Vacation>>(resVacation.Content);
 
+
+
+                string[] filesNames = { 
+                    "Employe.csv",
+                    "Material.csv",
+                    "Client.csv",
+                    "Income.csv",
+                    "Consumption.csv",
+                    "TaxReport.csv",
+                    "Post.csv",
+                    "Service.csv",
+                    "Record.csv",
+                    "Stock.csv",
+                    "Provider.csv",
+                    "Supply.csv",
+                    "SickLeave.csv",
+                    "Vacation.csv"
+
+                };
                 try
                 {
                     Directory.CreateDirectory(Helper.backupsDir + generatedName);
-                   
-                    //перепиши на foreach а то выглядит убого, но пока работает не трогай
-                    using (var writer = new StreamWriter(Helper.backupsDir + generatedName + "\\Employe.csv", false, Encoding.GetEncoding("utf-8")))
+                    int counter = 0;                    foreach (var datafile in data)
                     {
-                        var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
+                        using (var writer = new StreamWriter(Helper.backupsDir + generatedName + "\\"+ filesNames[counter], false, Encoding.GetEncoding("utf-8")))
                         {
-                            HasHeaderRecord = false,
-                            Delimiter = ";",
-                        };
-                        using (var csv = new CsvWriter(writer, csvConfig))
-                        {
-                            csv.WriteField(1);
-                            csv.WriteField("data");
-                            csv.WriteField("data");
-                            csv.WriteField("data");
-                            csv.WriteField("data");
-                            csv.WriteField("data");
-                            csv.WriteField("data");
-                            csv.WriteField(1);
-                            csv.WriteField(1);
-                            csv.NextRecord();
-                            csv.WriteRecords(dataEmployers);
+                            var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
+                            {
+                                HasHeaderRecord = false,
+                                Delimiter = ";",
+                            };
+                            using (var csv = new CsvWriter(writer, csvConfig))
+                            {
+                                csv.WriteField(1);
+                                csv.NextRecord();
+                                csv.WriteRecords(datafile);
+                            }
+
                         }
-
-                    }
-                    using (var writer = new StreamWriter(Helper.backupsDir + generatedName + "\\Post.csv", false, Encoding.GetEncoding("utf-8")))
-                    {
-                        var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
-                        {
-                            HasHeaderRecord = false,
-                            Delimiter = ";",
-                        };
-                        using (var csv = new CsvWriter(writer, csvConfig))
-                        {
-                            csv.WriteRecords(dataPosts);
-                        }
-
-                    }
-                    using (var writer = new StreamWriter(Helper.backupsDir + generatedName + "\\Client.csv", false, Encoding.GetEncoding("utf-8")))
-                    {
-                        var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
-                        {
-
-                            HasHeaderRecord = false,
-                            Delimiter = ";",
-                        };
-                        using (var csv = new CsvWriter(writer, csvConfig))
-                        {
-                            csv.WriteRecords(dataClients);
-                        }
-
-                    }
-                    using (var writer = new StreamWriter(Helper.backupsDir + generatedName + "\\Service.csv", false, Encoding.GetEncoding("utf-8")))
-                    {
-                        var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
-                        {
-
-                            HasHeaderRecord = false,
-                            Delimiter = ";",
-                        };
-                        using (var csv = new CsvWriter(writer, csvConfig))
-                        {
-                            csv.WriteRecords(dataService);
-                        }
-
+                        counter++;
                     }
 
-                    using (var writer = new StreamWriter(Helper.backupsDir + generatedName+ "\\Record.csv", false, Encoding.GetEncoding("utf-8")))
-                    {
-                        var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
-                        {
+                    //перепиши на foreach а то выглядит убого, но пока доделываешь не трогай
+                    //using (var writer = new StreamWriter(Helper.backupsDir + generatedName + "\\Employe.csv", false, Encoding.GetEncoding("utf-8")))
+                    //{
+                    //    var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
+                    //    {
+                    //        HasHeaderRecord = false,
+                    //        Delimiter = ";",
+                    //    };
+                    //    using (var csv = new CsvWriter(writer, csvConfig))
+                    //    {
+                    //        csv.WriteField(1);
+                    //        csv.NextRecord();
+                    //        csv.WriteRecords(dataEmployers);
+                    //    }
 
-                            HasHeaderRecord = false,
-                            Delimiter = ";",
-                        };
-                        using (var csv = new CsvWriter(writer, csvConfig))
-                        {
-                            csv.WriteRecords(dataRecord);
-                        }
-
-                    }
-
-                    using (var writer = new StreamWriter(Helper.backupsDir + generatedName + "\\Stock.csv", false, Encoding.GetEncoding("utf-8")))
-                    {
-                        var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
-                        {
-
-                            HasHeaderRecord = false,
-                            Delimiter = ";",
-                        };
-                        using (var csv = new CsvWriter(writer, csvConfig))
-                        {
-                            csv.WriteRecords(dataStock);
-                        }
-
-                    }
+                    //}
 
 
-                    using (var writer = new StreamWriter(Helper.backupsDir + generatedName + "\\Provider.csv", false, Encoding.GetEncoding("utf-8")))
-                    {
-                        var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
-                        {
+                    //using (var writer = new StreamWriter(Helper.backupsDir + generatedName + "\\Income.csv", false, Encoding.GetEncoding("utf-8")))
+                    //{
+                    //    var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
+                    //    {
+                    //        HasHeaderRecord = false,
+                    //        Delimiter = ";",
+                    //    };
+                    //    using (var csv = new CsvWriter(writer, csvConfig))
+                    //    {
+                    //        csv.WriteField(1);
+                    //        csv.NextRecord();
+                    //        csv.WriteRecords(dataIncomes);
+                    //    }
 
-                            HasHeaderRecord = false,
-                            Delimiter = ";",
-                        };
-                        using (var csv = new CsvWriter(writer, csvConfig))
-                        {
-                            csv.WriteRecords(dataProvider);
-                        }
+                    //}
 
-                    }
+                    //using (var writer = new StreamWriter(Helper.backupsDir + generatedName + "\\Consumption.csv", false, Encoding.GetEncoding("utf-8")))
+                    //{
+                    //    var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
+                    //    {
+                    //        HasHeaderRecord = false,
+                    //        Delimiter = ";",
+                    //    };
+                    //    using (var csv = new CsvWriter(writer, csvConfig))
+                    //    {
+                    //        csv.WriteField(1);
+                    //        csv.NextRecord();
+                    //        csv.WriteRecords(dataConsumptions);
+                    //    }
 
-                    using (var writer = new StreamWriter(Helper.backupsDir + generatedName + "\\Supply.csv", false, Encoding.GetEncoding("utf-8")))
-                    {
-                        var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
-                        {
+                    //}
 
-                            HasHeaderRecord = false,
-                            Delimiter = ";",
-                        };
-                        using (var csv = new CsvWriter(writer, csvConfig))
-                        {
-                            csv.WriteRecords(dataSupply);
-                        }
+                    //using (var writer = new StreamWriter(Helper.backupsDir + generatedName + "\\Material.csv", false, Encoding.GetEncoding("utf-8")))
+                    //{
+                    //    var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
+                    //    {
+                    //        HasHeaderRecord = false,
+                    //        Delimiter = ";",
+                    //    };
+                    //    using (var csv = new CsvWriter(writer, csvConfig))
+                    //    {
+                    //        csv.WriteField(1);
+                    //        csv.NextRecord();
+                    //        csv.WriteRecords(dataMaterial);
+                    //    }
 
-                    }
+                    //}
 
-                    using (var writer = new StreamWriter(Helper.backupsDir + generatedName + "\\SickLeave.csv", false, Encoding.GetEncoding("utf-8")))
-                    {
-                        var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
-                        {
 
-                            HasHeaderRecord = false,
-                            Delimiter = ";",
-                        };
-                        using (var csv = new CsvWriter(writer, csvConfig))
-                        {
-                            csv.WriteRecords(dataSickLeave);
-                        }
+                    //using (var writer = new StreamWriter(Helper.backupsDir + generatedName + "\\TaxReport.csv", false, Encoding.GetEncoding("utf-8")))
+                    //{
+                    //    var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
+                    //    {
+                    //        HasHeaderRecord = false,
+                    //        Delimiter = ";",
+                    //    };
+                    //    using (var csv = new CsvWriter(writer, csvConfig))
+                    //    {
+                    //        csv.WriteField(1);
+                    //        csv.NextRecord();
+                    //        csv.WriteRecords(dataTaxReports);
+                    //    }
 
-                    }
+                    //}
 
-                    using (var writer = new StreamWriter(Helper.backupsDir + generatedName + "\\Vacation.csv", false, Encoding.GetEncoding("utf-8")))
-                    {
-                        var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
-                        {
 
-                            HasHeaderRecord = false,
-                            Delimiter = ";",
-                        };
-                        using (var csv = new CsvWriter(writer, csvConfig))
-                        {
-                            csv.WriteRecords(dataVacation);
-                        }
+                    //using (var writer = new StreamWriter(Helper.backupsDir + generatedName + "\\Post.csv", false, Encoding.GetEncoding("utf-8")))
+                    //{
+                    //    var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
+                    //    {
+                    //        HasHeaderRecord = false,
+                    //        Delimiter = ";",
+                    //    };
+                    //    using (var csv = new CsvWriter(writer, csvConfig))
+                    //    {
+                    //        csv.WriteField(1);
+                    //        csv.NextRecord();
+                    //        csv.WriteRecords(dataPosts);
+                    //    }
 
-                    }
-                    MessageBox.Show("Данные о сотрудниках успешно экспортированы");
+                    //}
+                    //using (var writer = new StreamWriter(Helper.backupsDir + generatedName + "\\Client.csv", false, Encoding.GetEncoding("utf-8")))
+                    //{
+                    //    var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
+                    //    {
+
+                    //        HasHeaderRecord = false,
+                    //        Delimiter = ";",
+                    //    };
+                    //    using (var csv = new CsvWriter(writer, csvConfig))
+                    //    {
+                    //        csv.WriteField(1);
+                    //        csv.NextRecord();
+                    //        csv.WriteRecords(dataClients);
+                    //    }
+
+                    //}
+                    //using (var writer = new StreamWriter(Helper.backupsDir + generatedName + "\\Service.csv", false, Encoding.GetEncoding("utf-8")))
+                    //{
+                    //    var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
+                    //    {
+
+                    //        HasHeaderRecord = false,
+                    //        Delimiter = ";",
+                    //    };
+                    //    using (var csv = new CsvWriter(writer, csvConfig))
+                    //    {
+                    //        csv.WriteField(1);
+                    //        csv.NextRecord();
+                    //        csv.WriteRecords(dataService);
+                    //    }
+
+                    //}
+
+                    //using (var writer = new StreamWriter(Helper.backupsDir + generatedName+ "\\Record.csv", false, Encoding.GetEncoding("utf-8")))
+                    //{
+                    //    var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
+                    //    {
+
+                    //        HasHeaderRecord = false,
+                    //        Delimiter = ";",
+                    //    };
+                    //    using (var csv = new CsvWriter(writer, csvConfig))
+                    //    {
+                    //        csv.WriteField(1);
+                    //        csv.NextRecord();
+                    //        csv.WriteRecords(dataRecord);
+                    //    }
+
+                    //}
+
+                    //using (var writer = new StreamWriter(Helper.backupsDir + generatedName + "\\Stock.csv", false, Encoding.GetEncoding("utf-8")))
+                    //{
+                    //    var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
+                    //    {
+
+                    //        HasHeaderRecord = false,
+                    //        Delimiter = ";",
+                    //    };
+                    //    using (var csv = new CsvWriter(writer, csvConfig))
+                    //    {
+                    //        csv.WriteField(1);
+                    //        csv.NextRecord();
+                    //        csv.WriteRecords(dataStock);
+                    //    }
+
+                    //}
+
+
+                    //using (var writer = new StreamWriter(Helper.backupsDir + generatedName + "\\Provider.csv", false, Encoding.GetEncoding("utf-8")))
+                    //{
+                    //    var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
+                    //    {
+
+                    //        HasHeaderRecord = false,
+                    //        Delimiter = ";",
+                    //    };
+                    //    using (var csv = new CsvWriter(writer, csvConfig))
+                    //    {
+                    //        csv.WriteField(1);
+                    //        csv.NextRecord();
+                    //        csv.WriteRecords(dataProvider);
+                    //    }
+
+                    //}
+
+                    //using (var writer = new StreamWriter(Helper.backupsDir + generatedName + "\\Supply.csv", false, Encoding.GetEncoding("utf-8")))
+                    //{
+                    //    var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
+                    //    {
+
+                    //        HasHeaderRecord = false,
+                    //        Delimiter = ";",
+                    //    };
+                    //    using (var csv = new CsvWriter(writer, csvConfig))
+                    //    {
+                    //        csv.WriteField(1);
+                    //        csv.NextRecord();
+                    //        csv.WriteRecords(dataSupply);
+                    //    }
+
+                    //}
+
+                    //using (var writer = new StreamWriter(Helper.backupsDir + generatedName + "\\SickLeave.csv", false, Encoding.GetEncoding("utf-8")))
+                    //{
+                    //    var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
+                    //    {
+
+                    //        HasHeaderRecord = false,
+                    //        Delimiter = ";",
+                    //    };
+                    //    using (var csv = new CsvWriter(writer, csvConfig))
+                    //    {
+                    //        csv.WriteField(1);
+                    //        csv.NextRecord();
+                    //        csv.WriteRecords(dataSickLeave);
+                    //    }
+
+                    //}
+
+                    //using (var writer = new StreamWriter(Helper.backupsDir + generatedName + "\\Vacation.csv", false, Encoding.GetEncoding("utf-8")))
+                    //{
+                    //    var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
+                    //    {
+
+                    //        HasHeaderRecord = false,
+                    //        Delimiter = ";",
+                    //    };
+                    //    using (var csv = new CsvWriter(writer, csvConfig))
+                    //    {
+                    //        csv.WriteField(1);
+                    //        csv.NextRecord();
+                    //        csv.WriteRecords(dataVacation);
+                    //    }
+
+                    //}
+
+                    //using (var writer = new StreamWriter(Helper.backupsDir + generatedName + "\\Income.csv", false, Encoding.GetEncoding("utf-8")))
+                    //{
+                    //    var csvConfig = new CsvConfiguration(CultureInfo.GetCultureInfo("ru-RU"))
+                    //    {
+
+                    //        HasHeaderRecord = false,
+                    //        Delimiter = ";",
+                    //    };
+                    //    using (var csv = new CsvWriter(writer, csvConfig))
+                    //    {
+                    //        csv.WriteRecords(dataVacation);
+                    //    }
+
+                    //}
+                    MessageBox.Show("Бэкап успешно сохранен");
                 }
                 catch
                 {
@@ -353,8 +510,23 @@ namespace BarberShop.DbAdmin
             //      req.AddFile("Employers", file);
             //  }
 
+            //use foreach
             req.AddFile("Employers", Helper.backupsDir + BackupsList.SelectedItem.ToString()+ "\\Employe.csv");
-            req.AddFile("Reqords", Helper.backupsDir + BackupsList.SelectedItem.ToString() + "\\Record.csv");
+            req.AddFile("Records", Helper.backupsDir + BackupsList.SelectedItem.ToString() + "\\Record.csv");
+            req.AddFile("Stocks", Helper.backupsDir + BackupsList.SelectedItem.ToString() + "\\Stock.csv");
+            req.AddFile("Posts", Helper.backupsDir + BackupsList.SelectedItem.ToString() + "\\Post.csv");
+            req.AddFile("Stocks", Helper.backupsDir + BackupsList.SelectedItem.ToString() + "\\Stock.csv");
+            req.AddFile("Incomes", Helper.backupsDir + BackupsList.SelectedItem.ToString() + "\\Income.csv");
+            req.AddFile("Clients", Helper.backupsDir + BackupsList.SelectedItem.ToString() + "\\Client.csv");
+            req.AddFile("Providers", Helper.backupsDir + BackupsList.SelectedItem.ToString() + "\\Provider.csv");
+            req.AddFile("SickLeaves", Helper.backupsDir + BackupsList.SelectedItem.ToString() + "\\SickLeave.csv");
+            req.AddFile("Consumptions", Helper.backupsDir + BackupsList.SelectedItem.ToString() + "\\Consumption.csv");
+            req.AddFile("TaxReports", Helper.backupsDir + BackupsList.SelectedItem.ToString() + "\\TaxReport.csv");
+            req.AddFile("Vacations", Helper.backupsDir + BackupsList.SelectedItem.ToString() + "\\Vacation.csv");
+            req.AddFile("Supplies", Helper.backupsDir + BackupsList.SelectedItem.ToString() + "\\Supply.csv");
+            req.AddFile("Services", Helper.backupsDir + BackupsList.SelectedItem.ToString() + "\\Service.csv");
+            req.AddFile("Materials", Helper.backupsDir + BackupsList.SelectedItem.ToString() + "\\Material.csv");
+
             var res = Helper.client.Post(req);
             string a = res.Content;
             

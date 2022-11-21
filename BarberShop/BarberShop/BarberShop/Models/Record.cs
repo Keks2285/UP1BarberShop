@@ -9,11 +9,10 @@ namespace BarberShop.Models
     internal class Record
     {
         public int ID_Record { get; set; }
-
         public DateTime Date_Record { get; set; }
-
+        public int Service_ID { get; set; }
         public int Client_ID { get; set; }
 
-        public int Service_ID { get; set; }
+        
     }
 }

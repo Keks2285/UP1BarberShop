@@ -10,14 +10,14 @@ namespace BarberShop.Models
     {
         public int ID_TaxReport { get; set; }
 
-        string Date_Report { get; set; }
+        public string DateReport { get; set; }
+        public string Date_Begin { get; set; }
+        public string Date_End { get; set; }
 
-        string Date_End { get; set; }
+        public double ValueSells { get; set; }
 
-        int Value_Sells { get; set; }
+        public double ValueTax { get; set; }
 
-        int Value_Tax { get; set; }
-
-        int Employe_ID { get; set; }
+        public int Employe_ID { get; set; }
     }
 }
