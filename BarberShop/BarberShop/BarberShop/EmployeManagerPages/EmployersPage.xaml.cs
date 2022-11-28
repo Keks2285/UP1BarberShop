@@ -40,7 +40,7 @@ namespace BarberShop.EmployeManagerPages
         bool sortAscLastName = false;
 
         private BindingList<EmployeModel> _employers = new BindingList<EmployeModel>();
-        private BindingList<EmployeModel> employersBufer = new BindingList<EmployeModel>();
+        //private BindingList<EmployeModel> employersBufer = new BindingList<EmployeModel>();
         //private ObservableCollection<EmployeModel> _SearchEmployes = new ObservableCollection<EmployeModel>();
         //  private BindingList<PostEmploye> _posts;
         // private BindingList<StatusEmploye> _status; 
@@ -57,15 +57,18 @@ namespace BarberShop.EmployeManagerPages
 
         private void _employes_CollectionChanged(object sender, ListChangedEventArgs e)
         {
-
-            if (selectedEmployer == null) return;
-            if (e.ListChangedType == ListChangedType.ItemDeleted)
-            {
-            }
-            if (e.ListChangedType == ListChangedType.ItemChanged)
-            {
-                // MessageBox.Show(selectedEmployer.Email);
-            }
+            //if(UsersGrid.SelectedItem!=null)
+            //Helper.ValidData((EmployeModel)UsersGrid.SelectedItem);
+            //if (selectedEmployer == null) return;
+            //if (e.ListChangedType == ListChangedType.ItemDeleted)
+            //{
+            //}
+            //if (e.ListChangedType == ListChangedType.ItemChanged)
+            //{
+            //    EmployeModel employe = (EmployeModel)UsersGrid.SelectedItem;
+            //    //employe = selectedEmployer;
+            //     MessageBox.Show(employe.Email);
+            //}
 
 
 
@@ -101,75 +104,74 @@ namespace BarberShop.EmployeManagerPages
 
             foreach (var user in data)
             {
-
-                _employers.Add(
-                    new EmployeModel()
-                    {
-                        ID_Employee = user.ID_Employee,
-                        FirstName = user.FirstName,
-                        LastName = user.LastName,
-                        MiddleName = user.MiddleName,
-                        Password = user.Password,
-                        Email = user.Email,
-                        INN = user.INN,
-                        ID_Post = user.ID_Post,
-                        ID_Status = user.ID_Status,
-                        SelectedStatus = EmployeModel.Status[user.ID_Status - 1],
-                        SelectedPost = EmployeModel.Posts[user.ID_Post - 1],
-                    }
-                );
+                var employer = user;
+                employer.SelectedStatus = EmployeModel.Status[user.ID_Status - 1];
+                employer.SelectedPost = EmployeModel.Posts[user.ID_Post - 1];
+                _employers.Add(employer);
 
             }
 
             ///////////////////// статистика доходов за текущий год
-            var reqIncomes = new RestRequest("/getIncomes", Method.Get);
-            req.AddHeader("Content-Type", "application/x-www-form-urlencoded");
-            var resIncomes = Helper.client.Get(reqIncomes);
-            List<Income> dataIncomes = JsonConvert.DeserializeObject<List<Income>>(resIncomes.Content);
-            string[] nameMonths = {"Январь","Февраль", "Март",
-                                    "Апрель", "Май", "Июнь",
-                                    "Июль", "Август", "Сентябрь",
-                                    "Октябрь", "Ноябрь", "Декабрь" };
-            double[] months = new double[12];
-            int counterMonth = 0;
-            for (int i = 1; i < 13; i++)
-            {
-                var curentMonth = from income in dataIncomes
-                                  where
-                                  income.Date_Income.Month == i && income.Date_Income.Year == DateTime.Now.Year
-                                  select income;
-                foreach (Income x in curentMonth)
-                {
-                    months[counterMonth] += x.Value;
-                };
+            //var reqIncomes = new RestRequest("/getIncomes", Method.Get);
+            //req.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+            //var resIncomes = Helper.client.Get(reqIncomes);
+            //List<Income> dataIncomes = JsonConvert.DeserializeObject<List<Income>>(resIncomes.Content);
+            //string[] nameMonths = {"Январь","Февраль", "Март",
+            //                        "Апрель", "Май", "Июнь",
+            //                        "Июль", "Август", "Сентябрь",
+            //                        "Октябрь", "Ноябрь", "Декабрь" };
+            //double[] months = new double[12];
+            //int counterMonth = 0;
+            //for (int i = 1; i < 13; i++)
+            //{
+            //    var curentMonth = from income in dataIncomes
+            //                      where
+            //                      income.Date_Income.Month == i && income.Date_Income.Year == DateTime.Now.Year
+            //                      select income;
+            //    foreach (Income x in curentMonth)
+            //    {
+            //        months[counterMonth] += x.Value;
+            //    };
 
-                counterMonth++;
+            //    counterMonth++;
 
-            }
-
-            ///////////////
-
-
-            UsersGrid.ItemsSource = _employers;
-            //double[] values = {1,2,1};
-            //double[] positions={0,1,2 };
-            //string[] labels = { "Работает", "В отпуске", "На больничном" };
-            //EmployersStatistic.Plot.AddBar(values, positions);
-            //EmployersStatistic.Plot.XTicks(positions, labels);
+            //}
+            //double[] positions = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+            //EmployersStatistic.Plot.AddBar(months, positions);
+            //EmployersStatistic.Plot.XTicks(positions, nameMonths);
             //EmployersStatistic.Plot.SetAxisLimits(yMin: 0);
             //EmployersStatistic.Plot.XAxis.Grid(false);
             //EmployersStatistic.Plot.SaveFig("stats_histogram.png");
             //EmployersStatistic.Refresh();
+            ///////////////
 
 
+            UsersGrid.ItemsSource = _employers;
+            double[] values = { 0, 0, 0, 0};
+            double[] statuts = { 0, 1, 2, 3};
+            for (int i = 0; i < 4; i++)
+            {
+                var Employers = from emloyers in data
+                                  where
+                                  emloyers.ID_Status== i+1
+                                  select emloyers;
+                foreach (EmployeModel employe in Employers)
+                {
+                    values[i]+=1;
+                }
 
-            double[] positions = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
-            EmployersStatistic.Plot.AddBar(months, positions);
-            EmployersStatistic.Plot.XTicks(positions, nameMonths);
+            }
+            string[] labels = { "Работает", "Уволены", "В отпуске","На больничном" };
+            EmployersStatistic.Plot.AddBar(values, statuts);
+            EmployersStatistic.Plot.XTicks(statuts, labels);
             EmployersStatistic.Plot.SetAxisLimits(yMin: 0);
             EmployersStatistic.Plot.XAxis.Grid(false);
             EmployersStatistic.Plot.SaveFig("stats_histogram.png");
             EmployersStatistic.Refresh();
+
+
+
+
             // employersBufer = _employers;
 
         }

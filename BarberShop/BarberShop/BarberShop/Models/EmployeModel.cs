@@ -4,29 +4,172 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using CsvHelper.Configuration.Attributes;
+using System.ComponentModel.DataAnnotations;
+using System.Windows;
 
 namespace BarberShop.Models 
 {
     class EmployeModel : INotifyPropertyChanged
     {
         
-        public int ID_Employee { get; set; }       
+        public int ID_Employee { get; set; }
+        [Ignore]
+        private string _firstName { get; set; }
 
-        public string FirstName { get; set; }
+        public string FirstName { get { return _firstName; }
+            set
+            {
+                if (value.Length < 4)
+                {
+                    if (value == null || value == "")
+                    {
+                        MessageBox.Show("Фамилия не может быть пустой");
+                        return;
+                    }
+                    MessageBox.Show("Фамилия слишком короткая ");
+                    return;
+                }
+                if (!CheckFIO(value))
+                {
+                    MessageBox.Show("Фамилия должна содержать только кирилицу");
+                    return;
+                }
+                _firstName = value;
+                OnPropertyChanged("FirstName");
+            }
+        }
 
-        public string LastName { get; set; }
+        [Ignore]
+        private string _lastName { get; set; }
 
-        public string MiddleName { get; set; }
+        public string LastName {
+            get { return _lastName; }
+            set
+            {
+                if(value.Length<2)
+                {
+                    if (value == null || value == "")
+                    {
+                        MessageBox.Show("Имя не может быть пустым");
+                        return;
+                    }
+                    MessageBox.Show("Имя слишком короткое ");
+                    return;
+                }
+                
+                if (!CheckFIO(value))
+                {
+                    MessageBox.Show("Имя должно содержать только кирилицу");
+                    return;
+                }
+                _firstName = value;
+                _lastName = value;
+                OnPropertyChanged("LastName");
+            }
+        }
 
-        public string Email { get; set; }
+        [Ignore]
+        private string _middleName { get; set; }
+
+        public string MiddleName {
+            get { return _middleName; }
+            set {
+                if(value == null||value=="")
+                {
+                    _middleName = value;
+                    OnPropertyChanged("MiddleName");
+                    return;
+                }
+                if (value.Length < 2)
+                {
+                    MessageBox.Show("Отчество слишком короткое");
+                    return;
+                }
+                if (!CheckFIO(value))
+                {
+                    MessageBox.Show("Отчество должно содержать только кирилицу");
+                    return ;
+                }
+                _middleName = value;
+                OnPropertyChanged("MiddleName");
+            } 
+        }
+
+        [Ignore]
+
+        private string _email;
+        private static List<string> AllEmail = new List<string>();
+        public string Email 
+        {
+            get { return _email; }
+            set {
+                if (!CheckEmail(value))
+                {
+                    MessageBox.Show("Неверный формат почты");
+                    return;
+                }
+                if (AllEmail.Contains(value))
+                {
+                    MessageBox.Show("Почта должна быть уникальной");
+                    return;
+                }
+                if(_email != null && AllEmail.Contains(_email))
+                    AllEmail.Remove(_email);
+                AllEmail.Add(value);
+                _email = value;
+                OnPropertyChanged("Email");
+            } 
+        }
 
         public string Password { get; set; }
 
-        public string INN { get; set; }
-
-        public int ID_Post { get; set; }
+        [Ignore]
+        private string _inn;
+        private static List<string> AllINN = new List<string>();
+        public string INN {
+            get { return _inn; }
+            set
+            {
+                if(value == null || value == "")
+                {
+                    MessageBox.Show("ИНН не должен быть пустым");
+                    return;
+                }
+                if(AllINN.Contains(value))
+                {
+                    MessageBox.Show("ИНН должен быть уникальным");
+                    return;
+                }
+                if (!INNcheck(value)){
+                    MessageBox.Show("ИНН должен содержать только цифры");
+                    return;
+                }
+                if(_inn != null && AllINN.Contains(_inn))
+                    AllINN.Remove(_inn);
+                AllINN.Add(value);
+                _inn = value;
+                OnPropertyChanged("INN");
+            } 
+        }
+       
+        private int _id_post { get; set; }
+        
+        public int ID_Post
+        {
+            get
+            {
+                return _id_post;
+            }
+            set { 
+            _id_post = value;
+                OnPropertyChanged("ID_Post");
+            }
+        }
+       
+        private int _id_status { get; set; }
 
         public int ID_Status { get; set; }
 
@@ -40,7 +183,12 @@ namespace BarberShop.Models
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
+        /// <summary>
+        /// добавить в сетеры пбликов задание приватов
+        /// как валидировать
+        ///     аннтотации
+        ///     ручками
+        /// </summary>
 
 
         public static ObservableCollection<StatusEmploye> Status { get; set; } = new ObservableCollection<StatusEmploye>
@@ -62,9 +210,16 @@ namespace BarberShop.Models
             set
             {
                 if (_selectedStatus == value) return;
+                //if (value.Name == "Уволен")
+                //{
+                //    MessageBox.Show(_selectedStatus.Name);
+                //    MessageBox.Show(SelectedStatus.Name);
+                //    return;
+                //}
                 _selectedStatus = value;
+                ID_Status = value.Id;
                 OnPropertyChanged("selectedStatus");
-
+                
             } 
         }
         [Ignore]
@@ -79,11 +234,38 @@ namespace BarberShop.Models
 
                 if (_selectedPost == value) return;
                 _selectedPost = value;
+                ID_Post = value.Id;
                 OnPropertyChanged("selectedPost");
 
             }
         }
 
-
+        private bool CheckFIO(string fio)
+        {
+            foreach (char a in fio)
+            {
+                if (!Regex.IsMatch(a.ToString(), @"[а-яА-Я]"))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        private bool INNcheck(string fio)
+        {
+            foreach (char a in fio)
+            {
+                if (!Regex.IsMatch(a.ToString(), @"[0-9]"))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        private bool CheckEmail(string email)
+        {
+            string pattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
+            return Regex.IsMatch(email, pattern);
+        }
     }
 }
