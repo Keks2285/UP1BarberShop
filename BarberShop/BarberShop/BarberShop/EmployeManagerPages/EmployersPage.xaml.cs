@@ -40,6 +40,7 @@ namespace BarberShop.EmployeManagerPages
         bool sortAscLastName = false;
 
         private BindingList<EmployeModel> _employers = new BindingList<EmployeModel>();
+        private BindingList<EmployeModel> _searchemployers = new BindingList<EmployeModel>();
         //private BindingList<EmployeModel> employersBufer = new BindingList<EmployeModel>();
         //private ObservableCollection<EmployeModel> _SearchEmployes = new ObservableCollection<EmployeModel>();
         //  private BindingList<PostEmploye> _posts;
@@ -48,6 +49,7 @@ namespace BarberShop.EmployeManagerPages
         public EmployersPage()
         {
             InitializeComponent();
+
             _employers.ListChanged += _employes_CollectionChanged;
 
 
@@ -57,18 +59,46 @@ namespace BarberShop.EmployeManagerPages
 
         private void _employes_CollectionChanged(object sender, ListChangedEventArgs e)
         {
-            //if(UsersGrid.SelectedItem!=null)
-            //Helper.ValidData((EmployeModel)UsersGrid.SelectedItem);
-            //if (selectedEmployer == null) return;
-            //if (e.ListChangedType == ListChangedType.ItemDeleted)
-            //{
-            //}
-            //if (e.ListChangedType == ListChangedType.ItemChanged)
-            //{
-            //    EmployeModel employe = (EmployeModel)UsersGrid.SelectedItem;
-            //    //employe = selectedEmployer;
-            //     MessageBox.Show(employe.Email);
-            //}
+          //  if (UsersGrid.SelectedItem != null)
+             //   Helper.ValidData((EmployeModel)UsersGrid.SelectedItem);
+            if (selectedEmployer == null) return;
+            if (e.ListChangedType == ListChangedType.ItemDeleted)
+            {
+            }
+            if (e.ListChangedType == ListChangedType.ItemChanged)
+            {
+                EmployeModel employe = (EmployeModel)UsersGrid.SelectedItem;
+                //employe = selectedEmployer;
+                // MessageBox.Show(employe.Email);
+                if (employe.MiddleName.Length < 3 && employe.MiddleName!="") {
+                    MessageBox.Show("Отчество слишком короткое");
+                    return;
+                }
+                if (employe.LastName.Length < 2)
+                {
+                    MessageBox.Show("Имя слишком короткое");
+                    return;
+                }
+                if (employe.FirstName.Length < 3)
+                {
+                    MessageBox.Show("Фамилия слишком короткая");
+                    return;
+                }
+                var req = new RestRequest("/updateEmploye", Method.Post);
+                req.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                req.AddParameter("firstname", employe.FirstName);
+                req.AddParameter("lasttname", employe.LastName);
+                req.AddParameter("middlename", employe.MiddleName);
+                req.AddParameter("email", employe.Email);
+                req.AddParameter("inn", employe.INN);
+                req.AddParameter("post_id", employe.SelectedPost.Id);
+                req.AddParameter("status_id", employe.SelectedStatus.Id);
+                req.AddParameter("id_employer", employe.ID_Employee);
+                var res = Helper.client.Post(req);
+                dynamic data = JsonConvert.DeserializeObject<dynamic>(res.Content);
+                MessageBox.Show("Данные изменены");
+
+            }
 
 
 
@@ -76,16 +106,11 @@ namespace BarberShop.EmployeManagerPages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            if (EmployeModel.Posts.Count > 0) EmployeModel.Posts.Clear();
 
-            var req = new RestRequest("/getEmployers", Method.Get);
-            req.AddHeader("Content-Type", "application/x-www-form-urlencoded");
-            var res = Helper.client.Get(req);
-            List<EmployeModel> data = JsonConvert.DeserializeObject<List<EmployeModel>>(res.Content);
 
-            if (EmployeModel.Posts.Count < 1)
-            {
                 var reqPosts = new RestRequest("/getPosts", Method.Get);
-                req.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                reqPosts.AddHeader("Content-Type", "application/x-www-form-urlencoded");
                 var resPosts = Helper.client.Get(reqPosts);
                 List<PostEmploye> dataPosts = JsonConvert.DeserializeObject<List<PostEmploye>>(resPosts.Content);
 
@@ -94,13 +119,22 @@ namespace BarberShop.EmployeManagerPages
                     EmployeModel.Posts.Add(
                          new PostEmploye()
                          {
+                             Id = post.Id,
                              Name = post.Name,
-                             Price = post.Price,
-                             Id = post.Id
+                             Price = post.Price
+                             
                          }
                      );
                 }
-            }
+            
+            EmployeModel.AllINN.Clear();
+            EmployeModel.AllEmail.Clear();
+            var req = new RestRequest("/getEmployers", Method.Get);
+            req.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+            var res = Helper.client.Get(req);
+            List<EmployeModel> data = JsonConvert.DeserializeObject<List<EmployeModel>>(res.Content);
+
+            
 
             foreach (var user in data)
             {
@@ -170,6 +204,11 @@ namespace BarberShop.EmployeManagerPages
             EmployersStatistic.Refresh();
 
 
+           // int cnt = UsersGrid.Items.Count;
+          //  for (int i = 0; i < cnt; i++)
+           // {
+           //     UsersGrid.RowBackground
+           // }
 
 
             // employersBufer = _employers;
@@ -249,12 +288,27 @@ namespace BarberShop.EmployeManagerPages
             //    item.LastName.Contains(LastNameTb.Text) &&
             //    item.MiddleName.Contains(MiddleNameTb.Text)
             //    ));
-            // UsersGrid.ItemsSource =_SearchEmployes;
-            UsersGrid.ItemsSource = _employers.Where(
+            //// UsersGrid.ItemsSource =_SearchEmployes;
+
+
+            //UsersGrid.ItemsSource = _employers.Where(
+            //    item => item.FirstName.Contains(FirstNameTb.Text) &&
+            //    item.LastName.Contains(LastNameTb.Text) &&
+            //    item.MiddleName.Contains(MiddleNameTb.Text)
+            //    );
+
+
+            foreach (EmployeModel item in _employers.Where(
                 item => item.FirstName.Contains(FirstNameTb.Text) &&
                 item.LastName.Contains(LastNameTb.Text) &&
                 item.MiddleName.Contains(MiddleNameTb.Text)
-                );
+                ))
+            {
+                _searchemployers.Add(item);
+            }
+
+            UsersGrid.ItemsSource = _searchemployers;
+
         }
 
         private void ClearSearchBtn_Click(object sender, RoutedEventArgs e)
@@ -286,7 +340,7 @@ namespace BarberShop.EmployeManagerPages
                             _employers = new BindingList<EmployeModel>(_employers.ToList().OrderBy(x => x.INN).ToList());
                             //_employers.ResetBindings();
                             UsersGrid.ItemsSource = _employers;
-                            _employers.ListChanged += _employes_CollectionChanged;
+                            //_employers.ListChanged += _employes_CollectionChanged;
                             // UsersGrid.;
                             sortAscINN = false;
                         }
@@ -296,7 +350,7 @@ namespace BarberShop.EmployeManagerPages
 
                             _employers = new BindingList<EmployeModel>(_employers.ToList().OrderByDescending(x => x.INN).ToList());
                             UsersGrid.ItemsSource = _employers;
-                            _employers.ListChanged += _employes_CollectionChanged;
+                           // _employers.ListChanged += _employes_CollectionChanged;
                             sortAscINN = true;
                         }
                         break;
@@ -309,7 +363,7 @@ namespace BarberShop.EmployeManagerPages
                             _employers = new BindingList<EmployeModel>(_employers.ToList().OrderBy(x => x.Email).ToList());
                             // _employers.ResetBindings();
                             UsersGrid.ItemsSource = _employers;
-                            _employers.ListChanged += _employes_CollectionChanged;
+                           // _employers.ListChanged += _employes_CollectionChanged;
                             // UsersGrid.;
                             sortAscEmail = false;
                         }
@@ -321,7 +375,7 @@ namespace BarberShop.EmployeManagerPages
                             _employers = new BindingList<EmployeModel>(_employers.ToList().OrderByDescending(x => x.Email).ToList());
                             //  _employers.ResetBindings();
                             UsersGrid.ItemsSource = _employers;
-                            _employers.ListChanged += _employes_CollectionChanged;
+                           // _employers.ListChanged += _employes_CollectionChanged;
                             sortAscEmail = true;
                         }
                         break;
@@ -334,7 +388,7 @@ namespace BarberShop.EmployeManagerPages
                             _employers = new BindingList<EmployeModel>(_employers.ToList().OrderBy(x => x.FirstName).ToList());
                             // _employers.ResetBindings();
                             UsersGrid.ItemsSource = _employers;
-                            _employers.ListChanged += _employes_CollectionChanged;
+                           // _employers.ListChanged += _employes_CollectionChanged;
                             // UsersGrid.;
                             sortAscFirstName = false;
                         }
@@ -346,7 +400,7 @@ namespace BarberShop.EmployeManagerPages
                             _employers = new BindingList<EmployeModel>(_employers.ToList().OrderByDescending(x => x.FirstName).ToList());
                             //  _employers.ResetBindings();
                             UsersGrid.ItemsSource = _employers;
-                            _employers.ListChanged += _employes_CollectionChanged;
+                           // _employers.ListChanged += _employes_CollectionChanged;
                             sortAscFirstName = true;
                         }
                         break;
@@ -359,7 +413,7 @@ namespace BarberShop.EmployeManagerPages
                             _employers = new BindingList<EmployeModel>(_employers.ToList().OrderBy(x => x.LastName).ToList());
                             // _employers.ResetBindings();
                             UsersGrid.ItemsSource = _employers;
-                            _employers.ListChanged += _employes_CollectionChanged;
+                           // _employers.ListChanged += _employes_CollectionChanged;
                             // UsersGrid.;
                             sortAscLastName = false;
                         }
@@ -371,7 +425,7 @@ namespace BarberShop.EmployeManagerPages
                             _employers = new BindingList<EmployeModel>(_employers.ToList().OrderByDescending(x => x.LastName).ToList());
                             //  _employers.ResetBindings();
                             UsersGrid.ItemsSource = _employers;
-                            _employers.ListChanged += _employes_CollectionChanged;
+                           // _employers.ListChanged += _employes_CollectionChanged;
                             sortAscLastName = true;
                         }
                         break;
@@ -404,5 +458,11 @@ namespace BarberShop.EmployeManagerPages
                 }
             }
         }
+
+        private void EmployerAdd_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new EmployerCreate());
+        }
+
     }
 }

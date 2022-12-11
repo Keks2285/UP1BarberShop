@@ -502,8 +502,8 @@ function executeBackup($connect){
                 $consumption = fgetcsv($file,2048 ,';');
                   //    print_r($service);
                  if ($consumption[0]!=null){
-                    $createConsumption=$connect->prepare( //Data_Consu,ption
-                                "INSERT INTO `Consumption`(`ID_Consumption`, `Date`, `Value`) 
+                    $createConsumption=$connect->prepare( //Data_Consumption
+                                "INSERT INTO `Consumption`(`ID_Consumption`, `Data_Consumption`, `Value`) 
                                  VALUES (?,?,?)");
                     $createConsumption->execute(array(
                                     $consumption[0], //id

@@ -16,8 +16,7 @@ function createPost($connect, $data){
 
 
         $createPost=$connect->prepare(
-        "insert into Post (Name_Post, Price) VALUES 
-        (?,?)"
+        "call Post_Insert(?,?)"
         );
         
         //if(empty($data["middlename"])) $data["middlename"]="-";
@@ -167,7 +166,7 @@ function createStock($connect, $data){
     }
 }
 
-function registrateClient($connect, $data){
+function registrateClient($connect, $data){ /// Нужно доработать
     try{
         $selectClients=$connect->prepare("Select * from Client where Phone=? or Email=?");
         $selectClients->execute(array(
@@ -511,7 +510,7 @@ function createTaxReport($connect, $data){
 
 function createEmployee ($connect, $data){
 
-
+    //var_dump($data); die();
     // print_r( $data); die();
      try{
          $selectUsers=$connect->prepare("Select * from Employe where Email=? or INN=?");
@@ -543,12 +542,14 @@ function createEmployee ($connect, $data){
              $data["post_id"],
              $data["status_id"]
          ));
+         //print_r($data); die();
          $responce=[
              "status"=>true,
              "message"=>"user created"
          ];
          echo json_encode($responce);
-        // var_dump($data); die();
+         //die();
+         
         // exit();
          //$addedEmploye=$createEmploye->fetchAll();
      } catch (PDOException $e) {

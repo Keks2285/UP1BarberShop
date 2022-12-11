@@ -1,0 +1,9 @@
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net5.0-windows\BarberShop.csproj.AssemblyReference.cache
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net5.0-windows\Authorization.g.cs
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net5.0-windows\DbAdmin\AdminWindow.g.cs
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net5.0-windows\EmployeManagerPages\EmployersPage.g.cs
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net5.0-windows\EmployeManager\EmployeManager.g.cs
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net5.0-windows\Recover.g.cs
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net5.0-windows\App.g.cs
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net5.0-windows\BarberShop_MarkupCompile.cache
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net5.0-windows\BarberShop_MarkupCompile.lref

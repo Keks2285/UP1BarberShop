@@ -43,22 +43,41 @@ mb_regex_encoding('UTF-8');
    
 
    
-    function updateEmployer($connect, $data){
-        $selectUsers=$connect->prepare("Select * from Employe where Email=? or INN=?");
-        $selectUsers->execute(array(strval($data["email"]), $data["inn"]));
-            
-        if(count($selectUsers->fetchAll())>0){
+    function removePost($connect, $data){
+        $deletepost=$connect->prepare("call Post_Delete(?)");
+        $deletepost->execute(array($data["id"]));
+        $selectPost=$connect->prepare("select * from Post where ID_Post=?");
+        $selectPost->execute(array($data["id"]));
+
+
+        if(count($selectPost->fetchAll())>0){
                 $responce=[
                     "status"=>false,
-                    "message"=>"user not updated, some data are not unique"
+                    "message"=>"post wasnt delete"
                 ];
                 echo json_encode($responce);
                 die();
+        }else{
+            $responce=[
+                "status"=>true,
+                "message"=>"post was deleted"
+            ];
+            echo json_encode($responce);
+            die();
         }
        // $selectUsers=$connect->prepare("Select * from Employe where Email=? or INN=?");
 
     }
 
+
+
+
+
+
+
+
+
+    
     function removeEployerByEmail($connect, $data){
       //  echo $data["email"]; die();
         try{
@@ -104,7 +123,7 @@ mb_regex_encoding('UTF-8');
         }
        
         $selectUser->execute(array(
-          strval($data["newPassword"]),
+            md5(strval($data["newPassword"])),
           strval($data["email"])
         ));
         $responce=[

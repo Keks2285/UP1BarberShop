@@ -10,6 +10,12 @@
     <Compile Update="DbAdmin\AdminWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="EmployeManagerPages\EmployerCreate.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="EmployeManagerPages\PostList.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Recover.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -21,7 +27,13 @@
     <Page Update="DbAdmin\AdminWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="EmployeManagerPages\EmployerCreate.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="EmployeManagerPages\EmployersPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="EmployeManagerPages\PostList.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="EmployeManager\EmployeManager.xaml">

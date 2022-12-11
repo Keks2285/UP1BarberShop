@@ -32,7 +32,7 @@ namespace BarberShop.Models
                     MessageBox.Show("Фамилия слишком короткая ");
                     return;
                 }
-                if (!CheckFIO(value))
+                if (!Helper.CheckFIO(value))
                 {
                     MessageBox.Show("Фамилия должна содержать только кирилицу");
                     return;
@@ -60,12 +60,11 @@ namespace BarberShop.Models
                     return;
                 }
                 
-                if (!CheckFIO(value))
+                if (!Helper.CheckFIO(value))
                 {
                     MessageBox.Show("Имя должно содержать только кирилицу");
                     return;
                 }
-                _firstName = value;
                 _lastName = value;
                 OnPropertyChanged("LastName");
             }
@@ -88,7 +87,7 @@ namespace BarberShop.Models
                     MessageBox.Show("Отчество слишком короткое");
                     return;
                 }
-                if (!CheckFIO(value))
+                if (!Helper.CheckFIO(value))
                 {
                     MessageBox.Show("Отчество должно содержать только кирилицу");
                     return ;
@@ -101,12 +100,12 @@ namespace BarberShop.Models
         [Ignore]
 
         private string _email;
-        private static List<string> AllEmail = new List<string>();
+        public static List<string> AllEmail = new List<string>();
         public string Email 
         {
             get { return _email; }
             set {
-                if (!CheckEmail(value))
+                if (!Helper.CheckEmail(value))
                 {
                     MessageBox.Show("Неверный формат почты");
                     return;
@@ -128,7 +127,7 @@ namespace BarberShop.Models
 
         [Ignore]
         private string _inn;
-        private static List<string> AllINN = new List<string>();
+        public static List<string> AllINN = new List<string>();
         public string INN {
             get { return _inn; }
             set
@@ -143,7 +142,7 @@ namespace BarberShop.Models
                     MessageBox.Show("ИНН должен быть уникальным");
                     return;
                 }
-                if (!INNcheck(value)){
+                if (!Helper.INNcheck(value)){
                     MessageBox.Show("ИНН должен содержать только цифры");
                     return;
                 }
@@ -157,17 +156,7 @@ namespace BarberShop.Models
        
         private int _id_post { get; set; }
         
-        public int ID_Post
-        {
-            get
-            {
-                return _id_post;
-            }
-            set { 
-            _id_post = value;
-                OnPropertyChanged("ID_Post");
-            }
-        }
+        public int ID_Post{get; set;}
        
         private int _id_status { get; set; }
 
@@ -197,9 +186,7 @@ namespace BarberShop.Models
             new StatusEmploye{Id=3, Name="В отпуске"},
             new StatusEmploye{Id=4, Name="На больничном"}
         };
-        public static ObservableCollection<PostEmploye> Posts { get; set; } = new ObservableCollection<PostEmploye>
-        {  
-        };
+        public static ObservableCollection<PostEmploye> Posts { get; set; } = new ObservableCollection<PostEmploye>();
 
         [Ignore]
         public StatusEmploye SelectedStatus {
@@ -240,32 +227,6 @@ namespace BarberShop.Models
             }
         }
 
-        private bool CheckFIO(string fio)
-        {
-            foreach (char a in fio)
-            {
-                if (!Regex.IsMatch(a.ToString(), @"[а-яА-Я]"))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-        private bool INNcheck(string fio)
-        {
-            foreach (char a in fio)
-            {
-                if (!Regex.IsMatch(a.ToString(), @"[0-9]"))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-        private bool CheckEmail(string email)
-        {
-            string pattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
-            return Regex.IsMatch(email, pattern);
-        }
+        
     }
 }

@@ -26,14 +26,16 @@ namespace BarberShop.EmployeMAnager
             lastName = _lastName;
             firstName =_firstName;
             InitializeComponent();
+            loadFirstPage();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             FLTb.Text = firstName.Substring(0,1) + lastName.Substring(0, 1);
+            
         }
 
-        private void EmployeBtn_Click(object sender, RoutedEventArgs e)
+        private void loadFirstPage()
         {
             EmployeBtn.Background = Brushes.Gray;
             PostBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
@@ -42,12 +44,19 @@ namespace BarberShop.EmployeMAnager
             MainFrame.Content = new EmployeManagerPages.EmployersPage();
         }
 
+
+        private void EmployeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            loadFirstPage();
+        }
+
         private void PostBtn_Click(object sender, RoutedEventArgs e)
         {
             EmployeBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
             PostBtn.Background = Brushes.Gray;
             SickLeaveBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
             VacationBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
+            MainFrame.Content = new EmployeManagerPages.PostList();
         }
 
         private void SickLeaveBtn_Click(object sender, RoutedEventArgs e)

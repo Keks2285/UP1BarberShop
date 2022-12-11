@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\App.xaml
-5-1501403371
+71059509743
 
-251629406247
-205-477521543
-Authorization.xaml;DbAdmin\AdminWindow.xaml;EmployeManagerPages\EmployersPage.xaml;EmployeManager\EmployeManager.xaml;Recover.xaml;
+27-8423807
+210-7955958
+Authorization.xaml;DbAdmin\AdminWindow.xaml;EmployeManagerPages\EmployerCreate.xaml;EmployeManagerPages\EmployersPage.xaml;EmployeManagerPages\PostList.xaml;EmployeManager\EmployeManager.xaml;Recover.xaml;
 
 False
 

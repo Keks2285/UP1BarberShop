@@ -39,8 +39,8 @@ namespace BarberShop
 
         private async void SendMessge( String Email)
         {
-            await Task.Run(() =>
-            {
+           // await Task.Run(() =>
+          //  {
                 try
                 {
                     var emailMessage = new MimeMessage();
@@ -54,8 +54,13 @@ namespace BarberShop
                     };
                     using (var SMTPclient = new SmtpClient())
                     {
-                        SMTPclient.Connect("smtp.gmail.com", 465);
-                        SMTPclient.Authenticate("magizin451@gmail.com", "rhfwrufpdkekqvfb");
+                    //SMTPclient.is
+                        SMTPclient.Connect("smtp.gmail.com", 587);  //587 465 25
+
+                    //SMTPclient.UseDefaultCredentials = false;
+                    //SMTPclient.Cre
+                    SMTPclient.Authenticate("magizin451@gmail.com", "sgxlffaunvcfgxnr"); //NewMyPass222 
+                        
                         SMTPclient.Send(emailMessage);
                         SMTPclient.Disconnect(true);
                         MessageBox.Show("Код отправлен");
@@ -68,7 +73,7 @@ namespace BarberShop
                 }
 
 
-            });
+         //   });
 
         }
 
@@ -76,14 +81,12 @@ namespace BarberShop
         {
             // bool existUser = false;
             string userType;
-            if(EmailTb.Text.Length<5)
+            if(!Helper.CheckEmail(EmailTb.Text))
             {
                 MessageBox.Show("Некорректная или пустая почта");
                 return;
             }
             SendMessge(EmailTb.Text);
-          
-           
         }
 
         private void Recovertn_Click(object sender, RoutedEventArgs e)

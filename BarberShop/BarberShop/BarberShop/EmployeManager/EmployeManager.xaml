@@ -32,7 +32,8 @@
             <Button Background="#FF673AB7" x:Name="VacationBtn" Margin="5,10" Click="VacationBtn_Click" Cursor="Hand">Отпуска</Button>
         </StackPanel>
         <Button x:Name="ExitBtn" Margin="5,132,5,0" VerticalAlignment="Top" Background="#FFC52B2B" Grid.Row="2" Height="32">Выход</Button>
-        <Frame x:Name="MainFrame"  Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="3" Background="Aqua">
+        <Frame x:Name="MainFrame"  Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="3" Background="Aqua"  NavigationUIVisibility="Hidden"
+               >
         </Frame>
     </Grid>
 </Window>
