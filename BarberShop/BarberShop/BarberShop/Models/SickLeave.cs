@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CsvHelper.Configuration.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,5 +16,9 @@ namespace BarberShop.Models
         public string Date_End { get; set; }
 
         public int Employe_ID { get; set; }
+
+        [Ignore]
+        public EmployeModel employer { get; set; }
+
     }
 }

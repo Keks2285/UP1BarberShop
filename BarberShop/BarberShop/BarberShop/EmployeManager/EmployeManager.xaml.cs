@@ -40,7 +40,7 @@ namespace BarberShop.EmployeMAnager
             EmployeBtn.Background = Brushes.Gray;
             PostBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
             SickLeaveBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
-            VacationBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
+            //VacationBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
             MainFrame.Content = new EmployeManagerPages.EmployersPage();
         }
 
@@ -55,7 +55,7 @@ namespace BarberShop.EmployeMAnager
             EmployeBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
             PostBtn.Background = Brushes.Gray;
             SickLeaveBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
-            VacationBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
+            //VacationBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
             MainFrame.Content = new EmployeManagerPages.PostList();
         }
 
@@ -64,16 +64,12 @@ namespace BarberShop.EmployeMAnager
             EmployeBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
             PostBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183)); ;
             SickLeaveBtn.Background = Brushes.Gray;
-            VacationBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
+
+            MainFrame.Content = new EmployeManagerPages.VacationsPage();
+            // VacationBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
         }
 
-        private void VacationBtn_Click(object sender, RoutedEventArgs e)
-        {
-            EmployeBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
-            PostBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
-            SickLeaveBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
-            VacationBtn.Background = Brushes.Gray;
-        }
+       
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
