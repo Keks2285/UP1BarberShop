@@ -27,28 +27,28 @@
             <RowDefinition Height="208*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <DataGrid  x:Name="VacationsDg" CanUserSortColumns="True"  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" AutoGenerateColumns="False" CanUserDeleteRows="True" CanUserAddRows="False" Margin="37,0,7,10" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="4"  >
+        <DataGrid  x:Name="VacationsDg" CanUserSortColumns="True"  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" AutoGenerateColumns="False" CanUserDeleteRows="True" CanUserAddRows="False" Margin="37,0,7,10" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="4" PreviewKeyDown="VacationsDg_PreviewKeyDown"  >
             <DataGrid.Columns>
                 <DataGridTextColumn Width="5*" IsReadOnly="True" Binding="{Binding Date_Begin}"  CanUserSort="True" Header="Начало"/>
                 <DataGridTextColumn Width="5*" IsReadOnly="True" Binding="{Binding Date_End}"  CanUserSort="True" Header="Конец "/>
                 <DataGridTextColumn Width="5*" IsReadOnly="True" Binding="{Binding employer.FirstName}"  CanUserSort="True" Header="Сотрудник"/>
             </DataGrid.Columns>
         </DataGrid>
-        <DatePicker FontSize="14" BorderThickness="0"  Background="Transparent"  x:Name="DateBegin"  materialDesign:HintAssist.Hint="Дата начала" Width="150"  Height="55" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="37,0,0,0"/>
+        <DatePicker FontSize="14" BorderThickness="0"  Background="Transparent"  x:Name="DateBegin"  materialDesign:HintAssist.Hint="Дата начала" Width="150"  Height="55" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="37,0,0,0" SelectedDateFormat="Short"/>
 
-        <Button x:Name="CreatVacation" HorizontalContentAlignment="Center" Grid.Column="1" Content="Добавить отпуск"  Grid.Row="3" VerticalAlignment="Top" Cursor="Hand"   Height="27" Grid.ColumnSpan="3" Margin="220,28,10,0"/>
+        <Button x:Name="CreatVacation" HorizontalContentAlignment="Center" Grid.Column="1" Content="Добавить отпуск"  Grid.Row="3" VerticalAlignment="Top" Cursor="Hand"   Height="27" Grid.ColumnSpan="3" Margin="220,28,10,0" Click="CreatVacation_Click"/>
 
 
-        <DataGrid  x:Name="SickLeavesDg" CanUserSortColumns="True"  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" AutoGenerateColumns="False" CanUserDeleteRows="True" CanUserAddRows="False" Margin="19,0,22,10" Grid.Column="4" Grid.Row="1" Grid.RowSpan="2"  Grid.ColumnSpan="2">
+        <DataGrid  x:Name="SickLeavesDg" CanUserSortColumns="True"  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" AutoGenerateColumns="False" CanUserDeleteRows="True" CanUserAddRows="False" Margin="19,0,22,10" Grid.Column="4" Grid.Row="1" Grid.RowSpan="2"  Grid.ColumnSpan="2" PreviewKeyDown="SickLeavesDg_PreviewKeyDown">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="5*" IsReadOnly="True" Binding="{Binding Date_Begin}"  CanUserSort="True" Header="Начало"/>
                 <DataGridTextColumn Width="5*" IsReadOnly="True" Binding="{Binding Date_End}"  CanUserSort="True" Header="Конец "/>
                 <DataGridTextColumn Width="5*" IsReadOnly="True" Binding="{Binding employer.FirstName}"  CanUserSort="True" Header="Сотрудник"/>
             </DataGrid.Columns>
         </DataGrid>
-        <DatePicker FontSize="14" BorderThickness="0"  Background="Transparent"  x:Name="DateBegin_Copy"  materialDesign:HintAssist.Hint="Дата окончания" HorizontalAlignment="Left" Width="150" Height="39" Grid.Row="3" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="37,70,0,0"/>
+        <DatePicker FontSize="14" BorderThickness="0"  Background="Transparent"  x:Name="DateEnd"  materialDesign:HintAssist.Hint="Дата окончания" HorizontalAlignment="Left" Width="150" Height="39" Grid.Row="3" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="37,70,0,0"/>
         <Button x:Name="CreateSickLeave" Grid.Column="1" HorizontalContentAlignment="Center" Content="Добавить больничный"  Grid.Row="3" VerticalAlignment="Top" Cursor="Hand" Margin="220,77,7,0"  Height="32" Grid.ColumnSpan="3"/>
-        <DataGrid  x:Name="EmployersDg" CanUserSortColumns="True"  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" AutoGenerateColumns="False" CanUserDeleteRows="True" CanUserAddRows="False" Margin="19,8,22,10" Grid.Column="4" Grid.Row="3"  Grid.ColumnSpan="2">
+        <DataGrid  x:Name="EmployersDg" CanUserSortColumns="True"  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" AutoGenerateColumns="False" CanUserDeleteRows="False" CanUserAddRows="False" Margin="19,8,22,10" Grid.Column="4" Grid.Row="3"  Grid.ColumnSpan="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Path=FirstName}" IsReadOnly="True" Width="*"  CanUserSort="True" Header="Фамилия"></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding Path=LastName}" IsReadOnly="True" Width="*" CanUserSort="True" Header="Имя"></DataGridTextColumn>

@@ -5,6 +5,7 @@ require "getMethods.php";
 require "createMethods.php";
 require "importMethods.php";
 require "updateMethods.php";
+require "removeMethods.php";
 mb_internal_encoding("UTF-8");
 mb_internal_encoding('UTF-8');
 mb_http_output('UTF-8');
@@ -24,7 +25,9 @@ switch ($_SERVER['REQUEST_METHOD']){
             case "importEmploye": importEmploye($connect); break;    
             case "recoverPassword": recoverPassword($connect, $_POST); break;  
             case "removeEployerByEmail": removeEployerByEmail($connect,$_POST); break;
-            case "removePost": removePost($connect,$_POST); break;       
+            case "removePost": removePost($connect,$_POST); break;  
+            case "removeVacation": removeVacation($connect,$_POST); break;  
+            
             case "createPost": createPost($connect,$_POST); break;  
             case "createStock": createStock($connect,$_POST); break; 
             case "createService": createService($connect,$_POST); break; 

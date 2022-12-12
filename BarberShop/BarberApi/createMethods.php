@@ -413,7 +413,7 @@ function createVacation($connect, $data){
         "insert into Vacation (Date_Begin, Date_End, Employe_ID ) VALUES 
         (?,?,?)"
         );
-        
+        //var_dump($data);
         //if(empty($data["middlename"])) $data["middlename"]="-";
         $create->execute(array(
             strval($data["date_begin"]),
@@ -422,7 +422,9 @@ function createVacation($connect, $data){
         ));
         $responce=[
             "status"=>true,
-            "message"=>"Vacation created"
+            "message"=>"Vacation created",
+            "id"=>$connect->lastInsertId()
+
         ];
         echo json_encode($responce);
        // var_dump($data); die();

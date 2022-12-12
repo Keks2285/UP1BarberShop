@@ -72,5 +72,102 @@ namespace BarberShop.EmployeManagerPages
             VacationsDg.ItemsSource = _vacations;
 
         }
+
+        private void CreatVacation_Click(object sender, RoutedEventArgs e)
+        {
+            if (!validateData()) return;
+
+
+            var reqVac = new RestRequest("/createVacation", Method.Post);
+            reqVac.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+            reqVac.AddParameter("date_begin", DateBegin.SelectedDate!.Value.ToString("yyyy.MM.dd"));
+            reqVac.AddParameter("date_end", DateEnd.SelectedDate!.Value.ToString("yyyy.MM.dd"));
+            reqVac.AddParameter("employe_id", (EmployersDg.SelectedItem as EmployeModel).ID_Employee);
+            var resVac = Helper.client.Post(reqVac);
+            dynamic reqdata = JsonConvert.DeserializeObject<dynamic>(resVac.Content);
+            _vacations.Add(new Vacation
+            {
+                Date_Begin = DateBegin.SelectedDate!.Value.ToString("dd-MM-yyyy"),
+                Date_End = DateEnd.SelectedDate!.Value.ToString("dd-MM-yyyy"),
+                ID_Vacation = reqdata!.id
+            }
+            );
+        }
+
+        private void CreateSickLeave_Click(object sender, RoutedEventArgs e)
+        {
+            if (!validateData()) return;
+            var reqVac = new RestRequest("/createSickLeave", Method.Post);
+            reqVac.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+            reqVac.AddParameter("date_begin", DateBegin.SelectedDate!.Value.ToString("yyyy.MM.dd"));
+            reqVac.AddParameter("date_end", DateEnd.SelectedDate!.Value.ToString("yyyy.MM.dd"));
+            reqVac.AddParameter("employe_id", (EmployersDg.SelectedItem as EmployeModel).ID_Employee);
+            var resVac = Helper.client.Post(reqVac);
+            dynamic reqdata = JsonConvert.DeserializeObject<dynamic>(resVac.Content);
+            _vacations.Add(new Vacation
+            {
+                Date_Begin = DateBegin.SelectedDate!.Value.ToString("dd-MM-yyyy"),
+                Date_End = DateEnd.SelectedDate!.Value.ToString("dd-MM-yyyy"),
+                ID_Vacation = reqdata!.id
+            }
+            );
+        }
+
+
+
+        private bool validateData()
+        {
+            if (DateBegin.Text == "" || DateEnd.Text == "")
+            {
+                MessageBox.Show("Заполните все даты");
+                return false;
+            }
+            if (EmployersDg.SelectedItem == null)
+            {
+                MessageBox.Show("Выберите сотрудника");
+                return false;
+            }
+            TimeSpan a = (TimeSpan)( DateEnd.SelectedDate - DateBegin.SelectedDate);
+            if (a.TotalDays < 1)
+            {
+                MessageBox.Show("Дата окончания не может быть раньше или совпадать с датой окночания");
+                return false;
+
+            }
+            return true;
+        }
+
+        private void VacationsDg_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete)
+            {
+                var reqDeleteVacation = new RestRequest("/removeVacation", Method.Post);
+                reqDeleteVacation.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                reqDeleteVacation.AddParameter("id", (VacationsDg.SelectedItem as Vacation).ID_Vacation);
+                var resDeleteVacation = Helper.client.Post(reqDeleteVacation);
+                string a = resDeleteVacation.Content;
+
+            }
+        }
+
+        private void SickLeavesDg_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete)
+            {
+                var reqDeleteSickLeave = new RestRequest("/removeSickLeave", Method.Post);
+                reqDeleteSickLeave.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                reqDeleteSickLeave.AddParameter("id", (SickLeavesDg.SelectedItem as SickLeave).ID_SickLeave);
+                var resDeleteSickLeave = Helper.client.Post(reqDeleteSickLeave);
+                string a = resDeleteSickLeave.Content;
+
+            }
+        }
     }
 }
+
+
+
+
+
+
+
