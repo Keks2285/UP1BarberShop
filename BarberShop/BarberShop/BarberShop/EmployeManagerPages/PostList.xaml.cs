@@ -136,12 +136,12 @@ namespace BarberShop.EmployeManagerPages
         private void SearchBtn_Click(object sender, RoutedEventArgs e)
         {
             //_searched_posts= (BindingList<PostEmploye>)_posts.Where(item => item.Name.Contains(NameTb.Text));
-
+            _searched_posts.Clear();
             foreach (PostEmploye item in _posts.Where(item => item.Name.Contains(NameTb.Text)))
             {
                 _searched_posts.Add(item);
             }
-
+            PostDg.ItemsSource = null;
             PostDg.ItemsSource = _searched_posts;
         }
 

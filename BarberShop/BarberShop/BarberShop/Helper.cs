@@ -15,7 +15,7 @@ namespace BarberShop
    class Helper
     {
       public static string backupsDir= Directory.GetCurrentDirectory() + @"\backups\";
-      public static RestClient client = new RestClient("http://192.168.1.49:8080/BarberApi/");
+      public static RestClient client = new RestClient("http://192.168.164.74:8080/BarberApi/");
         public static bool CheckFIO(string fio)
         {
             foreach (char a in fio)
