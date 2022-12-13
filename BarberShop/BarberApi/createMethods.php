@@ -110,7 +110,8 @@ function createProvider($connect, $data){
     ));
         $responce=[
             "status"=>true,
-            "message"=>"Provider created"
+            "message"=>"Provider created",
+            "id"=>$connect->lastInsertId()
         ];
         echo json_encode($responce);
        // var_dump($data); die();
@@ -151,7 +152,8 @@ function createStock($connect, $data){
         ));
         $responce=[
             "status"=>true,
-            "message"=>"Stock created"
+            "message"=>"Stock created",
+            "id"=>$connect->lastInsertId()
         ];
         echo json_encode($responce);
        // var_dump($data); die();
@@ -265,7 +267,8 @@ function createRecord($connect, $data){
         ));
         $responce=[
             "status"=>true,
-            "message"=>"Record created"
+            "message"=>"Record created",
+            "id"=>$connect->lastInsertId()
         ];
         echo json_encode($responce);
        // var_dump($data); die();
@@ -295,7 +298,8 @@ function createConsumption($connect, $data){
         ));
         $responce=[
             "status"=>true,
-            "message"=>"Consumption created"
+            "message"=>"Consumption created",
+            "id"=>$connect->lastInsertId()
         ];
         echo json_encode($responce);
        // var_dump($data); die();
@@ -325,7 +329,8 @@ function createIncome($connect, $data){
         ));
         $responce=[
             "status"=>true,
-            "message"=>"Income created"
+            "message"=>"Income created",
+            "id"=>$connect->lastInsertId()
         ];
         echo json_encode($responce);
        // var_dump($data); die();
@@ -357,7 +362,8 @@ function createSupply($connect, $data){
         ));
         $responce=[
             "status"=>true,
-            "message"=>"Supply created"
+            "message"=>"Supply created",
+            "id"=>$connect->lastInsertId()
         ];
         echo json_encode($responce);
        // var_dump($data); die();
@@ -389,7 +395,8 @@ function createSickLeave($connect, $data){
         ));
         $responce=[
             "status"=>true,
-            "message"=>"SickLeave created"
+            "message"=>"SickLeave created",
+            "id"=>$connect->lastInsertId()
         ];
         echo json_encode($responce);
        // var_dump($data); die();

@@ -20,6 +20,7 @@ using RestSharp;
 using Newtonsoft.Json;
 using RestSharp.Authenticators;
 using BarberShop.EmployeMAnager;
+using BarberShop.Stocker;
 
 namespace BarberShop
 {
@@ -67,7 +68,13 @@ namespace BarberShop
                         this.Hide();
                         break;
                     }
-
+                case "3":
+                    {
+                        Window W = new StockerWindow(FirstName, LastName);
+                        W.Show();
+                        this.Hide();
+                        break;
+                    }
             }
 
 

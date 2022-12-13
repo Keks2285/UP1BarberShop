@@ -71,9 +71,9 @@ namespace BarberShop.Models
         }
 
         [Ignore]
-        private string _middleName { get; set; }
+        private string? _middleName { get; set; }
 
-        public string MiddleName {
+        public string? MiddleName {
             get { return _middleName; }
             set {
                 if(value == null||value=="")

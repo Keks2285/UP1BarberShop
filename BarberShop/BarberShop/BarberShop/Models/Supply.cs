@@ -11,7 +11,7 @@ namespace BarberShop.Models
 
         public int ID_Supply { get; set; }
 
-        public string Date_Supply { get; set; }
+        public DateOnly Date_Supply { get; set; }
 
         public int Value { get; set; }
 

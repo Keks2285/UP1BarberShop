@@ -18,6 +18,9 @@ namespace BarberShop.Models
         public int Employe_ID { get; set; }
 
         [Ignore]
+        public string FIO { get; set; }
+
+        [Ignore]
         public EmployeModel employer { get; set; }
 
     }

@@ -118,4 +118,91 @@ function removeEployerByEmail($connect, $data){
 }
 
 
+
+function removeProvider($connect, $data){
+    //  echo $data["email"]; die();
+      try{
+       // var_dump($data);
+          $deleteUser =$connect->prepare("Delete from Provider where ID_Provider=?");
+          $deleteUser ->execute(array($data["id_provider"]));
+  
+          $selectUsers=$connect->prepare("Select * from Provider where ID_Provider=?");
+          $selectUsers->execute(array(strval($data["id_provider"])));
+          if(count($selectUsers->fetchAll())>0){
+              $responce=[
+                  "status"=>false,
+                  "message"=>"provider not deleted"
+              ];
+              echo json_encode($responce);
+              die();
+          }else{
+              $responce=[
+                  "status"=>true,
+                  "message"=>"provider deleted"
+              ];
+              echo json_encode($responce);
+              die();
+          }
+      } catch (Exception $e){
+          $responce=[
+              "status"=>false,
+              "message"=>"provider not deleted"
+          ];
+          echo json_encode($responce);
+      }
+  
+     
+  }
+
+
+  function removeStock($connect, $data){
+    //  echo $data["email"]; die();
+      try{
+        //var_dump($data);
+          $deleteUser =$connect->prepare("Delete from Stock where ID_Stock=?");
+          $deleteUser ->execute(array($data["id_stock"]));
+          $selectUsers=$connect->prepare("Select * from Stock where ID_Stock=?");
+          $selectUsers->execute(array(strval($data["id_stock"])));
+          if(count($selectUsers->fetchAll())>0){
+              $responce=[
+                  "status"=>false,
+                  "message"=>"stock not deleted"
+              ];
+              echo json_encode($responce);
+              die();
+          }else{
+              $responce=[
+                  "status"=>true,
+                  "message"=>"stock deleted"
+              ];
+              echo json_encode($responce);
+              die();
+          }
+      } catch (Exception $e){
+          $responce=[
+              "status"=>false,
+              "message"=>"stock not deleted"
+          ];
+          echo json_encode($responce);
+      }
+  
+     
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ?>

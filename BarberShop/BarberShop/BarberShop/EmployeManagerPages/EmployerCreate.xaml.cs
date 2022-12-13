@@ -82,19 +82,19 @@ namespace BarberShop.EmployeManagerPages
                 MessageBox.Show("Инн уже используется");
                 return false;
             };
-            if (Helper.CheckFIO(FirstNameTb.Text))
+            if (!Helper.CheckFIO(FirstNameTb.Text)|| FirstNameTb.Text.Length<2)
             {
                 MessageBox.Show("Неккоректная фамилия");
                 return false;
             };
 
-            if (Helper.CheckFIO(LastNameTb.Text))
+            if (!Helper.CheckFIO(LastNameTb.Text) || LastNameTb.Text.Length < 2)
             {
                 MessageBox.Show("Неккоректное имя");
                 return false;
             };
 
-            if (Helper.CheckFIO(MiddleNameTb.Text) && MiddleNameTb.Text!="")
+            if (!Helper.CheckFIO(MiddleNameTb.Text) && MiddleNameTb.Text!="")
             {
                 MessageBox.Show("Неккоректное отчество");
                 return false;

@@ -22,6 +22,12 @@
     <Compile Update="Recover.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Stocker\StockerWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Stocker\ProvidersPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Authorization.xaml">
@@ -46,6 +52,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Recover.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Stocker\StockerWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Stocker\ProvidersPage.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

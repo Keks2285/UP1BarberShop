@@ -27,7 +27,8 @@ switch ($_SERVER['REQUEST_METHOD']){
             case "removeEployerByEmail": removeEployerByEmail($connect,$_POST); break;
             case "removePost": removePost($connect,$_POST); break;  
             case "removeVacation": removeVacation($connect,$_POST); break;  
-            
+            case "removeProvider":removeProvider($connect, $_POST);break;
+            case "removeStock":removeStock($connect, $_POST);break;
             case "createPost": createPost($connect,$_POST); break;  
             case "createStock": createStock($connect,$_POST); break; 
             case "createService": createService($connect,$_POST); break; 

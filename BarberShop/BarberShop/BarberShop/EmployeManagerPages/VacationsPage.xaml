@@ -31,7 +31,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Width="5*" IsReadOnly="True" Binding="{Binding Date_Begin}"  CanUserSort="True" Header="Начало"/>
                 <DataGridTextColumn Width="5*" IsReadOnly="True" Binding="{Binding Date_End}"  CanUserSort="True" Header="Конец "/>
-                <DataGridTextColumn Width="5*" IsReadOnly="True" Binding="{Binding employer.FirstName}"  CanUserSort="True" Header="Сотрудник"/>
+                <DataGridTextColumn Width="5*" IsReadOnly="True" Binding="{Binding FIO}"  CanUserSort="True" Header="Сотрудник"/>
             </DataGrid.Columns>
         </DataGrid>
         <DatePicker FontSize="14" BorderThickness="0"  Background="Transparent"  x:Name="DateBegin"  materialDesign:HintAssist.Hint="Дата начала" Width="150"  Height="55" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="37,0,0,0" SelectedDateFormat="Short"/>
@@ -43,7 +43,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Width="5*" IsReadOnly="True" Binding="{Binding Date_Begin}"  CanUserSort="True" Header="Начало"/>
                 <DataGridTextColumn Width="5*" IsReadOnly="True" Binding="{Binding Date_End}"  CanUserSort="True" Header="Конец "/>
-                <DataGridTextColumn Width="5*" IsReadOnly="True" Binding="{Binding employer.FirstName}"  CanUserSort="True" Header="Сотрудник"/>
+                <DataGridTextColumn Width="5*" IsReadOnly="True" Binding="{Binding FIO}"  CanUserSort="True" Header="Сотрудник"/>
             </DataGrid.Columns>
         </DataGrid>
         <DatePicker FontSize="14" BorderThickness="0"  Background="Transparent"  x:Name="DateEnd"  materialDesign:HintAssist.Hint="Дата окончания" HorizontalAlignment="Left" Width="150" Height="39" Grid.Row="3" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="37,70,0,0"/>

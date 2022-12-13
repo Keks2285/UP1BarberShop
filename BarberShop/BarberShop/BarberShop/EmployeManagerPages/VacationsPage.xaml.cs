@@ -56,6 +56,8 @@ namespace BarberShop.EmployeManagerPages
             List<SickLeave> dataSick = JsonConvert.DeserializeObject<List<SickLeave>>(resSick.Content);
             foreach (SickLeave sick in dataSick)
             {
+                sick.employer = _employers.FirstOrDefault(item => item.ID_Employee == sick.Employe_ID);
+                sick.FIO = sick.employer.FirstName + '.' + sick.employer.LastName[0] + '.' + sick.employer?.MiddleName?[0];
                 _sickleaves.Add(sick);
             }
             SickLeavesDg.ItemsSource = _sickleaves;
@@ -67,12 +69,14 @@ namespace BarberShop.EmployeManagerPages
             List<Vacation> dataVac = JsonConvert.DeserializeObject<List<Vacation>>(resVac.Content);
             foreach (Vacation Vac in dataVac)
             {
+                Vac.employer = _employers.FirstOrDefault(item=>item.ID_Employee==Vac.Employe_ID);
+                Vac.FIO = Vac.employer.FirstName + '.' + Vac.employer.LastName[0] + '.' + Vac.employer?.MiddleName?[0];
                 _vacations.Add(Vac);
             }
             VacationsDg.ItemsSource = _vacations;
 
         }
-
+        
         private void CreatVacation_Click(object sender, RoutedEventArgs e)
         {
             if (!validateData()) return;
@@ -89,7 +93,7 @@ namespace BarberShop.EmployeManagerPages
             {
                 Date_Begin = DateBegin.SelectedDate!.Value.ToString("dd-MM-yyyy"),
                 Date_End = DateEnd.SelectedDate!.Value.ToString("dd-MM-yyyy"),
-                ID_Vacation = reqdata!.id
+                ID_Vacation = reqdata.id
             }
             );
         }
@@ -130,7 +134,7 @@ namespace BarberShop.EmployeManagerPages
             TimeSpan a = (TimeSpan)( DateEnd.SelectedDate - DateBegin.SelectedDate);
             if (a.TotalDays < 1)
             {
-                MessageBox.Show("Дата окончания не может быть раньше или совпадать с датой окночания");
+                MessageBox.Show("Дата окончания не может быть раньше или совпадать с датой начала");
                 return false;
 
             }

@@ -95,7 +95,7 @@ namespace BarberShop.EmployeManagerPages
                 req.AddParameter("status_id", employe.SelectedStatus.Id);
                 req.AddParameter("id_employer", employe.ID_Employee);
                 var res = Helper.client.Post(req);
-                dynamic data = JsonConvert.DeserializeObject<dynamic>(res.Content);
+              //  dynamic data = JsonConvert.DeserializeObject<dynamic>(res.Content);
                 MessageBox.Show("Данные изменены");
 
             }

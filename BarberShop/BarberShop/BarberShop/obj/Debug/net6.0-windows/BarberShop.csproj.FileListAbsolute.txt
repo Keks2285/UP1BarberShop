@@ -126,3 +126,7 @@ C:\Users\Oleg\Documents\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\ob
 C:\Users\Oleg\Documents\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\BarberShop.pdb
 C:\Users\Oleg\Documents\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\BarberShop.genruntimeconfig.cache
 C:\Users\Oleg\Documents\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\ref\BarberShop.dll
+C:\Users\Oleg\Documents\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\Stocker\StockerWindow.g.cs
+C:\Users\Oleg\Documents\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\Stocker\StockerWindow.baml
+C:\Users\Oleg\Documents\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\Stocker\ProvidersPage.g.cs
+C:\Users\Oleg\Documents\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\Stocker\ProvidersPage.baml
