@@ -13,14 +13,16 @@ mb_http_input('UTF-8');
 mb_regex_encoding('UTF-8');
 header('Content-type: application/json; charset=utf-8');
 $params=explode('/', $_SERVER["PATH_INFO"]);
-//echo'<p> grdfgrtdyht</p>'; die();
 
+
+//echo "Hello world";
 
 switch ($_SERVER['REQUEST_METHOD']){
     case "POST":{
 
         switch ($params[1]){
             case "authorization": authorization($connect,$_POST); break;
+            case "authorizationClient": authorizationClient($connect,$_POST); break;
             case "createEmploye": creatEemployee($connect,$_POST); break;  
             case "importEmploye": importEmploye($connect); break;    
             case "recoverPassword": recoverPassword($connect, $_POST); break;  
@@ -29,6 +31,7 @@ switch ($_SERVER['REQUEST_METHOD']){
             case "removeVacation": removeVacation($connect,$_POST); break;  
             case "removeProvider":removeProvider($connect, $_POST);break;
             case "removeStock":removeStock($connect, $_POST);break;
+            case "removeSupply":removeSupply($connect, $_POST);break;
             case "createPost": createPost($connect,$_POST); break;  
             case "createStock": createStock($connect,$_POST); break; 
             case "createService": createService($connect,$_POST); break; 
@@ -44,6 +47,9 @@ switch ($_SERVER['REQUEST_METHOD']){
             case "createTaxReport": createTaxReport($connect,$_POST); break;
             case "updatePost": updatePost($connect,$_POST); break;
             case "updateEmploye": updateEmploye($connect,$_POST); break;
+            case "updateStock": updateStock($connect,$_POST); break;
+            case "updateSupply": updateSupply($connect,$_POST); break;
+            case "updateProvider": updateProvider($connect,$_POST); break;
             case "executeBackup": executeBackup($connect); break;
         }
     }
@@ -70,15 +76,6 @@ switch ($_SERVER['REQUEST_METHOD']){
         }
 
     }
-    // case "DELETE":{
-    //     switch ($params[1]){
-    //         case "removeEployerByEmail": removeEployerByEmail($connect,$_POST); break;
-            
-    //     }
-    // }
-    // break;
-
-
 
 }
 ?>

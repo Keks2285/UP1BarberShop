@@ -4,10 +4,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace BarberShop.Models
 {
-    internal class Provider : INotifyPropertyChanged
+    public class Provider : INotifyPropertyChanged
     {
         public int ID_Provider { get; set; }
 
@@ -23,6 +24,8 @@ namespace BarberShop.Models
                 OnPropertyChanged("Adres");
             } 
         }
+        public static List<string> allNames = new List<string>();
+
         private string _name_provider;
         public string Name_Provider { 
             get
@@ -31,6 +34,12 @@ namespace BarberShop.Models
             }
             set
             {
+                if (allNames.Contains(value))
+                {
+                    MessageBox.Show("Поставщик с тааким именем уже есть");
+                    return;
+                }
+                allNames.Add(value);
                 _name_provider = value;
                 OnPropertyChanged("Name_Provider");
             }
@@ -38,7 +47,7 @@ namespace BarberShop.Models
 
         private string _inn;
 
-        public static List<string> AllInn = new List<string>();
+        public static List<string> AllINN = new List<string>();
         public string INN { 
             get
             {
@@ -46,8 +55,28 @@ namespace BarberShop.Models
             }
             set
             {
+                if (value == null || value == "")
+                {
+                    MessageBox.Show("ИНН не должен быть пустым");
+                    return;
+                }
+                if (value.Length != 10)
+                {
+                    MessageBox.Show("ИНН должен содержать 10 цифр");
+                    return;
+                }
+                if (AllINN.Contains(value))
+                {
+                    MessageBox.Show("ИНН должен быть уникальным");
+                    return;
+                }
+                if (!Helper.INNcheck(value))
+                {
+                    MessageBox.Show("ИНН должен содержать только цифры");
+                    return;
+                }
                 _inn = value;
-                AllInn.Add(value);
+                AllINN.Add(value);
                 OnPropertyChanged("INN");
             }
         }

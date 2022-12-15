@@ -37,10 +37,51 @@ namespace BarberShop.Stocker
         public ProvidersPage()
         {
             InitializeComponent();
+            _stocks.ListChanged += _stocks_ListChanged;
+            _providers.ListChanged += _providers_ListChanged;
+        }
+
+        private void _providers_ListChanged(object? sender, ListChangedEventArgs e)
+        {
+            
+            if (e.ListChangedType == ListChangedType.ItemChanged)
+            {
+                    var req = new RestRequest("/updateProvider", Method.Post);
+                    req.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                    req.AddParameter("id", _selectedProvider.ID_Provider);
+                    req.AddParameter("address", _selectedProvider.Adres);
+                    req.AddParameter("name", _selectedProvider.Name_Provider);
+                    req.AddParameter("inn", _selectedProvider.INN);
+                    var res = Helper.client.Post(req);
+                
+            }
+        }
+
+        private void _stocks_ListChanged(object? sender, ListChangedEventArgs e)
+        {
+            var searchStockByAdress = _stocks.FirstOrDefault(item => item.Adres == AdresStockTb.Text);
+            if (searchStockByAdress != null)
+            {
+                MessageBox.Show("Склад уже существует");
+                 return;
+            }
+
+            if (e.ListChangedType == ListChangedType.ItemChanged)
+            {
+                var req = new RestRequest("/updateStock", Method.Post);
+                req.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                req.AddParameter("id", _selectedStock.ID_Stock);
+                req.AddParameter("address", _selectedStock.Adres);
+                var res = Helper.client.Post(req);
+            }
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            _stocks.Clear();
+            _providers.Clear();
+            Provider.AllINN.Clear();
+            Provider.allNames.Clear();
             var reqStock = new RestRequest("/getStocks", Method.Get);
             reqStock.AddHeader("Content-Type", "application/x-www-form-urlencoded");
             var resStock = Helper.client.Get(reqStock);
@@ -70,15 +111,29 @@ namespace BarberShop.Stocker
         private void ProviderCreateBtn_Click(object sender, RoutedEventArgs e)
         {
 
-            if (InnTb.Text.Contains("_")){
-                MessageBox.Show("некорректный ИНН");
+            if (AdresProviderTb.Text.Length < 4)
+            {
+                MessageBox.Show("Адрес слишком короткий");
                 return;
             }
-            if (Provider.AllInn.Contains(InnTb.Text)){
+            if (NameTb.Text.Length < 2)
+            {
+                MessageBox.Show("Название слишком короткое");
+                return;
+            }
+            if (InnTb.Text.Contains("_")){
+                MessageBox.Show("Некорректный ИНН");
+                return;
+            }
+            if (Provider.AllINN.Contains(InnTb.Text)){
                 MessageBox.Show("ИНН уже используется");
                 return;
             }
-
+            if (Provider.allNames.Contains(NameTb.Text))
+            {
+                MessageBox.Show("Такой поставщик уже есть");
+                return;
+            }
 
             var stockParam = new Dictionary<string, string>()
             {
@@ -110,6 +165,12 @@ namespace BarberShop.Stocker
 
         private void CreatStockBtn_Click(object sender, RoutedEventArgs e)
         {
+
+            if (AdresStockTb.Text.Length < 4)
+            {
+                MessageBox.Show("Адрес склада слишком короткий");
+                return;
+            }
 
             var stockParam = new Dictionary<string, string>()
             {
@@ -185,5 +246,6 @@ namespace BarberShop.Stocker
         {
             _selectedStock = (Stock)StockDg.SelectedItem;
         }
+
     }
 }

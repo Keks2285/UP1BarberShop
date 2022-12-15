@@ -26,8 +26,9 @@
             <TextBlock Name="FLTb" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30"> ИВ</TextBlock>
         </Border>
         <StackPanel  Grid.RowSpan="3" Margin="0,103,1,0">
-            <Button x:Name="SupplyBtn" Background="#FF673AB7" Margin="5,10" Cursor="Hand" Click="SupplyBtn_Click">Поставщики</Button>
-            <Button x:Name="MaterialBtn" Background="#FF673AB7" Margin="5,10" >Материалы</Button>
+            <Button x:Name="ProvidersBtn" Background="#FF673AB7" Margin="5,10" Cursor="Hand" Click="ProvidersBtn_Click">Поставщики</Button>
+            <Button x:Name="SuppliesBtn" Background="#FF673AB7" Margin="5,10" Click="SuppliesBtn_Click"  >Поставки</Button>
+            <Button x:Name="MaterialsBtn" Background="#FF673AB7"   Content="Материалы" Height="31" Width="145" Click="MaterialsBtn_Click"  />
         </StackPanel>
         <Button x:Name="ExitBtn" Margin="5,132,5,0" VerticalAlignment="Top" Background="#FFC52B2B" Grid.Row="2" Height="32">Выход</Button>
         <Frame x:Name="MainFrame"  Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="3" Background="Aqua"  NavigationUIVisibility="Hidden">

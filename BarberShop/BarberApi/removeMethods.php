@@ -122,7 +122,7 @@ function removeEployerByEmail($connect, $data){
 function removeProvider($connect, $data){
     //  echo $data["email"]; die();
       try{
-       // var_dump($data);
+        var_dump($data);
           $deleteUser =$connect->prepare("Delete from Provider where ID_Provider=?");
           $deleteUser ->execute(array($data["id_provider"]));
   
@@ -190,19 +190,40 @@ function removeProvider($connect, $data){
   }
 
 
+  function removeSupply($connect, $data){
+    //  echo $data["email"]; die();
+      try{
+        //var_dump($data);
+          $deleteUser =$connect->prepare("Delete from Supply where ID_Supply =?");
+          $deleteUser ->execute(array($data["id_supply"]));
+          $selectUsers=$connect->prepare("Select * from Supply where ID_Supply =?");
+          $selectUsers->execute(array(strval($data["id_supply"])));
+          if(count($selectUsers->fetchAll())>0){
+              $responce=[
+                  "status"=>false,
+                  "message"=>"Supply not deleted"
+              ];
+              echo json_encode($responce);
+              die();
+          }else{
+              $responce=[
+                  "status"=>true,
+                  "message"=>"Supply deleted"
+              ];
+              echo json_encode($responce);
+              die();
+          }
+      } catch (Exception $e){
+          $responce=[
+              "status"=>false,
+              "message"=>"Supply not deleted"
+          ];
+          echo json_encode($responce);
+      }
+  
+     
+  }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-?>

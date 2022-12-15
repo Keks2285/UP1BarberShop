@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BarberShop.Models
 {
-    internal class Vacation
+    public class Vacation
     {
         public int ID_Vacation { get; set; }
 

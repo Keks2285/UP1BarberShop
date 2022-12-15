@@ -24,12 +24,12 @@ namespace BarberShop
             TheSame = 0
         };
         public static string backupsDir= Directory.GetCurrentDirectory() + @"\backups\";
-        public static RestClient client = new RestClient("http://192.168.193.74:8080/BarberApi/");
+        public static RestClient client = new RestClient("http://192.168.1.49:8080/BarberApi/");
         public static bool CheckFIO(string fio)
         {
             foreach (char a in fio)
             {
-                if (!Regex.IsMatch(a.ToString(), @"[а-яА-Я]"))
+                if (!Regex.IsMatch(a.ToString(), @"[а-яА-Я]") && (int)a != 65279) 
                 {
                     return false;
                 }
@@ -63,5 +63,12 @@ namespace BarberShop
             }
             return true;
         }
+        public static bool CheckDate(string date)
+        {
+            DateTime dt;
+            return DateTime.TryParse(date, out dt);
+        }
+
+
     }
 }

@@ -160,7 +160,7 @@ namespace BarberShop.EmployeManagerPages
         {
             if (e.Key == Key.Delete)
             {
-                if (selectedPost.Id <= 3)
+                if (selectedPost.Id <= 4)
                 {
                     MessageBox.Show("Нельзя удалить системную должность");
                     _posts.Add(selectedPost);

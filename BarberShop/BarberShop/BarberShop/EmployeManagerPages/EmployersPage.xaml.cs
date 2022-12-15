@@ -142,7 +142,6 @@ namespace BarberShop.EmployeManagerPages
                 employer.SelectedStatus = EmployeModel.Status[user.ID_Status - 1];
                 employer.SelectedPost = EmployeModel.Posts[user.ID_Post - 1];
                 _employers.Add(employer);
-
             }
 
             ///////////////////// статистика доходов за текущий год

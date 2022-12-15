@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BarberShop.Models
 {
-    internal class SickLeave
+    public class SickLeave
     {
         public int ID_SickLeave { get; set; }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BarberShop.Models
 {
-    internal class Record
+    public class Record
     {
         public int ID_Record { get; set; }
         public DateTime Date_Record { get; set; }

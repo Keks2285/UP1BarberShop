@@ -7,7 +7,7 @@ using CsvHelper.Configuration.Attributes;
 
 namespace BarberShop.Models
 {
-     class StatusEmploye
+    public class StatusEmploye
     {
         [Ignore]
         public int Id { get; set; }

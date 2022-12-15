@@ -7,6 +7,12 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Buhgalter\BuhWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Buhgalter\TaxReports.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="DbAdmin\AdminWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -22,15 +28,30 @@
     <Compile Update="Recover.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Stocker\MaterialsPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Stocker\SuppliesPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Stocker\StockerWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Stocker\ProvidersPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Stocker\SupplyDocumentViewer.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Authorization.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Buhgalter\BuhWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Buhgalter\TaxReports.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="DbAdmin\AdminWindow.xaml">
@@ -54,10 +75,19 @@
     <Page Update="Recover.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Stocker\MaterialsPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Stocker\SuppliesPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Stocker\StockerWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Stocker\ProvidersPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Stocker\SupplyDocumentViewer.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

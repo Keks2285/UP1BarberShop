@@ -34,8 +34,8 @@ namespace BarberShop.Stocker
 
         private void loadFirstPage()
         {
-            SupplyBtn.Background = Brushes.Gray;
-            MaterialBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
+            ProvidersBtn.Background = Brushes.Gray;
+            SuppliesBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
             //VacationBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
             MainFrame.Content = new ProvidersPage();
         }
@@ -46,9 +46,22 @@ namespace BarberShop.Stocker
             Environment.Exit(0);
         }
 
-        private void SupplyBtn_Click(object sender, RoutedEventArgs e)
+        private void ProvidersBtn_Click(object sender, RoutedEventArgs e)
         {
             loadFirstPage();
+        }
+
+        private void SuppliesBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ProvidersBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
+            SuppliesBtn.Background = Brushes.Gray;
+            //VacationBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
+            MainFrame.Content = new SuppliesPage();
+        }
+
+        private void MaterialsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new MaterialsPage();
         }
     }
 }

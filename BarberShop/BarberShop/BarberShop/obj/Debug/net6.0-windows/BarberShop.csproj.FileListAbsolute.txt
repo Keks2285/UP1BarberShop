@@ -130,3 +130,17 @@ C:\Users\Oleg\Documents\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\ob
 C:\Users\Oleg\Documents\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\Stocker\StockerWindow.baml
 C:\Users\Oleg\Documents\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\Stocker\ProvidersPage.g.cs
 C:\Users\Oleg\Documents\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\Stocker\ProvidersPage.baml
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\Stocker\ProvidersPage.g.cs
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\Stocker\StockerWindow.g.cs
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\Stocker\ProvidersPage.baml
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\Stocker\StockerWindow.baml
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\Stocker\SuppliesPage.g.cs
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\Stocker\SuppliesPage.baml
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\Stocker\SupplyDocumentViewer.g.cs
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\Stocker\SupplyDocumentViewer.baml
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\Stocker\MaterialsPage.g.cs
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\Stocker\MaterialsPage.baml
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\Buhgalter\BuhWindow.g.cs
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\Buhgalter\TaxReports.g.cs
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\Buhgalter\BuhWindow.baml
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\Buhgalter\TaxReports.baml

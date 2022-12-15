@@ -347,12 +347,12 @@ function createIncome($connect, $data){
 
 
 function createSupply($connect, $data){
-    
+    //var_dump($data);
     try{
         $create=$connect->prepare(
         "insert into Supply (Date_Supply, Value, Provider_ID  ) VALUES 
         (?,?,?)"
-        );
+        );  
         
         //if(empty($data["middlename"])) $data["middlename"]="-";
         $create->execute(array(

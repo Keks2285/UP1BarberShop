@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BarberShop.Models
 {
-    internal class Income
+    public class Income
     {
         public int ID_Income { get; set; }
 

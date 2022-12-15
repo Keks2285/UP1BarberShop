@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BarberShop.Models
 {
-    internal class Consumption
+    public class Consumption
     {
         public int ID_Consumption { get; set; }
 

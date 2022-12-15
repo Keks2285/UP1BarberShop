@@ -9,7 +9,7 @@ using CsvHelper.Configuration.Attributes;
 
 namespace BarberShop.Models
 {
-     class PostEmploye : INotifyPropertyChanged
+    public class PostEmploye : INotifyPropertyChanged
     {
         
         public int Id { get; set; }
@@ -24,7 +24,7 @@ namespace BarberShop.Models
                     MessageBox.Show("Название должности должно состоять только из кириллицу");
                     return;
                 }
-                if (Id <= 3 && (value != "Менеджер отдела кадров" && value != "Бухгалтер" && value != "Начальник склада"))
+                if (Id <= 4 && (value != "Менеджер отдела кадров" && value != "Бухгалтер" && value != "Начальник склада" && value != "Администратор БД"))
                 {
                     MessageBox.Show("Нельзя поменять название системной должности, только оклад");
                     return;

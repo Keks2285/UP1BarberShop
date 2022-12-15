@@ -7,7 +7,7 @@ using CsvHelper.Configuration.Attributes;
 
 namespace BarberShop.Models
 {
-    internal class Service
+    public class Service
     {
         
         public int ID_Service { get; set;}

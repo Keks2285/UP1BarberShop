@@ -12,7 +12,7 @@ using System.Windows;
 
 namespace BarberShop.Models 
 {
-    class EmployeModel : INotifyPropertyChanged
+    public class EmployeModel : INotifyPropertyChanged
     {
         
         public int ID_Employee { get; set; }
@@ -137,7 +137,12 @@ namespace BarberShop.Models
                     MessageBox.Show("ИНН не должен быть пустым");
                     return;
                 }
-                if(AllINN.Contains(value))
+                if (value.Length!=10 )
+                {
+                    MessageBox.Show("ИНН должен содержать 10 цифр");
+                    return;
+                }
+                if (AllINN.Contains(value))
                 {
                     MessageBox.Show("ИНН должен быть уникальным");
                     return;
@@ -172,16 +177,11 @@ namespace BarberShop.Models
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        /// <summary>
-        /// добавить в сетеры пбликов задание приватов
-        /// как валидировать
-        ///     аннтотации
-        ///     ручками
-        /// </summary>
 
 
         public static ObservableCollection<StatusEmploye> Status { get; set; } = new ObservableCollection<StatusEmploye>
-        {   new StatusEmploye{Id=1, Name="Работает"},
+        {  
+            new StatusEmploye{Id=1, Name="Работает"},
             new StatusEmploye{Id=2, Name="Уволен"},
             new StatusEmploye{Id=3, Name="В отпуске"},
             new StatusEmploye{Id=4, Name="На больничном"}

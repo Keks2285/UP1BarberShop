@@ -91,6 +91,8 @@ namespace BarberShop.EmployeManagerPages
             dynamic reqdata = JsonConvert.DeserializeObject<dynamic>(resVac.Content);
             _vacations.Add(new Vacation
             {
+                Employe_ID = (EmployersDg.SelectedItem as EmployeModel).ID_Employee,
+                employer = (EmployersDg.SelectedItem as EmployeModel),  
                 Date_Begin = DateBegin.SelectedDate!.Value.ToString("dd-MM-yyyy"),
                 Date_End = DateEnd.SelectedDate!.Value.ToString("dd-MM-yyyy"),
                 ID_Vacation = reqdata.id

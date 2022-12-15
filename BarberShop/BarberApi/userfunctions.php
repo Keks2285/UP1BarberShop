@@ -1,7 +1,6 @@
 <?php
 header('Content-type: application/json; charset=utf-8');
 mb_internal_encoding("UTF-8");
-mb_internal_encoding('UTF-8');
 mb_http_output('UTF-8');
 mb_http_input('UTF-8');
 mb_regex_encoding('UTF-8');
@@ -11,12 +10,6 @@ mb_regex_encoding('UTF-8');
         $Emloyers->execute(array(strval($data["email"]), md5(strval($data["password"]) )));
         $listUser=$Emloyers->fetchAll();
 
-        //тут для клиета тоже надо будет сделать
-        //$searchUser=$connect->prepare("select * from `Employee` join Studio where Studio_ID=ID_Studio and ID_Anime=?");
-        //$searchUser->execute(array($data));
-        //$listUser=$searchUser->fetchAll();
-           // echo print_r($listUser); die();
-           //md5 decode sdd
         if(count($listUser)==0){
             $responce=[
                 "status"=>false,
@@ -32,14 +25,38 @@ mb_regex_encoding('UTF-8');
                 "message"=>"Authorizated!",
                 "firstname"=>$listUser[0]["FirstName"],
                 "lastname"=>$listUser[0]["LastName"],
-                "post_id"=>$listUser[0]["Post_ID"]
+                "post_id"=>$listUser[0]["Post_ID"],
+                "employer_id"=>$listUser[0]["ID_Employee"]
             ];
             http_response_code(200);
         }
         echo json_encode($responce);
     }
 
+    function authorizationClient($connect, $data){
+            
+        $Emloyers=$connect->prepare("select * from Client");
+        $Emloyers->execute(array(strval($data["email"]), md5(strval($data["password"]) )));
+        $listUser=$Emloyers->fetchAll();
 
+        if(count($listUser)==0){
+            $responce=[
+                "status"=>false,
+                "message"=>"user not found!"
+            ];
+            http_response_code(404);
+        }
+        else{
+
+          //  print_r($listUser); die();
+            $responce=[
+                "status"=>true,
+                "message"=>"Authorizated!"
+            ];
+            http_response_code(200);
+        }
+        echo json_encode($responce);
+    }
    
 
    

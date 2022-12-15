@@ -33,6 +33,7 @@ namespace BarberShop
         string FirstName = "";
         string LastName = "";
         string Role = "";
+        int Id = 0;
         
         //Dictionary<string, string> user = new Dictionary<string, string>();
         public Authorization()
@@ -75,6 +76,13 @@ namespace BarberShop
                         this.Hide();
                         break;
                     }
+                case "2":
+                    {
+                        Window W = new Buhgalter.BuhWindow(FirstName, LastName, Id);
+                        W.Show();
+                        this.Hide();
+                        break;
+                    }
             }
 
 
@@ -107,12 +115,21 @@ namespace BarberShop
 
                 if (!data.status.Value)
                 {
-                    MessageBox.Show("Такого пользователя нет, зарегетрируйтесь");
+                    var reqClient = new RestRequest("/authorizationClient", Method.Post);
+                    reqClient.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                    reqClient.AddParameter("email", _email);
+                    reqClient.AddParameter("password", _password);
+                    var resClient = Helper.client.Post(reqClient);
+                    dynamic dataClient = JsonConvert.DeserializeObject<dynamic>(resClient.Content);
+
+                    if (!data.status.Value)
+                        MessageBox.Show("Такого пользователя нет, зарегетрируйтесь");
                     result = false; return;
                 }
                 FirstName = Convert.ToString(data.firstname);
                 LastName = Convert.ToString(data.lastname);
                 Role = Convert.ToString(data.post_id);
+                Id = Convert.ToInt32(data.employer_id);
                 //MessageBox.Show(FirstName + LastName);
                 result = true;
 
