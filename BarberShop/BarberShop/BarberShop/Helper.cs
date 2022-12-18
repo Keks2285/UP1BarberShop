@@ -17,14 +17,19 @@ namespace BarberShop
 
 
 
-        public  enum DateComparisonResult
-        {
-            Earlier = -1,
-            Later = 1,
-            TheSame = 0
-        };
+       /// <summary>
+       /// путь к папке с дампами
+       /// </summary>
         public static string backupsDir= Directory.GetCurrentDirectory() + @"\backups\";
+        /// <summary>
+        /// объект с подключением к апи
+        /// </summary>
         public static RestClient client = new RestClient("http://192.168.1.49:8080/BarberApi/");
+        /// <summary>
+        /// метод валидации ФИО
+        /// </summary>
+        /// <param name="fio"> строка для валидации</param>
+        /// <returns></returns>
         public static bool CheckFIO(string fio)
         {
             foreach (char a in fio)
@@ -36,9 +41,14 @@ namespace BarberShop
             }
             return true;
         }
-        public static bool INNcheck(string fio)
+        /// <summary>
+        /// Метод валидации ИНН
+        /// </summary>
+        /// <param name="inn"> валидируемая строка</param>
+        /// <returns> возвращает результат валидации</returns>
+        public static bool INNcheck(string inn)
         {
-            foreach (char a in fio)
+            foreach (char a in inn)
             {
                 if (!Regex.IsMatch(a.ToString(), @"[0-9]"))
                 {
@@ -47,11 +57,21 @@ namespace BarberShop
             }
             return true;
         }
+        /// <summary>
+        /// Метод валидации почты
+        /// </summary>
+        /// <param name="email">валидируемая строка</param>
+        /// <returns>возвращает результат валидации</returns>
         public static bool CheckEmail(string email)
         {
             string pattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
             return Regex.IsMatch(email, pattern);
         }
+        /// <summary>
+        /// Метод валидации названия должности
+        /// </summary>
+        /// <param name="postName">валидируемая строка</param>
+        /// <returns>возвращает результат валидации</returns>
         public static bool CheckPostName(string postName)
         {
             foreach (char a in postName)
@@ -63,12 +83,21 @@ namespace BarberShop
             }
             return true;
         }
+        /// <summary>
+        /// Метод валидации нна соответствие дате
+        /// </summary>
+        /// <param name="date">валидируемая строка</param>
+        /// <returns>возвращает результат валидации</returns>
         public static bool CheckDate(string date)
         {
             DateTime dt;
             return DateTime.TryParse(date, out dt);
         }
-
+        /// <summary>
+        /// Метод валидации пароля
+        /// </summary>
+        /// <param name="pass">валидируемая строка</param>
+        /// <returns>возвращает результат валидации</returns>
         public static bool CheckPass(string pass)
         {
             bool check = false;

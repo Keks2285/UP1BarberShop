@@ -36,13 +36,19 @@ namespace BarberShop.ClientPages
             FLTb.Text = firstName.Substring(0,1) + lastName.Substring(0, 1);
             
         }
-
+        /// <summary>
+        /// Метод запусающий первую страницу
+        /// </summary>
         private void loadFirstPage()
         {
             MainFrame.Content = new RecordServicePage(idClient);
         }
 
-
+        /// <summary>
+        /// событеие нажатия кнопки открывающей страницу с услугами
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void EmployeBtn_Click(object sender, RoutedEventArgs e)
         {
             loadFirstPage();
@@ -56,8 +62,12 @@ namespace BarberShop.ClientPages
         {
         }
 
-       
 
+        /// <summary>
+        /// событеие закрытия окна
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Environment.Exit(0);

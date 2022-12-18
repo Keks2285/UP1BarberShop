@@ -27,7 +27,11 @@ namespace BarberShop.EmployeManagerPages
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// Событие нажатие кнопки, создающей сотрудника
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CreateEmployer_Click(object sender, RoutedEventArgs e)
         {
             if (!validateEmplouer()) return;
@@ -52,7 +56,11 @@ namespace BarberShop.EmployeManagerPages
             }
         }
 
-
+        /// <summary>
+        /// сктод валидации данных сотрудника
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private bool validateEmplouer()
         {
 

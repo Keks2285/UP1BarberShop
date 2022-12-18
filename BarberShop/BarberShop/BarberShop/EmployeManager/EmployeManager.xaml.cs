@@ -28,13 +28,19 @@ namespace BarberShop.EmployeMAnager
             InitializeComponent();
             loadFirstPage();
         }
-
+        /// <summary>
+        /// событеие загрузки окна
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             FLTb.Text = firstName.Substring(0,1) + lastName.Substring(0, 1);
             
         }
-
+        /// <summary>
+        /// Метод загрузки первой страницы
+        /// </summary>
         private void loadFirstPage()
         {
             EmployeBtn.Background = Brushes.Gray;
@@ -44,12 +50,20 @@ namespace BarberShop.EmployeMAnager
             MainFrame.Content = new EmployeManagerPages.EmployersPage();
         }
 
-
+        /// <summary>
+        /// событеие нажатия кнопки открывающей страницу с сотрудниками
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void EmployeBtn_Click(object sender, RoutedEventArgs e)
         {
             loadFirstPage();
         }
-
+        /// <summary>
+        /// событеие нажатия кнопки открывающей страницу с должностями
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void PostBtn_Click(object sender, RoutedEventArgs e)
         {
             EmployeBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
@@ -58,7 +72,11 @@ namespace BarberShop.EmployeMAnager
             //VacationBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
             MainFrame.Content = new EmployeManagerPages.PostList();
         }
-
+        /// <summary>
+        /// событеие нажатия кнопки открывающей страницу с больничными и отпусками
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void SickLeaveBtn_Click(object sender, RoutedEventArgs e)
         {
             EmployeBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
@@ -69,8 +87,12 @@ namespace BarberShop.EmployeMAnager
             // VacationBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
         }
 
-       
 
+        ////// <summary>
+        /// событеие закрытия окна
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Environment.Exit(0);

@@ -42,14 +42,22 @@ namespace BarberShop
         }
 
 
-
-        private  void RecoverBtn_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Обработка кнопки перехода на окно восстановления пароля
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
+        private void RecoverBtn_Click(object sender, RoutedEventArgs e)
         {
             Window w = new Recover();
             this.Hide();
             w.Show();
         }
-
+        /// <summary>
+        /// Обработка кнопки перехода на окно регистрации
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void RegistrationBtn_Click(object sender, RoutedEventArgs e)
         {
             Window w = new RegistrationWindow();
@@ -59,7 +67,11 @@ namespace BarberShop
 
 
 
-
+        /// <summary>
+        /// Обработка кнопки авторизации
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private async void AuthorizationBtn_Click(object sender, RoutedEventArgs e)
         {
             string email = EmailTb.Text;
@@ -115,7 +127,11 @@ namespace BarberShop
             // MessageBox.Show(responseBody);
 
         }
-
+        /// <summary>
+        /// Метод отправляющий запрос к АПИ
+        /// </summary>
+        /// <param name="_email"></param>
+        /// <param name="_password"></param>
         public void auth(string _email, string _password)
         {
             if (_email.Length == 0 || _password.Length == 0)
@@ -162,7 +178,11 @@ namespace BarberShop
                 //  MessageBox.Show(e.Message);
             }
         }
-
+        /// <summary>
+        /// событеие изменение размеров окна
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             EmailTb.FontSize = AuthWindow.Height / 52;

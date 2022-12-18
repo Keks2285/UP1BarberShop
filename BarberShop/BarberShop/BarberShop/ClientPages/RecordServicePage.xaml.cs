@@ -34,7 +34,11 @@ namespace BarberShop.ClientPages
             clientId = idClient;
             InitializeComponent();
         }
-
+        /// <summary>
+        /// событеие нажатия кнопки созданимя записи на услугу
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void RecordBtn_Click(object sender, RoutedEventArgs e)
         {
 
@@ -70,7 +74,11 @@ namespace BarberShop.ClientPages
             var res = Helper.client.Post(req);
             SendMessge("ilion23082003@gmail.com");
         }
-
+        /// <summary>
+        /// событеие загрузки страницы
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             var reqServices = new RestRequest("/getServices", Method.Get);
@@ -87,7 +95,10 @@ namespace BarberShop.ClientPages
             
         }
 
-
+        /// <summary>
+        /// метод отпраки письмаа на почту
+        /// </summary>
+        /// <param name="Email">почта на которую приходит письмо</param>
         private async void SendMessge(String Email)
         {
             // await Task.Run(() =>

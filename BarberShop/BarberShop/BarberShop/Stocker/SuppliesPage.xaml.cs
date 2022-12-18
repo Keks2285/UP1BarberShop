@@ -25,14 +25,18 @@ namespace BarberShop.Stocker
     /// </summary>
     public partial class SuppliesPage : Page
     {
-        private static readonly Regex onlyNumbers = new Regex("[^0-9.-]+"); //regex that matches disallowed text
+         //regex that matches disallowed text
         private BindingList<Supply> _supplies = new BindingList<Supply>();
         public SuppliesPage()
         {
             InitializeComponent();
             _supplies.ListChanged += _supplies_ListChanged;
         }
-
+        /// <summary>
+        /// событеие изменения списка поставок
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void _supplies_ListChanged(object? sender, ListChangedEventArgs e)
         {
             if (e.ListChangedType == ListChangedType.ItemChanged)
@@ -49,7 +53,11 @@ namespace BarberShop.Stocker
                 MessageBox.Show("Данные изменены");
             }
         }
-
+        /// <summary>
+        /// событеие загрузки страницы
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
@@ -79,22 +87,38 @@ namespace BarberShop.Stocker
             }
             SuppliesDg.ItemsSource= _supplies;
         }
-
+        /// <summary>
+        /// событеие нажатие кнопки переходак просмотру документа
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void DocumentViewBtn_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new SupplyDocumentViewer(SuppliesDg.SelectedItem as Supply));
         }
-
+        /// <summary>
+        /// событеие возникающее перед нажаием клавиши
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !IsTextAllowed(e.Text);
         }
-
+        /// <summary>
+        /// валидация строки
+        /// </summary>
+        /// <param name="text">ссылка на элемент управления/объект, вызвавший событие</param>
         private static bool IsTextAllowed(string text)
         {
+            Regex onlyNumbers = new Regex("[^0-9.-]+");
             return !onlyNumbers.IsMatch(text);
         }
-
+        /// <summary>
+        /// событеие обработки кнопки добавления поставки
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void SupplyAdd_Click(object sender, RoutedEventArgs e)
         {
             if (DateSupply.Text == "")
@@ -128,7 +152,11 @@ namespace BarberShop.Stocker
                 Provider_ID = (ProvidersDg.SelectedItem as Provider).ID_Provider
             });
         }
-
+        /// <summary>
+        /// событеие возникающее перед нажаием клавиши
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void SuppliesDg_PreviewKeyDown(object sender, KeyEventArgs e)
         {
 

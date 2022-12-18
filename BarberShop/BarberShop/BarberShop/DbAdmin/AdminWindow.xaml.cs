@@ -49,7 +49,11 @@ namespace BarberShop.DbAdmin
             //MessageBox.Show(BackupsList.SelectedValue.ToString());
             //BackupsList.Items.Remove(BackupsList.SelectedItem);
         }
-
+        /// <summary>
+        /// событеие нажатия кнопки создания дампа
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private async void CreatePoint_Click(object sender, RoutedEventArgs e)
         {
              generatedName = DateTime.Now.ToString().Replace(":", ".");
@@ -157,7 +161,8 @@ namespace BarberShop.DbAdmin
                 try
                 {
                     Directory.CreateDirectory(Helper.backupsDir + generatedName);
-                    int counter = 0;                    foreach (var datafile in data)
+                    int counter = 0;                   
+                    foreach (var datafile in data)
                     {
                         using (var writer = new StreamWriter(Helper.backupsDir + generatedName + "\\"+ filesNames[counter], false, Encoding.GetEncoding("utf-8")))
                         {
@@ -443,13 +448,21 @@ namespace BarberShop.DbAdmin
 
               
         }
-
+        /// <summary>
+        /// событеие нажатия кнопки удаления дампа
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void DeletePoint_Click(object sender, RoutedEventArgs e)
         {
             
             
         }
-
+        /// <summary>
+        /// событие возникащее во время нажатия клавиши
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private async void Grid_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Delete)
@@ -481,7 +494,7 @@ namespace BarberShop.DbAdmin
                     }
                     catch
                     {
-                        MessageBox.Show("Не  удалось удалить бэкап возможно файл уже открыт другим приложенем");
+                        MessageBox.Show("Не  удалось удалить бэкап возможно файл уже открыт другим приложением");
                     }
 
                 
@@ -492,6 +505,11 @@ namespace BarberShop.DbAdmin
             }
         }
 
+        /// <summary>
+        /// событие нажатия кнопки загрузки дампа в бд
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void ImportPoint_Click(object sender, RoutedEventArgs e)
         {
             if (BackupsList.SelectedItem == null)

@@ -5,7 +5,6 @@ mb_http_output('UTF-8');
 mb_http_input('UTF-8');
 mb_regex_encoding('UTF-8');
     function authorization($connect, $data){
-            
         $Emloyers=$connect->prepare("select * from Employe join Post where Post_ID=ID_Post and Email=? and Password=?");
         $Emloyers->execute(array(strval($data["email"]), md5(strval($data["password"]) )));
         $listUser=$Emloyers->fetchAll();

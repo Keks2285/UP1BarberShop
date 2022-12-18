@@ -25,7 +25,7 @@ namespace BarberShop.EmployeManagerPages
     /// </summary>
     public partial class PostList : Page
     {
-        private static readonly Regex onlyNumbers = new Regex("[^0-9.-]+"); //regex that matches disallowed text
+         //regex that matches disallowed text
         bool sortAscPrice= false;
         private BindingList<PostEmploye> _posts = new BindingList<PostEmploye>();
         private BindingList<PostEmploye> _searched_posts = new BindingList<PostEmploye>();
@@ -38,7 +38,11 @@ namespace BarberShop.EmployeManagerPages
 
 
         }
-
+        /// <summary>
+        /// событеие изменения списка должностей
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void _posts_CollectionChanged(object sender, ListChangedEventArgs e)
         {
             try
@@ -64,8 +68,12 @@ namespace BarberShop.EmployeManagerPages
 
             }
         }
-
-            private void Page_Loaded(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// событеие загрузки страницы
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             var req = new RestRequest("/getPosts", Method.Get);
             req.AddHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -79,22 +87,39 @@ namespace BarberShop.EmployeManagerPages
 
             PostDg.ItemsSource = _posts;
         }
-
+        /// <summary>
+        /// событеие выбора должности
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void PostDg_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectedPost = (PostEmploye)PostDg.SelectedItem;
         }
-
+        /// <summary>
+        /// событеие возникающее перед вводом символа
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !IsTextAllowed(e.Text);
         }
-
+        /// <summary>
+        /// метод валидации
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         private static bool IsTextAllowed(string text)
         {
+            Regex onlyNumbers = new Regex("[^0-9.-]+");
             return !onlyNumbers.IsMatch(text);
         }
-
+        /// <summary>
+        /// Событие сортировки
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PostDg_Sorting(object sender, DataGridSortingEventArgs e)
         {
             
@@ -132,7 +157,11 @@ namespace BarberShop.EmployeManagerPages
            // MessageBox.Show( );
         
         }
-
+        /// <summary>
+        /// Событие поиска
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SearchBtn_Click(object sender, RoutedEventArgs e)
         {
             //_searched_posts= (BindingList<PostEmploye>)_posts.Where(item => item.Name.Contains(NameTb.Text));
@@ -144,7 +173,11 @@ namespace BarberShop.EmployeManagerPages
             PostDg.ItemsSource = null;
             PostDg.ItemsSource = _searched_posts;
         }
-
+        /// <summary>
+        /// Событие нажатие кнопки, создающей должность
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Creatpost_Click(object sender, RoutedEventArgs e)
         {
             var req = new RestRequest("/createPost", Method.Post);
@@ -155,7 +188,11 @@ namespace BarberShop.EmployeManagerPages
             dynamic data = JsonConvert.DeserializeObject<dynamic>(res.Content);
             MessageBox.Show("Должность создана");
         }
-
+        /// <summary>
+        /// событие возникащее до нажатияна клаывишу
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void PostDg_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Delete)

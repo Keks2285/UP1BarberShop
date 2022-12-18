@@ -23,7 +23,7 @@ namespace BarberShop
     /// Логика взаимодействия для Recover.xaml
     /// </summary>
     public partial class Recover : Window { 
-        Regex r = new Regex(@"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,20}$");
+        
       
         string code = "";
         public Recover()
@@ -91,6 +91,7 @@ namespace BarberShop
 
         private void Recovertn_Click(object sender, RoutedEventArgs e)
         {
+            Regex r = new Regex(@"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,20}$");
             ///не забудь добавить проверку пароля
             Match match = r.Match(PasswordPb.Password);
             if (PasswordPb.Password != RepeatPasswordPb.Password) {

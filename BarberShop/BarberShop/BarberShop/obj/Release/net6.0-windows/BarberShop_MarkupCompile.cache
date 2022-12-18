@@ -10,11 +10,11 @@ none
 false
 TRACE;RELEASE;NET;NET6_0;NETCOREAPP
 C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\App.xaml
-5-1501403371
+19-216262469
 
-12545907042
-202283448217
-Authorization.xaml;DbAdmin\AdminWindow.xaml;EmployeManagerPages\EmployersPage.xaml;EmployeManager\EmployeManager.xaml;Recover.xaml;
+39-1958954718
+212163453415
+Authorization.xaml;Buhgalter\BuhWindow.xaml;Buhgalter\ReportDocumentViewer.xaml;Buhgalter\TaxReports.xaml;ClientPages\ClientWindow.xaml;ClientPages\RecordServicePage.xaml;DbAdmin\AdminWindow.xaml;EmployeManagerPages\EmployerCreate.xaml;EmployeManagerPages\EmployersPage.xaml;EmployeManagerPages\PostList.xaml;EmployeManagerPages\VacationsPage.xaml;EmployeManager\EmployeManager.xaml;Recover.xaml;RegistrationWindow.xaml;Stocker\MaterialsPage.xaml;Stocker\ProvidersPage.xaml;Stocker\StockerWindow.xaml;Stocker\SuppliesPage.xaml;Stocker\SupplyDocumentViewer.xaml;
 
 False
 

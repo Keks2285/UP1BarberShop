@@ -33,7 +33,11 @@ namespace BarberShop.Buhgalter
             this.employer_id=employerId;    
             InitializeComponent();
         }
-
+        /// <summary>
+        /// событеие нажатия кнопки создания отчета
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void CreateReport_Click(object sender, RoutedEventArgs e)
         {
 
@@ -58,7 +62,11 @@ namespace BarberShop.Buhgalter
                 employer = _employers.FirstOrDefault(item => item.ID_Employee == employer_id)
             });
         }
-
+        /// <summary>
+        /// событеие загрузки страницы
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             EmployeModel.AllINN.Clear();

@@ -25,7 +25,11 @@ namespace BarberShop
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// Обработка кнопки регистрации
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void RegistrationBtn_Click(object sender, RoutedEventArgs e)
         {
             if (!Helper.CheckEmail(EmailTb.Text) || EmailTb.Text.Length<1) {
@@ -88,7 +92,11 @@ namespace BarberShop
                 return;
             }
         }
-
+        /// <summary>
+        /// Обработка кнопки возврата на предыдущее окно
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
             Window W = new Authorization();

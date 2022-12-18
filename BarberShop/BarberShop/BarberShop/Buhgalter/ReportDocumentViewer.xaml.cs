@@ -71,7 +71,11 @@ namespace BarberShop.Buhgalter
 
 
         }
-
+        /// <summary>
+        /// событеие нажатия кнопки печати документа
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void PrintBtn_Click(object sender, RoutedEventArgs e)
         {
             PrintDialog printDialog = new PrintDialog();
@@ -83,7 +87,11 @@ namespace BarberShop.Buhgalter
             }
             
         }
-
+        /// <summary>
+        /// событеие нажатия кнопки сохранения документа
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.SaveFileDialog save = new Microsoft.Win32.SaveFileDialog();

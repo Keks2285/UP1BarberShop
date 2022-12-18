@@ -27,12 +27,21 @@ namespace BarberShop.Stocker
 
 
         /// <summary>
-        /// надо доделать валидацию и изменение
+        ///  список складов
         /// </summary>
 
         private BindingList<Stock> _stocks = new BindingList<Stock>();
+        /// <summary>
+        /// список поставщиков
+        /// </summary>
         private BindingList<Provider> _providers = new BindingList<Provider>();
+        /// <summary>
+        /// выбранный поставщик
+        /// </summary>
         private Provider _selectedProvider;
+        /// <summary>
+        /// выбранный склад
+        /// </summary>
         private Stock _selectedStock;
         public ProvidersPage()
         {
@@ -40,7 +49,11 @@ namespace BarberShop.Stocker
             _stocks.ListChanged += _stocks_ListChanged;
             _providers.ListChanged += _providers_ListChanged;
         }
-
+        /// <summary>
+        /// событеие изменеия списка поставщиков
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void _providers_ListChanged(object? sender, ListChangedEventArgs e)
         {
             
@@ -56,7 +69,11 @@ namespace BarberShop.Stocker
                 
             }
         }
-
+        /// <summary>
+        /// событеие изменеия списка складов
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void _stocks_ListChanged(object? sender, ListChangedEventArgs e)
         {
             var searchStockByAdress = _stocks.FirstOrDefault(item => item.Adres == AdresStockTb.Text);
@@ -75,7 +92,11 @@ namespace BarberShop.Stocker
                 var res = Helper.client.Post(req);
             }
         }
-
+        /// <summary>
+        /// событеие загрузки страницы
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             _stocks.Clear();
@@ -107,7 +128,11 @@ namespace BarberShop.Stocker
             ProvidersDg.ItemsSource = _providers;
 
         }
-
+        /// <summary>
+        /// событеие нажатия кнопки добавления поставщика
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void ProviderCreateBtn_Click(object sender, RoutedEventArgs e)
         {
 
@@ -150,8 +175,12 @@ namespace BarberShop.Stocker
                 INN = InnTb.Text
             });
         }
-
-       
+        /// <summary>
+        /// Метод послыающий запрос к апи на создание
+        /// </summary>
+        /// <param name="parametres"> словарь параметров</param>
+        /// <param name="request"> строка-метод который должна выполнить апи</param>
+        /// <returns></returns>
         private dynamic createRequest( Dictionary<string, string> parametres, string request)
         {
             var req = new RestRequest(request, Method.Post);
@@ -162,7 +191,11 @@ namespace BarberShop.Stocker
            return JsonConvert.DeserializeObject<dynamic>(res.Content);
            // MessageBox.Show("Должность создана");
         }
-
+        /// <summary>
+        /// событеие нажатия кнопки добавления склада
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void CreatStockBtn_Click(object sender, RoutedEventArgs e)
         {
 
@@ -183,7 +216,11 @@ namespace BarberShop.Stocker
                 ID_Stock  = reqResult.id
             });
         }
-
+        /// <summary>
+        /// событие возникащее до нажатияна клаывишу
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void ProvidersDg_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Delete)
@@ -208,12 +245,20 @@ namespace BarberShop.Stocker
                 }
             }
         }
-
+        /// <summary>
+        /// событеие выбора поставщика
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void ProvidersDg_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             _selectedProvider = (Provider)ProvidersDg.SelectedItem;
         }
-
+        /// <summary>
+        /// событие возникащее до нажатияна клаывишу
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void StockDg_PreviewKeyDown(object sender, KeyEventArgs e)
         {
 
@@ -241,7 +286,11 @@ namespace BarberShop.Stocker
 
 
         }
-
+        /// <summary>
+        /// событеие выбора склада
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void StockDg_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             _selectedStock = (Stock)StockDg.SelectedItem;

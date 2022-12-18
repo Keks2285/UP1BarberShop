@@ -3,7 +3,7 @@
 function updateEmploye($connect, $data){
     try{
 
-        var_dump($data);
+        //var_dump($data);
 
         $selectPosts=$connect->prepare("call Employe_Update(?,?,?,?,?,?,?,?)");
         $selectPosts->execute(array(

@@ -56,7 +56,11 @@ namespace BarberShop.EmployeManagerPages
         }
 
 
-
+        /// <summary>
+        /// Событие выбора сотрудника
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void _employes_CollectionChanged(object sender, ListChangedEventArgs e)
         {
           //  if (UsersGrid.SelectedItem != null)
@@ -103,7 +107,11 @@ namespace BarberShop.EmployeManagerPages
 
 
         }
-
+        /// <summary>
+        /// событеие загрузки страницы
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             if (EmployeModel.Posts.Count > 0) EmployeModel.Posts.Clear();
@@ -181,7 +189,11 @@ namespace BarberShop.EmployeManagerPages
             // employersBufer = _employers;
 
         }
-
+        /// <summary>
+        /// Событие нажатие кнопки импорта
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ImportEmploye_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -213,7 +225,11 @@ namespace BarberShop.EmployeManagerPages
             //employersBufer = _employers;
             Page_Loaded(sender, e);
         }
-
+        /// <summary>
+        /// Событие нажатие кнопки экспорта
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ExportEmploye_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -247,7 +263,11 @@ namespace BarberShop.EmployeManagerPages
             }
 
         }
-
+        /// <summary>
+        /// Событие нажатие кнопки поиска
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SearchBtn_Click(object sender, RoutedEventArgs e)
         {
             //_SearchEmployes = new ObservableCollection<EmployeModel>(_employes.Where(
@@ -285,12 +305,20 @@ namespace BarberShop.EmployeManagerPages
             MiddleNameTb.Text = "";
             UsersGrid.ItemsSource = _employers;
         }
-
+        /// <summary>
+        /// событеие выбора сотрудника
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void UsersGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (UsersGrid.SelectedItem != null) selectedEmployer = (EmployeModel)UsersGrid.SelectedItem;
         }
-
+        /// <summary>
+        /// событие сортировки
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void UsersGrid_Sorting(object sender, DataGridSortingEventArgs e)
         {
 
@@ -401,7 +429,11 @@ namespace BarberShop.EmployeManagerPages
             }
             // MessageBox.Show( );
         }
-
+        /// <summary>
+        /// событие возникащее до нажатияна клаывишу
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void UsersGrid_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Delete)
@@ -425,7 +457,11 @@ namespace BarberShop.EmployeManagerPages
                 }
             }
         }
-
+        /// <summary>
+        /// Событие нажатие кнопки, открывающей страниу=цу создания сотрудника
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EmployerAdd_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new EmployerCreate());

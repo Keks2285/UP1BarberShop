@@ -225,5 +225,40 @@ function removeProvider($connect, $data){
   }
 
 
+  function removeMaterial($connect, $data){
+    //  echo $data["email"]; die();
+      try{
+        //var_dump($data);
+          $deleteUser =$connect->prepare("Delete from Material where ID_Material =?");
+          $deleteUser ->execute(array($data["id_material"]));
+          $selectUsers=$connect->prepare("Select * from Material where ID_Material  =?");
+          $selectUsers->execute(array(strval($data["id_material"])));
+          if(count($selectUsers->fetchAll())>0){
+              $responce=[
+                  "status"=>false,
+                  "message"=>"Material not deleted"
+              ];
+              echo json_encode($responce);
+              die();
+          }else{
+              $responce=[
+                  "status"=>true,
+                  "message"=>"Material deleted"
+              ];
+              echo json_encode($responce);
+              die();
+          }
+      } catch (Exception $e){
+          $responce=[
+              "status"=>false,
+              "message"=>"Material not deleted"
+          ];
+          echo json_encode($responce);
+      }
+  
+     
+  }
+
+
 
 

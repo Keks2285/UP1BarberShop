@@ -19,7 +19,13 @@ namespace BarberShop.Stocker
     /// </summary>
     public partial class StockerWindow : Window
     {
+        /// <summary>
+        /// Фамилия авторизованного сотрудника
+        /// </summary>
         string firstName = "";
+        /// <summary>
+        /// имя авторизованного сотрудника
+        /// </summary>
         string lastName = "";
         public StockerWindow(string _firstName, string _lastName)
         {
@@ -30,7 +36,10 @@ namespace BarberShop.Stocker
         }
 
 
-
+        /// <summary>
+        /// метод загрузки первой страницы
+        /// </summary>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
 
         private void loadFirstPage()
         {
@@ -40,17 +49,29 @@ namespace BarberShop.Stocker
             MainFrame.Content = new ProvidersPage();
         }
 
-
+        /// <summary>
+        /// событеие обработки закрытия окна
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Environment.Exit(0);
         }
-
+        /// <summary>
+        /// событеие обработки перехода на страницу поставщиков и складов
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void ProvidersBtn_Click(object sender, RoutedEventArgs e)
         {
             loadFirstPage();
         }
-
+        /// <summary>
+        /// событеие обработки перехода на страницу поставок
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void SuppliesBtn_Click(object sender, RoutedEventArgs e)
         {
             ProvidersBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
@@ -58,7 +79,11 @@ namespace BarberShop.Stocker
             //VacationBtn.Background = new SolidColorBrush(Color.FromRgb(103, 58, 183));
             MainFrame.Content = new SuppliesPage();
         }
-
+        /// <summary>
+        /// событеие обработки перехода на страницу материалов
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void MaterialsBtn_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new MaterialsPage();

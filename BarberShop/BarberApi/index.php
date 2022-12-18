@@ -31,6 +31,7 @@ switch ($_SERVER['REQUEST_METHOD']){
             case "removeVacation": removeVacation($connect,$_POST); break;  
             case "removeProvider":removeProvider($connect, $_POST);break;
             case "removeStock":removeStock($connect, $_POST);break;
+            case "removeMaterial":removeMaterial($connect, $_POST);break;
             case "removeSupply":removeSupply($connect, $_POST);break;
             case "createPost": createPost($connect,$_POST); break;  
             case "createStock": createStock($connect,$_POST); break; 

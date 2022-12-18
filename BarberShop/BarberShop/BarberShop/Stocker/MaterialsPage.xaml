@@ -38,7 +38,7 @@
         <Border CornerRadius="15" BorderBrush="#FFABADB3" Background="White"  VerticalAlignment="Top" BorderThickness="1"  Height="43" Margin="4,5,10,0" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" >
             <TextBox FontSize="14" BorderThickness="0"  Background="Transparent"  x:Name="NameTb" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  VerticalAlignment="Center"  materialDesign:HintAssist.Hint="Название"  Margin="9,0,9,0" Height="40"/>
         </Border>
-        <DataGrid  x:Name="MaterialsDg" CanUserSortColumns="True"  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" AutoGenerateColumns="False" CanUserDeleteRows="True" CanUserAddRows="False" Margin="4,10,10,10" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+        <DataGrid  x:Name="MaterialsDg" CanUserSortColumns="True"  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" AutoGenerateColumns="False" CanUserDeleteRows="True" CanUserAddRows="False" Margin="4,10,10,10" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2" PreviewKeyDown="MaterialsDg_PreviewKeyDown">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Binding="{Binding Name_Material}"  CanUserSort="True" Header="Название"/>
                 <DataGridComboBoxColumn x:Name="ComboboxColumn"

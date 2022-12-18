@@ -26,12 +26,20 @@ namespace BarberShop.Buhgalter
             employer_id=id;
             MainFrame.Content = new TaxReports(id);
         }
-
+        /// <summary>
+        /// событеие нажатия кнопки открывающей страницу с отчетами
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void Reports_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new TaxReports(employer_id);
         }
-
+        /// <summary>
+        /// событеие закрытия окна
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Environment.Exit(0);

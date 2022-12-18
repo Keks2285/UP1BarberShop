@@ -23,16 +23,31 @@ namespace BarberShop.Stocker
     /// Логика взаимодействия для MaterialsPage.xaml
     /// </summary>
     public partial class MaterialsPage : Page
-    {
+        {/// <summary>
+         ///  список складов
+         /// </summary>
         private BindingList<Stock> _stocks = new BindingList<Stock>();
+        /// <summary>
+        /// список поставок
+        /// </summary>
         private BindingList<Supply> _supplies = new BindingList<Supply>();
+        /// <summary>
+        /// список поставщиков
+        /// </summary>
         private BindingList<Provider> _providers = new BindingList<Provider>();
+        /// <summary>
+        /// список материалов
+        /// </summary>
         private BindingList<Material> _materials = new BindingList<Material>();
         public MaterialsPage()
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// событеие нажатия кнопки создания материала
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void MaterialCreateBtn_Click(object sender, RoutedEventArgs e)
         {
             var req = new RestRequest("/createMaterial", Method.Post);
@@ -42,7 +57,11 @@ namespace BarberShop.Stocker
             req.AddParameter("supply_id", (SuppliesDg.SelectedItem as Supply).ID_Supply);
             var res = Helper.client.Post(req);
         }
-
+        /// <summary>
+        /// событеие загрузки сраницы
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             _stocks.Clear();
@@ -101,6 +120,23 @@ namespace BarberShop.Stocker
             MaterialsDg.ItemsSource= _materials;
            // ProvidersDg.ItemsSource = _providers;
             StockDg.ItemsSource = _stocks;
+        }
+        /// <summary>
+        /// событеие возникающее до нажатия кнопки
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
+        private void MaterialsDg_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete)
+            {
+                var reqDeleteSickLeave = new RestRequest("/removeMaterial", Method.Post);
+                reqDeleteSickLeave.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                reqDeleteSickLeave.AddParameter("id_material", (MaterialsDg.SelectedItem as Material).ID_Material);
+                var resDeleteSickLeave = Helper.client.Post(reqDeleteSickLeave);
+                string a = resDeleteSickLeave.Content;
+
+            }
         }
     }
 }

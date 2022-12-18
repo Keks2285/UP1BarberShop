@@ -24,16 +24,28 @@ namespace BarberShop.EmployeManagerPages
     /// </summary>
     public partial class VacationsPage : Page
     {
-
+        /// <summary>
+        ///  список сотрудников
+        /// </summary>
         private BindingList<EmployeModel> _employers = new BindingList<EmployeModel>();
+        /// <summary>
+        ///  список отпусков
+        /// </summary>
         private BindingList<Vacation> _vacations = new BindingList<Vacation>();
+        /// <summary>
+        ///  список больничных
+        /// </summary>
         private BindingList<SickLeave> _sickleaves = new BindingList<SickLeave>();
 
         public VacationsPage()
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// событеие загрузки страницы
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             var req = new RestRequest("/getEmployers", Method.Get);
@@ -78,7 +90,11 @@ namespace BarberShop.EmployeManagerPages
             VacationsDg.ItemsSource = _vacations;
 
         }
-        
+        /// <summary>
+        /// событеие нажатия кнопки создания отпуска
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void CreatVacation_Click(object sender, RoutedEventArgs e)
         {
             if (!validateData()) return;
@@ -101,7 +117,11 @@ namespace BarberShop.EmployeManagerPages
             }
             );
         }
-
+        /// <summary>
+        /// событеие создания больничного
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void CreateSickLeave_Click(object sender, RoutedEventArgs e)
         {
             if (!validateData()) return;
@@ -122,7 +142,10 @@ namespace BarberShop.EmployeManagerPages
         }
 
 
-
+       /// <summary>
+       /// метод валидации строки
+       /// </summary>
+       /// <returns></returns>
         private bool validateData()
         {
             if (DateBegin.Text == "" || DateEnd.Text == "")
@@ -144,7 +167,11 @@ namespace BarberShop.EmployeManagerPages
             }
             return true;
         }
-
+        /// <summary>
+        /// событеие возникающее до нажатия кнопки
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void VacationsDg_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Delete)
@@ -157,7 +184,11 @@ namespace BarberShop.EmployeManagerPages
 
             }
         }
-
+        /// <summary>
+        /// событеие возникающее до нажатия кнопки
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void SickLeavesDg_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Delete)
