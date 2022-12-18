@@ -69,6 +69,23 @@ namespace BarberShop
             return DateTime.TryParse(date, out dt);
         }
 
+        public static bool CheckPass(string pass)
+        {
+            bool check = false;
+            foreach (char a in pass)
+            {
+                check = !Regex.IsMatch(a.ToString(), @"[а-яА-Я ]");
+            }
+            check = 
+                    pass.Length >= 6
+                    && pass.Any(char.IsLetter)
+                    && pass.Any(char.IsDigit)
+                    && pass.Any(char.IsPunctuation)
+                    && pass.Any(char.IsLower)
+                    && pass.Any(char.IsUpper);
+            
+            return check;
+        }
 
     }
 }

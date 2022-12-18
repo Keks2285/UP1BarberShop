@@ -41,5 +41,6 @@
             <TextBox  FontSize="14" BorderThickness="0"  Background="Transparent"  x:Name="Price" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  VerticalAlignment="Center"  materialDesign:HintAssist.Hint="Объем продаж"  Margin="9,0,9,0" Height="40"></TextBox>
         </Border>
         <Button Grid.Column="1" Content="Добавить отчет" HorizontalAlignment="Left" Margin="148,120,0,0" Grid.Row="2" VerticalAlignment="Top" Name="CreateReport" Click="CreateReport_Click"/>
+        <Button Grid.Column="3" x:Name="ViewDoc" Content="Просмотреть отчет" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="10,234,0,0" Grid.Row="1" VerticalAlignment="Top" Height="34" Width="178" Click="ViewDoc_Click"/>
     </Grid>
 </Page>

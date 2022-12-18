@@ -46,7 +46,7 @@
                 <TextBox x:Name="EmailTb" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" materialDesign:HintAssist.Hint="Введите вашу почту"></TextBox>
                 <PasswordBox x:Name="PasswordPb" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"  VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" materialDesign:HintAssist.Hint="Введите пароль"></PasswordBox>
                 <Button x:Name="AuthorizationBtn" Grid.Column="2" VerticalContentAlignment="Center"  Grid.Row="2" Click="AuthorizationBtn_Click" HorizontalAlignment="Center"  Cursor="Hand" MinWidth="80" MinHeight="10" MaxWidth="200" MaxHeight="40" >⠀⠀⠀⠀Вход⠀⠀⠀⠀</Button>
-                <Button x:Name="RegistrationBtn" VerticalContentAlignment="Center"  Grid.Row="2"  HorizontalAlignment="Center" Cursor="Hand"  Content="Регистрация"  />
+                <Button x:Name="RegistrationBtn" VerticalContentAlignment="Center"  Grid.Row="2"  HorizontalAlignment="Center" Cursor="Hand" Click="RegistrationBtn_Click" Content="Регистрация"  />
 
             </Grid>
         </Border>

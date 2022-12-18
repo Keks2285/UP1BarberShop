@@ -144,3 +144,13 @@ C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\Barb
 C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\Buhgalter\TaxReports.g.cs
 C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\Buhgalter\BuhWindow.baml
 C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\Buhgalter\TaxReports.baml
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\Buhgalter\ReportDocumentViewer.g.cs
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\Buhgalter\ReportDocumentViewer.baml
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\bin\Debug\net6.0-windows\Xceed.Document.NET5.dll
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\bin\Debug\net6.0-windows\Xceed.Words.NET5.dll
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\ClientPages\ClientWindow.g.cs
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\ClientPages\ClientWindow.baml
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\ClientPages\RecordServicePage.g.cs
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\ClientPages\RecordServicePage.baml
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\RegistrationWindow.g.cs
+C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\obj\Debug\net6.0-windows\RegistrationWindow.baml

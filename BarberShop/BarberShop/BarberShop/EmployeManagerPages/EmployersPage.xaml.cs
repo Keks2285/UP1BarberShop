@@ -144,39 +144,7 @@ namespace BarberShop.EmployeManagerPages
                 _employers.Add(employer);
             }
 
-            ///////////////////// статистика доходов за текущий год
-            //var reqIncomes = new RestRequest("/getIncomes", Method.Get);
-            //req.AddHeader("Content-Type", "application/x-www-form-urlencoded");
-            //var resIncomes = Helper.client.Get(reqIncomes);
-            //List<Income> dataIncomes = JsonConvert.DeserializeObject<List<Income>>(resIncomes.Content);
-            //string[] nameMonths = {"Январь","Февраль", "Март",
-            //                        "Апрель", "Май", "Июнь",
-            //                        "Июль", "Август", "Сентябрь",
-            //                        "Октябрь", "Ноябрь", "Декабрь" };
-            //double[] months = new double[12];
-            //int counterMonth = 0;
-            //for (int i = 1; i < 13; i++)
-            //{
-            //    var curentMonth = from income in dataIncomes
-            //                      where
-            //                      income.Date_Income.Month == i && income.Date_Income.Year == DateTime.Now.Year
-            //                      select income;
-            //    foreach (Income x in curentMonth)
-            //    {
-            //        months[counterMonth] += x.Value;
-            //    };
-
-            //    counterMonth++;
-
-            //}
-            //double[] positions = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
-            //EmployersStatistic.Plot.AddBar(months, positions);
-            //EmployersStatistic.Plot.XTicks(positions, nameMonths);
-            //EmployersStatistic.Plot.SetAxisLimits(yMin: 0);
-            //EmployersStatistic.Plot.XAxis.Grid(false);
-            //EmployersStatistic.Plot.SaveFig("stats_histogram.png");
-            //EmployersStatistic.Refresh();
-            ///////////////
+            
 
 
             UsersGrid.ItemsSource = _employers;

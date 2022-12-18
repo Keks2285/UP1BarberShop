@@ -57,7 +57,8 @@ namespace BarberShop.EmployeManagerPages
             foreach (SickLeave sick in dataSick)
             {
                 sick.employer = _employers.FirstOrDefault(item => item.ID_Employee == sick.Employe_ID);
-                sick.FIO = sick.employer.FirstName + '.' + sick.employer.LastName[0] + '.' + sick.employer?.MiddleName?[0];
+                string mChar = sick.employer.MiddleName == "" || sick.employer.MiddleName == null ? " " : sick.employer.MiddleName[0].ToString();
+                sick.FIO = sick.employer.FirstName + '.' + sick.employer.LastName[0] + '.' + mChar;
                 _sickleaves.Add(sick);
             }
             SickLeavesDg.ItemsSource = _sickleaves;
@@ -70,7 +71,8 @@ namespace BarberShop.EmployeManagerPages
             foreach (Vacation Vac in dataVac)
             {
                 Vac.employer = _employers.FirstOrDefault(item=>item.ID_Employee==Vac.Employe_ID);
-                Vac.FIO = Vac.employer.FirstName + '.' + Vac.employer.LastName[0] + '.' + Vac.employer?.MiddleName?[0];
+                string mChar = Vac.employer.MiddleName == "" || Vac.employer.MiddleName == null ? " " : Vac.employer.MiddleName[0].ToString();
+                Vac.FIO = Vac.employer.FirstName + '.' + Vac.employer.LastName[0] + '.' + mChar;
                 _vacations.Add(Vac);
             }
             VacationsDg.ItemsSource = _vacations;

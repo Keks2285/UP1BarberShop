@@ -170,6 +170,7 @@ function createStock($connect, $data){
 
 function registrateClient($connect, $data){ /// Нужно доработать
     try{
+       // var_dump($data);
         $selectClients=$connect->prepare("Select * from Client where Phone=? or Email=?");
         $selectClients->execute(array(
             strval($data["phone"]),
@@ -187,7 +188,7 @@ function registrateClient($connect, $data){ /// Нужно доработать
 
 
         $createEmploye=$connect->prepare(
-        "insert into Client (First_Name, LastName, Middle_Name, Phone, Email, Password) VALUES 
+        "insert into Client (First_Name, Last_Name, Middle_Name, Phone, Email, `Password`) VALUES 
         (?,?,?,?,?,?)"
         );
         

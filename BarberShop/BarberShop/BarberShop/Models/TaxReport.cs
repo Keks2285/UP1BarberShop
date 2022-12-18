@@ -29,5 +29,7 @@ namespace BarberShop.Models
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public EmployeModel employer { get; set; }
     }
 }

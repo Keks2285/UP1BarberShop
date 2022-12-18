@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BarberShop.Buhgalter"
         mc:Ignorable="d"
-        Title="BuhWindow" Width="1300" MinWidth="1000" MinHeight="710" WindowState="Maximized" >
+        Title="BuhWindow" Width="1300" MinWidth="1000" MinHeight="710" WindowState="Maximized" Closing="Window_Closing" >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="155*"></ColumnDefinition>
@@ -25,7 +25,9 @@
             </Border.Effect>
             <TextBlock Name="FLTb" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30"> ИВ</TextBlock>
         </Border>
-        <StackPanel  Grid.RowSpan="3" Margin="0,103,1,0"/>
+        <StackPanel  Grid.RowSpan="3" Margin="0,103,1,0">
+            <Button Content="Отчеты" x:Name="Reports" Click="Reports_Click"/>
+        </StackPanel>
         <Button x:Name="ExitBtn" Margin="5,132,5,0" VerticalAlignment="Top" Background="#FFC52B2B" Grid.Row="2" Height="32">Выход</Button>
         <Frame x:Name="MainFrame"  Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="3" Background="Aqua"  NavigationUIVisibility="Hidden">
         </Frame>

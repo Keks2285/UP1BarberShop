@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="30.0.0" />
+    <PackageReference Include="DocX" Version="2.4.0" />
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.5.0" />
     <PackageReference Include="MailKit" Version="3.4.1" />
     <PackageReference Include="MaterialDesignThemes" Version="4.6.1" />
@@ -26,6 +27,23 @@
     <Resource Include="images\otkrytie.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Buhgalter\ReportDocumentViewer.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Buhgalter\ReportDocumentViewer.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ClientPages\ClientWindow.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>

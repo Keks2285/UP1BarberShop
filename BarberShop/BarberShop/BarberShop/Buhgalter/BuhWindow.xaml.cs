@@ -19,11 +19,22 @@ namespace BarberShop.Buhgalter
     /// </summary>
     public partial class BuhWindow : Window
     {
+        int employer_id = 0;
         public BuhWindow(string _firstName, string _lastName, int id)
         {
             InitializeComponent();
+            employer_id=id;
             MainFrame.Content = new TaxReports(id);
         }
 
+        private void Reports_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new TaxReports(employer_id);
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }

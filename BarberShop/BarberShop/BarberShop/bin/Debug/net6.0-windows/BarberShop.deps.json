@@ -9,6 +9,7 @@
       "BarberShop/1.0.0": {
         "dependencies": {
           "CsvHelper": "30.0.0",
+          "DocX": "2.4.0",
           "Extended.Wpf.Toolkit": "4.5.0",
           "MailKit": "3.4.1",
           "MaterialDesignThemes": "4.6.1",
@@ -26,6 +27,22 @@
           "lib/net6.0/CsvHelper.dll": {
             "assemblyVersion": "30.0.0.0",
             "fileVersion": "30.0.0.0"
+          }
+        }
+      },
+      "DocX/2.4.0": {
+        "dependencies": {
+          "System.Drawing.Common": "5.0.2",
+          "System.IO.Packaging": "4.5.0"
+        },
+        "runtime": {
+          "lib/net5.0/Xceed.Document.NET5.dll": {
+            "assemblyVersion": "2.4.0.0",
+            "fileVersion": "2.4.0.0"
+          },
+          "lib/net5.0/Xceed.Words.NET5.dll": {
+            "assemblyVersion": "2.4.0.0",
+            "fileVersion": "2.4.0.0"
           }
         }
       },
@@ -121,10 +138,10 @@
           }
         }
       },
-      "Microsoft.NETCore.Platforms/3.0.0": {},
-      "Microsoft.Win32.SystemEvents/4.6.0": {
+      "Microsoft.NETCore.Platforms/5.0.0": {},
+      "Microsoft.Win32.SystemEvents/5.0.0": {
         "dependencies": {
-          "Microsoft.NETCore.Platforms": "3.0.0"
+          "Microsoft.NETCore.Platforms": "5.0.0"
         }
       },
       "MimeKit/3.4.1": {
@@ -165,7 +182,7 @@
       },
       "ScottPlot/4.1.59": {
         "dependencies": {
-          "System.Drawing.Common": "4.6.1",
+          "System.Drawing.Common": "5.0.2",
           "System.Numerics.Vectors": "4.5.0"
         },
         "runtime": {
@@ -186,13 +203,13 @@
           }
         }
       },
-      "System.Drawing.Common/4.6.1": {
+      "System.Drawing.Common/5.0.2": {
         "dependencies": {
-          "Microsoft.NETCore.Platforms": "3.0.0",
-          "Microsoft.Win32.SystemEvents": "4.6.0"
+          "Microsoft.Win32.SystemEvents": "5.0.0"
         }
       },
       "System.Formats.Asn1/6.0.0": {},
+      "System.IO.Packaging/4.5.0": {},
       "System.Numerics.Vectors/4.5.0": {},
       "System.Runtime.CompilerServices.Unsafe/6.0.0": {},
       "System.Security.Cryptography.Pkcs/6.0.0": {
@@ -219,6 +236,13 @@
       "sha512": "sha512-0VXyouC1g43bXtEJRReJfB5C3RwxZOUSk9FnNv8/47PptzrVYKrEi/H3PP14+MvP+mLCnDiAtOXbIwvnEMSPxw==",
       "path": "csvhelper/30.0.0",
       "hashPath": "csvhelper.30.0.0.nupkg.sha512"
+    },
+    "DocX/2.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-c02FW0keXYEWJGqA0+5z10lm/GFYsutnXaiDC34l9mwHliAXc1y5NO3q4cawGfY34wgAhMgS1vC2mOi6zgGUqA==",
+      "path": "docx/2.4.0",
+      "hashPath": "docx.2.4.0.nupkg.sha512"
     },
     "Extended.Wpf.Toolkit/4.5.0": {
       "type": "package",
@@ -248,19 +272,19 @@
       "path": "materialdesignthemes/4.6.1",
       "hashPath": "materialdesignthemes.4.6.1.nupkg.sha512"
     },
-    "Microsoft.NETCore.Platforms/3.0.0": {
+    "Microsoft.NETCore.Platforms/5.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-TsETIgVJb/AKoYfSP+iCxkuly5d3inZjTdx/ItZLk2CxY85v8083OBS3uai84kK3/baLnS5/b5XGs6zR7SuuHQ==",
-      "path": "microsoft.netcore.platforms/3.0.0",
-      "hashPath": "microsoft.netcore.platforms.3.0.0.nupkg.sha512"
+      "sha512": "sha512-VyPlqzH2wavqquTcYpkIIAQ6WdenuKoFN0BdYBbCWsclXacSOHNQn66Gt4z5NBqEYW0FAPm5rlvki9ZiCij5xQ==",
+      "path": "microsoft.netcore.platforms/5.0.0",
+      "hashPath": "microsoft.netcore.platforms.5.0.0.nupkg.sha512"
     },
-    "Microsoft.Win32.SystemEvents/4.6.0": {
+    "Microsoft.Win32.SystemEvents/5.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Edg+pFW5C8WJb680Za2kTV8TqUi6Ahl/WldRVoOVJ23UQLpDHFspa+umgFjkWZw24ETsU99Cg+ErZz683M4chg==",
-      "path": "microsoft.win32.systemevents/4.6.0",
-      "hashPath": "microsoft.win32.systemevents.4.6.0.nupkg.sha512"
+      "sha512": "sha512-Bh6blKG8VAKvXiLe2L+sEsn62nc1Ij34MrNxepD2OCrS5cpCwQa9MeLyhVQPQ/R4Wlzwuy6wMK8hLb11QPDRsQ==",
+      "path": "microsoft.win32.systemevents/5.0.0",
+      "hashPath": "microsoft.win32.systemevents.5.0.0.nupkg.sha512"
     },
     "MimeKit/3.4.1": {
       "type": "package",
@@ -304,12 +328,12 @@
       "path": "scottplot.wpf/4.1.59",
       "hashPath": "scottplot.wpf.4.1.59.nupkg.sha512"
     },
-    "System.Drawing.Common/4.6.1": {
+    "System.Drawing.Common/5.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-TFAADvBEUhdDb2Lteq/BUeG0J1y7a0GyFdpB8yE/eAcbiN0R5MII1nXExXsrtRZiO8C/L9SozL2wGqkRlhiv6A==",
-      "path": "system.drawing.common/4.6.1",
-      "hashPath": "system.drawing.common.4.6.1.nupkg.sha512"
+      "sha512": "sha512-rvr/M1WPf24ljpvvrVd74+NdjRUJu1bBkspkZcnzSZnmAUQWSvanlQ0k/hVHk+cHufZbZfu7vOh/vYc0q5Uu/A==",
+      "path": "system.drawing.common/5.0.2",
+      "hashPath": "system.drawing.common.5.0.2.nupkg.sha512"
     },
     "System.Formats.Asn1/6.0.0": {
       "type": "package",
@@ -317,6 +341,13 @@
       "sha512": "sha512-T6fD00dQ3NTbPDy31m4eQUwKW84s03z0N2C8HpOklyeaDgaJPa/TexP4/SkORMSOwc7WhKifnA6Ya33AkzmafA==",
       "path": "system.formats.asn1/6.0.0",
       "hashPath": "system.formats.asn1.6.0.0.nupkg.sha512"
+    },
+    "System.IO.Packaging/4.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-OjtW5pGp1E7KE3ontBrzy+nSFJCM6pcbVDdo3gg4DauTfdtZKdeKvMVlADF4fSY+OfXWUp4qCvOSxIltt37LbA==",
+      "path": "system.io.packaging/4.5.0",
+      "hashPath": "system.io.packaging.4.5.0.nupkg.sha512"
     },
     "System.Numerics.Vectors/4.5.0": {
       "type": "package",

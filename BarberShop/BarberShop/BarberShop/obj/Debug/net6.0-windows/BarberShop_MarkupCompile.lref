@@ -1,6 +1,11 @@
 ﻿
 FC:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\App.xaml;;
 FC:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\Authorization.xaml;;
+FC:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\Buhgalter\BuhWindow.xaml;;
+FC:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\Buhgalter\ReportDocumentViewer.xaml;;
+FC:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\Buhgalter\TaxReports.xaml;;
+FC:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\ClientPages\ClientWindow.xaml;;
+FC:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\ClientPages\RecordServicePage.xaml;;
 FC:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\DbAdmin\AdminWindow.xaml;;
 FC:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\EmployeManagerPages\EmployerCreate.xaml;;
 FC:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\EmployeManagerPages\EmployersPage.xaml;;
@@ -8,11 +13,10 @@ FC:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\Bar
 FC:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\EmployeManagerPages\VacationsPage.xaml;;
 FC:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\EmployeManager\EmployeManager.xaml;;
 FC:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\Recover.xaml;;
+FC:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\Stocker\MaterialsPage.xaml;;
 FC:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\Stocker\ProvidersPage.xaml;;
 FC:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\Stocker\StockerWindow.xaml;;
 FC:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\Stocker\SuppliesPage.xaml;;
 FC:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\Stocker\SupplyDocumentViewer.xaml;;
-FC:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\Stocker\MaterialsPage.xaml;;
-FC:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\Buhgalter\BuhWindow.xaml;;
-FC:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\Buhgalter\TaxReports.xaml;;
+FC:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\RegistrationWindow.xaml;;
 

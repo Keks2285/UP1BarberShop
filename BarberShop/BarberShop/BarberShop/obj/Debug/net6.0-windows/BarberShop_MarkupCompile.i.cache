@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\Ilyich\OneDrive\Документы\GitHub\UP1BarberShop\BarberShop\BarberShop\BarberShop\App.xaml
-15-875269594
+19-216262469
 
-37811137075
-210-7955958
-Authorization.xaml;Buhgalter\BuhWindow.xaml;Buhgalter\TaxReports.xaml;DbAdmin\AdminWindow.xaml;EmployeManagerPages\EmployerCreate.xaml;EmployeManagerPages\EmployersPage.xaml;EmployeManagerPages\PostList.xaml;EmployeManagerPages\VacationsPage.xaml;EmployeManager\EmployeManager.xaml;Recover.xaml;Stocker\MaterialsPage.xaml;Stocker\ProvidersPage.xaml;Stocker\StockerWindow.xaml;Stocker\SuppliesPage.xaml;Stocker\SupplyDocumentViewer.xaml;
+41109477160
+212163453415
+Authorization.xaml;Buhgalter\BuhWindow.xaml;Buhgalter\ReportDocumentViewer.xaml;Buhgalter\TaxReports.xaml;ClientPages\ClientWindow.xaml;ClientPages\RecordServicePage.xaml;DbAdmin\AdminWindow.xaml;EmployeManagerPages\EmployerCreate.xaml;EmployeManagerPages\EmployersPage.xaml;EmployeManagerPages\PostList.xaml;EmployeManagerPages\VacationsPage.xaml;EmployeManager\EmployeManager.xaml;Recover.xaml;RegistrationWindow.xaml;Stocker\MaterialsPage.xaml;Stocker\ProvidersPage.xaml;Stocker\StockerWindow.xaml;Stocker\SuppliesPage.xaml;Stocker\SupplyDocumentViewer.xaml;
 
 True
 

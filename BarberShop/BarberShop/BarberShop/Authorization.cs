@@ -50,7 +50,12 @@ namespace BarberShop
             w.Show();
         }
 
-
+        private void RegistrationBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Window w = new RegistrationWindow();
+            this.Hide();
+            w.Show();
+        }
 
 
 
@@ -79,6 +84,20 @@ namespace BarberShop
                 case "2":
                     {
                         Window W = new Buhgalter.BuhWindow(FirstName, LastName, Id);
+                        W.Show();
+                        this.Hide();
+                        break;
+                    }
+                case "4":
+                    {
+                        Window W = new DbAdmin.AdminWindow();
+                        W.Show();
+                        this.Hide();
+                        break;
+                    }
+                case "Client":
+                    {
+                        Window W = new ClientPages.ClientWindow(FirstName, LastName, Id);
                         W.Show();
                         this.Hide();
                         break;
@@ -122,8 +141,12 @@ namespace BarberShop
                     var resClient = Helper.client.Post(reqClient);
                     dynamic dataClient = JsonConvert.DeserializeObject<dynamic>(resClient.Content);
 
-                    if (!data.status.Value)
+                    if (!dataClient.status.Value)
                         MessageBox.Show("Такого пользователя нет, зарегетрируйтесь");
+                    Role = "Client";
+                    FirstName = Convert.ToString(dataClient.firstname);
+                    LastName = Convert.ToString(dataClient.lastname);
+                    Id = Convert.ToInt32(dataClient.id);
                     result = false; return;
                 }
                 FirstName = Convert.ToString(data.firstname);

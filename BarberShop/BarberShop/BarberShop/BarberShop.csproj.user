@@ -13,6 +13,9 @@
     <Compile Update="Buhgalter\TaxReports.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ClientPages\RecordServicePage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="DbAdmin\AdminWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -26,6 +29,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Recover.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="RegistrationWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Stocker\MaterialsPage.xaml.cs">
@@ -54,6 +60,12 @@
     <Page Update="Buhgalter\TaxReports.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="ClientPages\ClientWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ClientPages\RecordServicePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="DbAdmin\AdminWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -66,6 +78,9 @@
     <Page Update="EmployeManagerPages\PostList.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Buhgalter\ReportDocumentViewer.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="EmployeManagerPages\VacationsPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -73,6 +88,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Recover.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="RegistrationWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Stocker\MaterialsPage.xaml">
